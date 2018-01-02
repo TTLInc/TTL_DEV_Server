@@ -1,0 +1,7 @@
+@charset "utf-8";
+/* CSS Document */
+.terms{ padding:35px 35px 60px;}
+.terms_top{ height:40px; line-height:40px; color:#133e5f; font-size:24px; font-weight:bold; border-bottom:1px solid #e6e6e6;}
+.terms_mid{ }
+.terms_mid h1{ padding:30px 30px 0; color:#0d5782; font-size:14px; font-weight:bold; line-height:20px; height:20px;}
+.terms_mid p{ padding:30px 30px 0; text-indent:2em; color:#585858; font-family:Arial; line-height:18px; font-size:14px;}

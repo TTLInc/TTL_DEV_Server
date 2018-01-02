@@ -1,0 +1,749 @@
+@media (max-width: 1024px){
+/*	.banner_slogan_1 {
+    position: absolute;
+    top: -9%;
+    left: 27%;
+    color: #fff;
+	font-size: 20px;
+}
+.banner_links_btn_1{ 
+    top: 75%;
+    left: 35%;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+}
+.school_content{
+	font-size: 18px;
+    padding: 25px !important;
+	line-height: 27px;
+    text-align: justify;
+}
+.banner_slogan_2 {
+    top: 2%;
+    left: 30%;
+    font-size: 20px;
+	position: absolute;
+}
+.banner_slogan_3 {
+    top: -7%;
+    left: 37%;
+    font-size: 20px;
+	position: absolute;
+}
+
+.banner_slogan_3_st1{
+    top: -7%;
+    left: 25%;
+    font-size: 20px;
+	position: absolute;
+}
+.banner_slogan_3_tu{
+	top: -7%;
+    left: 37%;
+    font-size: 20px;
+	position: absolute;
+}
+.banner_links_btn_2{
+	top: 75%;
+    left: 50%;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px
+}
+.banner_links_btn_2_st1{
+	top: 75%;
+    left: 40%;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+}
+.banner_slogan_4{
+	top: -7%;
+    left: 13%;
+    color: #fff;
+    font-size: 20px;
+	position: absolute;
+}
+
+.banner_slogan_4_sc{
+	top: -7%;
+    left: 13%;
+    color: #fff;
+    font-size: 20px;
+	position: absolute;
+}
+.banner_slogan_4_st{
+	top: -7%;
+    left: 22%;
+    color: #fff;
+    font-size: 20px;
+	position: absolute;
+}
+
+.banner_links_btn_3 {
+    top: 75%;
+    left: 47%;
+    padding: 5px 15px;
+    font-size: 20px;
+	
+}
+.banner_links_btn_3_tu{
+    top: 75%;
+    left: 35%;
+    padding: 5px 15px;
+    font-size: 14px;
+	
+}
+.banner_links_btn_1_tu{ 
+    top: 75%;
+    left: 40% !important;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.banner_links_btn_3_st{
+    top: 75%;
+    left: 45% !important;
+    padding: 5px 15px;
+    font-size: 20px;
+	
+}
+.banner_slogan_3_tu2{
+	top: -7%;
+    left: 18%;
+    font-size: 14px;
+	position: absolute;
+}
+.school_left{
+	width: 100%;
+}
+.sc_info{
+	width: 33%;
+    float: left;
+    font-size: 24px;
+}
+.school_right{
+	width: 100%;
+	margin-top: 20px;
+
+}
+.school_right_content{
+	padding:0px;
+}
+.school_about{
+	top: 7%;
+    font-size: 14px;
+    left: 17%;
+}
+.sc_info img{
+	height:75px;	
+}
+.sc_info h4{
+	font-size:18px;
+	margin-top:10px;
+}
+.sc_information h3{
+	font-size:20px;
+}  */
+
+.banner_slogan_1 {
+
+	font-size: 16px;
+}
+.banner_links_btn_1{ 
+
+        font-size: 14px;
+    top: 80%;
+}
+.school_content{
+	font-size: 18px;
+    padding: 25px !important;
+	line-height: 27px;
+    text-align: justify;
+}
+.banner_slogan_2 {
+font-size: 16px;
+}
+.banner_slogan_3 {
+
+    font-size: 16px;
+
+}
+
+.banner_slogan_3_st1{
+   font-size: 16px;
+}
+.banner_slogan_3_tu{
+	font-size: 16px;
+}
+.banner_links_btn_2{
+	    font-size: 14px;
+    top: 80%;
+}
+.banner_links_btn_2_st1{
+	    font-size: 14px;
+    top: 80%;
+}
+.banner_slogan_4{
+	font-size: 16px;
+}
+
+.banner_slogan_4_sc{
+	font-size: 16px;;
+}
+.banner_slogan_4_st{
+	font-size: 16px;
+}
+
+.banner_links_btn_3 {
+     font-size: 14px;
+    top: 80%;
+	
+}
+.banner_links_btn_3_tu{
+   	    font-size: 14px;
+    top: 80%;
+	
+}
+.banner_links_btn_1_tu{ 
+	    font-size: 14px;
+    top: 80%;
+}
+.banner_links_btn_3_st{
+	    font-size: 14px;
+    top: 80%;
+	
+}
+.banner_links_btn_2_tu{
+	font-size: 14px;
+    top: 80%;
+}
+.banner_slogan_3_tu2{
+		font-size: 16px;
+}
+.school_left{
+	width: 100%;
+}
+.sc_info{
+	width: 33%;
+    float: left;
+    font-size: 24px;
+}
+.school_right{
+	width: 100%;
+	margin-top: 20px;
+
+}
+.school_right_content{
+	padding:0px;
+}
+.school_about{
+	top: 7%;
+    font-size: 14px;
+    left: 17%;
+}
+.sc_info img{
+	height:75px;	
+}
+.sc_info h4{
+	font-size:18px;
+	margin-top:10px;
+}
+.sc_information h3{
+	font-size:20px;
+}
+} 
+
+@media (max-width: 767px) {
+
+/* .banner_slogan_1 {
+    position: absolute;
+    top: -9%;
+
+    color: #fff;
+	font-size: 14px;
+}
+.banner_links_btn_1{ 
+    top: 75%;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.school_content{
+	font-size: 18px;
+    padding: 25px !important;
+	line-height: 27px;
+    text-align: justify;
+}
+.banner_slogan_2 {
+
+
+    font-size: 14px;
+	position: absolute;
+}
+.banner_slogan_3 {
+    top: -7%;
+
+    font-size: 14px;
+	position: absolute;
+}
+.banner_slogan_3_tu{
+	top: -7%;
+
+    font-size: 14px;
+	position: absolute;
+}
+.banner_links_btn_2{
+	top: 75%;
+
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px
+}
+.banner_links_btn_2_st1{
+	top: 75%;
+    left: 44%;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.banner_links_btn_1_tu{ 
+    top: 75%;
+    left: 40% !important;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.banner_links_btn_2_tu{
+	top: 75%;
+    left: 40%;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px
+}
+.banner_slogan_3_st1{
+    top: -7%;
+    left: 25%;
+    font-size: 20px;
+	position: absolute;
+}
+.banner_slogan_4{
+	top: -7%;
+    color: #fff;
+    font-size: 14px;
+	position: absolute;
+}
+
+.banner_slogan_4_sc{
+	top: -7%;
+
+    color: #fff;
+    font-size: 14px;
+	position: absolute;
+}
+.banner_slogan_4_st{
+	top: -7%;
+    left: 8%;
+    color: #fff;
+    font-size: 14px;
+	position: absolute;
+}
+.banner_links_btn_3 {
+    top: 75%;
+
+    padding: 5px 15px;
+    font-size: 14px;
+	
+}
+.banner_links_btn_3_tu{
+    top: 75%;
+    left: 40%;
+    padding: 5px 15px;
+    font-size: 14px;
+	
+}
+.banner_links_btn_3_st{
+    top: 75%;
+    left: 40% !important;
+    padding: 5px 15px;
+    font-size: 14px;
+	
+}
+.banner_slogan_3_tu2{
+	top: -7%;
+    left: 18%;
+    font-size: 14px;
+	position: absolute;
+}
+.school_left{
+	width: 100%;
+}
+.sc_info{
+	width: 33%;
+    float: left;
+    font-size: 24px;
+}
+.school_right{
+	width: 100%;
+	margin-top: 20px;
+
+}
+.school_right_content{
+	padding:0px;
+}
+.school_about{
+	top: 7%;
+    font-size: 14px;
+    left: 17%;
+}
+.sc_info img{
+	height:75px;	
+}
+.sc_info h4{
+	font-size:18px;
+	margin-top:10px;
+}
+.sc_information h3{
+	font-size:20px;
+}
+.hbclass{
+	
+}   */
+.banner_slogan_1 {
+
+	font-size: 16px;
+}
+.banner_links_btn_1{ 
+
+        font-size: 14px;
+    top: 80%;
+}
+.school_content{
+	font-size: 18px;
+    padding: 25px !important;
+	line-height: 27px;
+    text-align: justify;
+}
+.banner_slogan_2 {
+font-size: 16px;
+}
+.banner_slogan_3 {
+
+    font-size: 16px;
+
+}
+
+.banner_slogan_3_st1{
+   font-size: 16px;
+}
+.banner_slogan_3_tu{
+	font-size: 16px;
+}
+.banner_links_btn_2{
+	    font-size: 14px;
+    top: 80%;
+}
+.banner_links_btn_2_st1{
+	    font-size: 14px;
+    top: 80%;
+}
+.banner_slogan_4{
+	font-size: 16px;
+}
+
+.banner_slogan_4_sc{
+	font-size: 16px;;
+}
+.banner_slogan_4_st{
+	font-size: 16px;
+}
+
+.banner_links_btn_3 {
+     font-size: 14px;
+    top: 80%;
+	
+}
+.banner_links_btn_3_tu{
+   	    font-size: 14px;
+    top: 80%;
+	
+}
+.banner_links_btn_1_tu{ 
+	    font-size: 14px;
+    top: 80%;
+}
+.banner_links_btn_3_st{
+	    font-size: 14px;
+    top: 80%;
+	
+}
+.banner_links_btn_2_tu{
+	font-size: 14px;
+    top: 80%;
+}
+.banner_slogan_3_tu2{
+		font-size: 16px;
+}
+.school_left{
+	width: 100%;
+}
+.sc_info{
+	width: 33%;
+    float: left;
+    font-size: 24px;
+}
+.school_right{
+	width: 100%;
+	margin-top: 20px;
+
+}
+.school_right_content{
+	padding:0px;
+}
+.school_about{
+	top: 7%;
+    font-size: 14px;
+    left: 17%;
+}
+.sc_info img{
+	height:75px;	
+}
+.sc_info h4{
+	font-size:18px;
+	margin-top:10px;
+}
+.sc_information h3{
+	font-size:20px;
+}
+
+}
+
+
+@media (max-width: 700px) {
+
+.banner_slogan_1 {
+    position: absolute;
+    top: -9%;
+    left: 9%;
+    color: #fff;
+	font-size: 14px;
+}
+.banner_links_btn_1{ 
+    top: 75%;
+    left: 35%;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.banner_links_btn_1_tu{ 
+    top: 75%;
+    left: 40% !important;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.school_content{
+	font-size: 18px;
+    padding: 25px !important;
+	line-height: 27px;
+    text-align: justify;
+}
+.banner_slogan_2 {
+    top: 2%;
+    left: 30%;
+    font-size: 14px;
+	position: absolute;
+}
+.banner_slogan_3 {
+    top: -7%;
+    left: 13%;
+    font-size: 14px;
+	position: absolute;
+}
+.banner_links_btn_2{
+	top: 75%;
+    left: 33%;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px
+}
+.banner_slogan_3_st1{
+    top: -7%;
+    left: 14%;
+    font-size: 14px;
+	position: absolute;
+}
+.banner_links_btn_2_tu{
+	top: 75%;
+    left: 40%;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px
+}
+.banner_slogan_4{
+	top: -7%;
+    left: 13%;
+    color: #fff;
+    font-size: 14px;
+	position: absolute;
+}
+
+.banner_slogan_4_sc{
+	top: -7%;
+    left: 13%;
+    color: #fff;
+    font-size: 14px;
+	position: absolute;
+}
+.banner_links_btn_2_st1{
+	top: 75%;
+    left: 33%;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.banner_slogan_4_st{
+	top: -7%;
+    left: 8%;
+    color: #fff;
+    font-size: 14px;
+	position: absolute;
+}
+.banner_links_btn_3 {
+    top: 75%;
+    left: 30%;
+    padding: 5px 15px;
+    font-size: 14px;
+	
+}
+.banner_links_btn_3_tu{
+    top: 75%;
+    left: 44%;
+    padding: 5px 15px;
+    font-size: 14px;
+	
+}
+.banner_links_btn_3_st{
+    top: 75%;
+    left: 40% !important;
+    padding: 5px 15px;
+    font-size: 14px;
+	
+}
+.banner_slogan_3_tu{
+	top: -7%;
+    left: 27%;
+    font-size: 14px;
+	position: absolute;
+}
+.banner_slogan_3_tu2{
+	top: -7%;
+    left: 18%;
+    font-size: 14px;
+	position: absolute;
+}
+.school_left{
+	width: 100%;
+}
+.sc_info{
+	width: 33%;
+    float: left;
+    font-size: 24px;
+}
+.school_right{
+	width: 100%;
+	margin-top: 20px;
+
+}
+.school_right_content{
+	padding:0px;
+}
+.school_about{
+	top: 7%;
+    font-size: 14px;
+    left: 17%;
+}
+.sc_info img{
+	height:75px;	
+}
+.sc_info h4{
+	font-size:18px;
+	margin-top:10px;
+}
+.sc_information h3{
+	font-size:20px;
+}
+}
+
+@media (max-width: 321px) {
+.banner_slogan_1{
+    left: 5%;
+	
+    color: #fff;
+    font-size: 13px;
+}
+.banner_slogan_2{
+	
+	font-size: 13px;
+}
+.banner_slogan_3{
+	left: 9%;
+	font-size: 13px;
+}
+.banner_slogan_3_tu{
+	top: -7%;
+    left: 20%;
+    font-size: 14px;
+	position: absolute;
+}
+.banner_links_btn_1{
+	font-size: 13px;
+	top: 68%;
+}
+.banner_links_btn_2{
+	font-size: 13px;
+	top: 72%;
+    left: 28%;
+}
+.banner_slogan_4{
+	left: 2%;
+	font-size: 13px;
+}
+.banner_slogan_4_sc{
+	left: 7%;
+	font-size: 13px;
+}	
+.banner_links_btn_3{
+	font-size: 13px;
+	top: 72%;
+    left: 37% !important;
+}
+.banner_links_btn_3_tu{
+    top: 75%;
+    left: 35%;
+    padding: 5px 15px;
+    font-size: 14px;
+	
+}
+.school_about{
+	left:12%;
+}
+.sc_info img{
+	height:65px;
+}
+}

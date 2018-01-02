@@ -1,0 +1,15 @@
+body{background: #bbdfe9 url('../images/tutors/tutors_bg.png') repeat-x 0 -2px;}
+.tutors_box{/*background:url('../images/tutors/tutors_box_bg.png') no-repeat 50% 0;*/padding-top:15px;padding-bottom:20px;}
+.tutors_box_l{padding-left:50px;width:760px;float:left;}
+.tutors_box_l h3{font: bold 24px Arial, Helvetica, sans-serif;color:#015395;padding:25px 0;text-shadow:1px 1px 1px #fff;}
+.tutors_text {font: 13px/26px Arial, Helvetica, sans-serif;color:#133e5f;padding-left:15px;}
+.tutors_text a{color:#a90c0c;font-weight:bold;text-decoration:none;}
+.tutors_text em{display:inline-block;width:18px;font-size:11px;height:18px;line-height:18px;margin-right:10px;background: url('../images/tutors/dotted.png') no-repeat 0 0;text-align:center;color:#fff;font-weight:bold;}
+.get_STARTED{float:right;width:240px;border-radius: 20px;padding:15px;box-shadow: 1px 1px 3px #a0c2cb;background: #fff url('../images/tutors/start_bd.png') repeat-x 0 100%;}
+.get_STARTED h3{height:50px;border-radius:24px;background:url('../images/tutors/starttle.png') repeat-x 0 0;text-align:center;font:bold 24px/50px Arial, Helvetica, sans-serif;color:#fff;text-shadow: 1px 1px 2px #086388;box-shadow:1px 1px 3px rgba(0,0,0,0.3);}
+.get_STARTED h3 a,.get_STARTED h3 a:hover{text-decoration:none;color:#fff;display:block;height:50px;}
+.start_bd{font:12px/16px Arial, Helvetica, sans-serif;padding:10px 10px;color:#133e5f;}
+.start_bd p{padding: 5px 0;}
+.ca90c0c{color:#a90c0c;}
+.footer{margin-top:0;}
+.blue_spc{height:36px;background:#17b0d9 url('../images/tutors/blue_spc.png') no-repeat 50% 0;}

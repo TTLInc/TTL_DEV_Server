@@ -1,0 +1,106 @@
+<?php $this->layout->appendFile('css',"css/contact.css");?>
+<?php $this->layout->appendFile('javascript',"js/jquery.placeholder.js");?>
+<?php
+$multi_lang = 'en';
+if(!isset($_SESSION)) {
+     session_start();
+}
+if(isset($_SESSION['multi_lang']))
+{
+	$multi_lang = $_SESSION['multi_lang'];
+}
+else
+{
+	$multi_lang = 'en';	
+}
+$this->load->model(array('lookup_model'));
+
+$arrVal 		= $this->lookup_model->getValue('10', $multi_lang);
+$lcontact_us_title	= $arrVal[$multi_lang];
+
+$arrVal 		= $this->lookup_model->getValue('22', $multi_lang);
+$lcontact_us_content	= $arrVal[$multi_lang];
+
+$arrVal 		= $this->lookup_model->getValue('34', $multi_lang);
+$lsend			= $arrVal[$multi_lang];
+
+$arrVal 		= $this->lookup_model->getValue('235', $multi_lang);
+$lfirstname		= $arrVal[$multi_lang];
+$arrVal 		= $this->lookup_model->getValue('533', $multi_lang);
+$llastname		= $arrVal[$multi_lang];
+$arrVal 		= $this->lookup_model->getValue('35', $multi_lang);
+$lemail			= $arrVal[$multi_lang];
+$arrVal 		= $this->lookup_model->getValue('1254', $multi_lang);
+$lleavemsg			= $arrVal[$multi_lang];
+?>
+<style>
+span{color: #000000;}
+</style>
+<script>
+$(function(){
+	$('input[placeholder]').placeholder();
+	$('textarea[placeholder]').placeholder();
+	$('.sendContact').click(function(){
+		var _msg = $('.msg').val();
+		var _firstName = $('.firstName').val();
+		var _lastName = $('.lastName').val();
+		var _email = $('.email').val();
+		if(_email == '' || _msg == ''){
+			alert('Please input your email and message..');
+			return;
+		}
+		$('#sendform').submit();
+	})
+});
+</script>
+
+<div class="contact_us">
+	<!--<div class="contact_us_top"><?php echo $lcontact_us_title;?></div>-->
+	<div class="contact_us_mid">
+		<?php //echo $lcontact_us_content; //$article['desc'];?>
+		<p>
+	We value interaction from our students, tutors, and our partners.&nbsp; We also appreciate your feedback to make our services better. Please submit accordingly and our policy is to respond within 24 hours either electronically or by phone. Thank you!</p>
+<p>
+	&nbsp;</p>
+<hr />
+<p style="color: black;">
+	<strong><span style="color:#33ccff;"><span style="font-size: 16px;">Technical issues <span style="font-size:14px;">- </span></span></span></strong><span style="color:#000000;"><span style="font-size: 16px;"><span style="font-size: 14px;">submit issues related to software, profile, or system functions.</span></span></span></p>
+<p style="margin-left: 40px;">
+	<a href="mailto:support@thetalklist.com">support@thetalklist.com</a></p>
+<p style="color: black;">
+	<strong><span style="color:#33ccff;"><span style="font-size: 16px;">Member issues - </span></span></strong><span style="color:#000000;"><span style="font-size: 16px;"><span style="font-size: 14px;">submit issues related inappropriate behavior with other Talkists.</span></span></span></p>
+<p style="margin-left: 40px;">
+	<a href="mailto:moderator@thetalklist.com">moderator@thetalklist.com</a></p>
+<p style="color: black;">
+	<strong><span style="color:#33ccff;"><span style="font-size: 16px;">Accounting issues - </span></span></strong><span style="color:#000000;"><span style="font-size: 16px;"><span style="font-size: 14px;">submit issues related to your account statement and payments.</span></span></span></p>
+<p style="margin-left: 40px;">
+	<a href="mailto:accounts@thetalklist.com">accounts@thetalklist.com</a></p>
+<p style="color: black;">
+	<strong><span style="font-size:16px;"><span style="">Business Issues - </span></span></strong><span style="color:#000000;"><span style="font-size: 16px;"><span style="font-size: 14px;">submit queries on partnerships and licensing.</span></span></span></p>
+<p style="margin-left: 40px;">
+	<a href="mailto:info@thetalklist.com">info@thetalklist.com</a></p>
+<p style="color: black;">
+	<strong><span style="font-size:16px;"><span style="">Mail - </span></span></strong><span style="color:#000000;"><span style="font-size: 16px;"><span style="font-size: 14px;">Write to our office headquarters.</span></span></span></p>
+<p style="margin-left: 40px;">
+	TheTalkList</p>
+<p style="margin-left: 40px;">
+	10393 San Diego Mission Rd., Suite 212</p>
+<p style="margin-left: 40px;">
+	San Diego, CA 92108</p>
+<p>
+	<strong><span style="font-size:16px;"><span style="">Leave a General Message:</span></span></strong></p>
+
+		<ul class="form">
+			<form method="post" id="sendform">
+				<li><input type="text" class="raduisSelect firstName" placeholder="<?php echo $lfirstname;?>" name="firstName"/></li>
+				<li><input type="text" class="raduisSelect lastName" placeholder="<?php echo $llastname;?>" name="lastName"/></li>
+				<li><input type="text" class="raduisSelect email" placeholder="<?php echo $lemail;?>" name="email"/></li>
+				<li><textarea class="textarea_box msg"  placeholder="<?php echo $lleavemsg;?>" name="msg"></textarea></li>
+				<li><a href="#" class="blu-btn norBtn redRadiusBtn2  w96 sendContact" style="font-size:14px;"><?php echo $lsend;?><!--Send--></a></li>
+				<?php if(isset($errorMsg) && $errorMsg !=''):?>
+				<li><?php echo $errorMsg;?></li>
+				<?php endif;?>
+			</form>
+		</ul>
+	</div>
+</div>

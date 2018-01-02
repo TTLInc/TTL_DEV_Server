@@ -1,0 +1,110 @@
+
+<?php $this->layout->setLayoutData('content_for_layout_title','School Notes');?>
+<?php// $this->layout->setLayoutData('content_for_layout_links','<div style="float:left;margin-right:110px;font-weight:bold;"><input style="width:55%;padding:4px;float:left;margin-right: 5px;" class="adm_box1" type="text" value="'.$search.'" name="search" id="search" /><a href="javascript:void(0);" class="button submit-search" style="height:17px;line-height:19px;">Search</a> </div>');?>
+<?php $currentUrl = base_url('admin/get_user_note/id/'.$id.'/');?>
+
+<div class="exp-btn"><a href="javascript:void(0);" onclick="history.back(-1)">Back</a></div>
+<table class="data_table">
+
+	<?php if($usernotes){ ?>
+	<thead>
+		<tr>
+			<!--
+			<th class="rw2">
+				<div class="rw2">
+				Date
+				
+				</div>
+			</th> 
+			-->
+			
+			<th class="rw2">
+				<div class="rw2">
+				Role
+				
+				</div>
+			</th> 
+			
+			
+			<th class="rw2">
+				<div class="rw2">
+				Note
+				
+				</div>
+			</th> 
+			
+			<th class="rw2">
+				<div class="rw2">
+				Date
+				</div>
+			</th> 
+			
+			<th class="rw2">
+				<div class="rw2">
+				Note ID
+				
+				</div>
+			</th> 
+		</tr>
+	</thead>
+
+	<tbody>
+	<?php 
+	foreach ($usernotes as $key => $val) :?>
+	<tr id="id_<?php echo $val['id'];?>">
+	<!--<td class="rw1"><div class="rw1"><?php echo date('Y-m-d H:i:s',strtotime($val['add_date']));?></div></td>-->
+	<td class="rw2"><div class="rw2"><?php echo $val['role'];?></div></td>
+	<td class="rw3"><div class="rw3"><?php $paynote = explode("(",$val['note']);
+	echo $paynote[0];?></div></td>
+	<td class="rw3"><div class="rw3"><?php echo date('Y-m-d H:i:s',strtotime($val['add_date']));?></div></td>
+	<td class="rw4"><div class="rw4"><?php echo $val['dispute_id'];?></div></td>
+	</tr>
+	<?php endforeach; ?>
+	</tbody>
+<tfoot>
+<tr>
+<td colspan="8">
+
+<div class="pagination">
+<?php echo $page;?>
+</div>
+<!-- End .pagination -->
+<div class="clear"></div>
+</td>
+
+</tr>
+</tfoot>
+<?php }else{ ?>
+No notes has been added for this user.
+<?php } ?>
+</table>
+
+<?php if(@$errormsg):?>
+ <div class="notice_4" id="errormsg">
+	<span class="notice_icon"></span> 
+	<a class="close" href="javascript:void(0);" onclick="$('#errormsg').hide()">
+		<img src="<?php echo base_url('images/cross_grey_small.png');?>" />
+	</a>
+	<p><?php echo $errormsg; ?></p>
+</div>
+<?php endif;?>
+<form method="post" action="" name="edituserform" id="edituserform" enctype="multipart/form-data">
+    <p class="ft_title">Note ID</p>
+    <p class="setft"><input type="text" name="dispute_id" id="dispute_id" value=""  class="adm_box1"/></p>
+	<p class="ft_title">Note</p>
+   	<p class="setft"><textarea rows="8" cols="70"  name="note" id="note"></textarea></p>
+    <p class="setft"><a href="javascript:void(0)" onclick="checkform()" class="button">submit</a>
+    <a href="javascript:void(0)" class="button" onclick="history.back(-1)">back</a></p>
+</form>
+
+
+<script type="text/javascript">
+function checkform(){
+	$('#edituserform').submit();
+}
+setTimeout('showmenu("s_summary",0)',1000);
+</script>
+<style>.data_content{ padding:20px 10px;}
+.data_table th, .data_table td{ padding:5px 0px;}</style>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * CodeIgniter
+ *
+ * An open source application development framework for PHP 4.3.2 or newer
+ *
+ * @package        CI_Geolocater
+ * @author        SK VIRJA
+ * @copyright    Copyright (c) 2013, Techno Infonet Guj Pvt Ltd..
+ * @license        http://www.technoinfonet.com
+ * @link        http://www.technoinfonet.com
+ * @since        Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+class CI_Geolocater {
+
+    var $CI;
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Get CodeIgniter Instance
+     *
+     * @access    private
+     * @return    void
+     */
+
+    function CI_Geolocater ()
+    {
+        $this->CI =& get_instance();
+    }
+     
+    // --------------------------------------------------------------------
+
+    /**
+     * Get geo location from IP Address
+     *
+     * This function always gets the country. Getting the city is optional by param.
+     *
+     * @access    public
+     * @param    string        $int_ipaddress        IP Address to look up
+     * @param    boolean        $bol_returnCity        Return city or not
+     * @return    void
+     */
+
+	function getlocation()
+    {
+		//echo $_SESSION['multi_lang'];
+		if(!isset($_SESSION['multi_lang']))
+		{
+			
+			
+			$ipaddress = '';
+			if (@$_SERVER['HTTP_CLIENT_IP'])
+				$ipaddress = @$_SERVER['HTTP_CLIENT_IP'];
+			else if($_SERVER['HTTP_X_FORWARDED_FOR'])
+				$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			else if($_SERVER['HTTP_X_FORWARDED'])
+				$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+			else if($_SERVER['HTTP_FORWARDED_FOR'])
+				$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+			else if($_SERVER['HTTP_FORWARDED'])
+				$ipaddress = $_SERVER['HTTP_FORWARDED'];
+			else if($_SERVER['REMOTE_ADDR'])
+				$ipaddress = $_SERVER['REMOTE_ADDR'];
+			else
+				$ipaddress = 'UNKNOWN';
+
+			
+			$ipaddress = explode(',',$ipaddress);
+			//print_r($ipaddress);
+			$ip = $ipaddress[0];
+			//$ip = @$_SERVER['REMOTE_ADDR'];
+			//$ip = '179.234.212.22';			
+			$params = getopt('l:i:');
+ 
+			if (!isset($params['l'])) $params['l'] = 'LqyA4aik3WTl';
+			if (!isset($params['i'])) $params['i'] = $ip;
+	 
+			//$query = 'https://geoip.maxmind.com/b?' . http_build_query($params);
+			$query = 'https://geoip.maxmind.com/geoip/v2.1/city/'.$ip;
+			
+			$insights_keys =array(
+		'Country code',
+		'Country name',
+		'region_code',
+		'region_name',
+		'city_name',
+		'latitude',
+		'longitude',
+		'metro_code',
+		'area_code',
+		'time_zone',
+		'continent_code',
+		'postal_code',
+		'isp_name',
+		'organization_name',
+		'domain',
+		'as_number',
+		'netspeed',
+		'user_type',
+		'accuracy_radius',
+		'country_confidence',
+		'city_confidence',
+		'region_confidence',
+		'postal_confidence',
+		'error'
+		); 
+			$curl = curl_init();
+				curl_setopt_array($curl,array(
+				CURLOPT_HTTPAUTH=> CURLAUTH_BASIC,
+				CURLOPT_USERPWD=> "95357:LqyA4aik3WTl", //Your credentials goes here
+				CURLOPT_RETURNTRANSFER => 1,
+				CURLOPT_URL => $query,
+				CURLOPT_USERAGENT => 'MaxMind PHP Sample',
+			));
+
+			if(!curl_exec($curl)){
+				die('Error: "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));
+			}
+			$resp = curl_exec($curl);
+			
+			$obj = json_decode($resp);
+			$country = $obj->country->iso_code;
+			$time_zone = $obj->location->time_zone;
+			
+			$_SESSION['time_zone'] = "";
+			if ($time_zone) {
+				$_SESSION['time_zone'] = $time_zone;
+			}
+			//$countryarray = explode(',',$resp);
+			//print_r($countryarray);
+			//$country = $countryarray[0];
+
+			//$details = json_decode(@file_get_contents("http://ipinfo.io/{$ip}"));
+
+			//$country = @$details->country;
+
+			$check = strpos($ip, '177');
+			$ci = &get_instance();
+			$ci->load->model('user_model');
+			$lang = $ci->user_model->getLanguageIp($country);
+			$_SESSION['remoteIp'] =  $ip;
+			$_SESSION['countryId'] = $lang['id'];
+			$_SESSION['geocity'] = "";
+			if ($obj->city->names->en) {
+				$_SESSION['geocity'] = $obj->city->names->en;
+			}
+			$_SESSION['longitude'] = "";
+			if ($obj->location->longitude) {
+				$_SESSION['longitude'] = $obj->location->longitude;
+			}
+			$_SESSION['latitude'] = "";
+			if ($obj->location->latitude) {
+				$_SESSION['latitude'] = $obj->location->latitude; 
+			}
+			if ($ci->uri->segment(1)=="br") {
+				$multi_lang = 'pt';
+				$_SESSION['multi_lang'] = $multi_lang;
+				$_SESSION['multi_lang_name'] = 'Portuguese';
+			}
+			/*else if($lang !=array())
+			{
+				$multi_lang=$lang['Language'];
+				$_SESSION['multi_lang'] = $multi_lang;
+			}*/
+			else
+			{
+					$multi_lang = 'en';
+					$_SESSION['multi_lang'] = 'en';
+					$_SESSION['multi_lang_name'] = 'English';
+					//$multi_lang = 'cn';
+					if($country == 'IN')
+					{
+						$multi_lang = 'en';
+						$_SESSION['multi_lang'] = 'en';
+						$_SESSION['multi_lang_name'] = 'English';
+					}elseif($country == 'CN')
+					{
+						$multi_lang = 'ch';
+						$_SESSION['multi_lang'] = 'ch';
+						$_SESSION['multi_lang_name'] = 'Chinese';
+					}elseif($country == 'KR')
+					{
+						$multi_lang = 'kr';
+						$_SESSION['multi_lang'] = 'kr';
+						$_SESSION['multi_lang_name'] = 'Korean';
+					}elseif($country == 'JP')
+					{
+						$multi_lang = 'jp';
+						$_SESSION['multi_lang'] = 'jp';
+						$_SESSION['multi_lang_name'] = 'Japanese';
+					}
+					elseif($country == 'FR')
+					{
+						$multi_lang = 'fr';
+						$_SESSION['multi_lang'] = 'fr';
+						$_SESSION['multi_lang_name'] = 'French';
+					}
+					elseif($country == 'BR')
+					{
+						$multi_lang = 'pt';
+						$_SESSION['multi_lang'] = 'pt';
+						$_SESSION['multi_lang_name'] = 'Portuguese';
+					}
+			}
+			/*echo $multi_lang;
+			exit;*/
+			return $multi_lang;
+		} else {
+			$ci = &get_instance();
+			
+			if(@$ci->input->uri->segments[0]){
+				$_SESSION['multi_lang'] = $ci->input->uri->segments[0];
+			} /*else {
+				$_SESSION['multi_lang'] = "en";
+			}*/
+		}
+    }
+    function getlocation_30072015()
+    {
+		//echo $_SESSION['multi_lang'];
+		if(!isset($_SESSION['multi_lang']))
+		{
+			//$ip = '177.40.195.6';
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+
+			$oneip = explode(',',$ip);
+			$finalip = $oneip[0];
+
+			//$ip = '174.65.76.199';
+			$details = json_decode(file_get_contents("http://ipinfo.io/{$finalip}"));
+
+			//$country = $details->country;
+			$check = strpos($ip, '177.');
+
+			if($check === 0){
+			$country = 'BR';
+			}
+			else{
+			//$country = 'IN';
+			$country = $details->country;
+			}
+		
+			//$country = 'BR';
+			//$country = 'CN';
+			//$country = 'KR';
+			//$country = 'JP';
+			//$country = 'IN';
+		/*	$ch = curl_init(); 
+			curl_setopt($ch, CURLOPT_URL, "ipinfo.io");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			$output = curl_exec($ch);
+			curl_close($ch);
+			$output = json_decode($output);
+			echo $country = $output->country;
+			exit;*/
+			//session_start();
+			//$multi_lang = 'en';
+		    //$multi_lang = 'cn';
+			if($country == 'IN')
+			{
+				$multi_lang = 'en';
+				$_SESSION['multi_lang'] = 'en';
+				
+			}elseif($country == 'CN')
+			{
+				$multi_lang = 'ch';
+				$_SESSION['multi_lang'] = 'ch';
+			}elseif($country == 'KR')
+			{
+				$multi_lang = 'kr';
+				$_SESSION['multi_lang'] = 'kr';
+			}elseif($country == 'JP')
+			{
+				$multi_lang = 'jp';
+				$_SESSION['multi_lang'] = 'jp';
+			}
+			elseif($country == 'PRT')
+			{
+				$multi_lang = 'pt';
+				$_SESSION['multi_lang'] = 'pt';
+			}
+			elseif($country == 'BR')
+			{
+				$multi_lang = 'pt';
+				$_SESSION['multi_lang'] = 'pt';
+			}
+			else
+			{
+				$multi_lang = 'en';
+				$_SESSION['multi_lang'] = 'en';
+			}
+			return $multi_lang;
+		}
+    }
+    public function getRealIP() {
+        $ipaddress = '';
+        if(isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+            $ipaddress =  $_SERVER['HTTP_CF_CONNECTING_IP'];
+        } else if (isset($_SERVER['HTTP_X_REAL_IP'])) {
+            $ipaddress = $_SERVER['HTTP_X_REAL_IP'];
+        }
+        else if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';
+
+        return $ipaddress;
+    }
+	public function currentLocation_old($ip = "")
+	{
+		
+		/*if($ip == "") {
+            $ip = $this->getRealIP();			
+        }
+        $url = "http://api.codehelper.io/ips/?php&ip=".$ip;
+		$ch = curl_init(); 
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$output = curl_exec($ch);
+		curl_close($ch);
+		$data = json_decode($output);
+		return $data;*/
+		
+		echo $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		echo "<pre>";
+		print_r($_SERVER);
+		exit;
+		//$ip = '174.65.76.199';
+		$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
+		print_r($details);
+		exit;
+		$data = $details->country;	
+		print_r($data);
+		exit;
+		
+			//echo $data = $details['country'];
+		return $data;
+		/*print_r($details);
+		exit;*/
+	}
+	
+	/* public function currentLocation($ip = "")
+	{
+		$params = getopt('l:i:');
+ 
+		if (!isset($params['l'])) $params['l'] = 'LqyA4aik3WTl';
+		if (!isset($params['i'])) $params['i'] = $ip;
+ 
+		$query = 'https://geoip.maxmind.com/e?' . http_build_query($params);
+	
+		$curl = curl_init();
+			curl_setopt_array($curl,array(
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_URL => $query,
+			CURLOPT_USERAGENT => 'MaxMind PHP Sample',
+		));
+
+		if(!curl_exec($curl)){
+			die('Error: "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));
+		}
+		$resp = curl_exec($curl);
+		return $resp;
+	 
+			if (curl_errno($curl)) {
+				throw new Exception(
+					'GeoIP request failed with a curl_errno of '
+					. curl_errno($curl)
+				);
+			}
+		$insights_values = str_getcsv($resp);
+		$insights_values = array_pad($insights_values, sizeof($insights_keys), '');
+		$insights = array_combine($insights_keys, $insights_values);
+		
+	}*/
+	public function currentLocation($ip = "")
+	{
+	
+		$params = getopt('l:i:');
+ 
+		if (!isset($params['l'])) $params['l'] = 'LqyA4aik3WTl';
+		if (!isset($params['i'])) $params['i'] = $ip;
+ 
+		$query = 'https://geoip.maxmind.com/b?' . http_build_query($params);
+		
+		$insights_keys =array(
+    'Country code',
+    'Country name',
+    'region_code',
+    'region_name',
+    'city_name',
+    'latitude',
+    'longitude',
+    'metro_code',
+    'area_code',
+    'time_zone',
+    'continent_code',
+    'postal_code',
+    'isp_name',
+    'organization_name',
+    'domain',
+    'as_number',
+    'netspeed',
+    'user_type',
+    'accuracy_radius',
+    'country_confidence',
+    'city_confidence',
+    'region_confidence',
+    'postal_confidence',
+    'error'
+    ); 
+		$curl = curl_init();
+			curl_setopt_array($curl,array(
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_URL => $query,
+			CURLOPT_USERAGENT => 'MaxMind PHP Sample',
+		));
+
+		if(!curl_exec($curl)){
+			die('Error: "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));
+		}
+		$resp = curl_exec($curl);
+		 
+	 
+			if (curl_errno($curl)) {
+				throw new Exception(
+					'GeoIP request failed with a curl_errno of '
+					. curl_errno($curl)
+				);
+			}
+		$insights_values = str_getcsv($resp);
+		$insights_values = array_pad($insights_values, sizeof($insights_keys), '');
+		return $insights = array_combine($insights_keys, $insights_values);
+		
+	}
+}
+// END CI_Geolocater class
+?>

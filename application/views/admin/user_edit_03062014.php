@@ -1,0 +1,103 @@
+<?php $this->layout->setLayoutData('content_for_layout_title','User edit');
+?>
+<?php if(@$errormsg):?>
+ <div class="notice_4" id="errormsg">
+	<span class="notice_icon"></span> 
+	<a class="close" href="javascript:void(0);" onclick="$('#errormsg').hide()">
+		<img src="<?php echo base_url('images/cross_grey_small.png');?>" />
+	</a>
+	<p><?php echo $errormsg; ?></p>
+</div>
+<?php endif;?>
+<form method="post" action="" name="edituserform" id="edituserform" enctype="multipart/form-data">
+    <!--<p class="ft_title">Username</p>
+    <p class="setft"><input type="text" name="username" id="username" value="<?php echo $user['username'];?>"  class="adm_box1" disabled="disabled"/></p>
+	-->
+	<p class="ft_title">Email</p>
+    <p class="setft"><input type="text" name="email" id="email" value="<?php echo $user['email'];?>"  class="adm_box1" disabled="disabled" /></p>
+	<p class="ft_title">Role</p>
+    <p class="setft">
+		<?php echo form_dropdown('roleId',$types,$user['roleId'],' id="roleId" class="textarea_box"');?>
+	</p>
+    
+    <p class="ft_title">Chat</p>
+    <p class="setft">
+		<?php echo form_dropdown('chat',$chat,$user['chat'],' id="chat" class="textarea_box"');?>
+	</p>
+	<?php
+	if($user['roleId'] != 0){
+	?>
+    <p class="ft_title">Hide Account
+		<input type="checkbox" name="hiddenRole" id="hiddenRole" value="1" <?php if($user['hiddenRole']=='1'){echo 'checked';} ?> />
+	</p>
+	<p class="ft_title">Qualified</p>
+	<p class="setft">
+		<?php echo form_dropdown('lms_complete',$chat,$user['lms_complete'],' id="lms_complete" class="textarea_box"');?>
+	</p>
+	<p class="ft_title">Dispute</p>
+	<p class="setft">
+		<?php echo form_dropdown('disputes',$chat,$user['disputes'],' id="lms_complete" class="textarea_box"');?>
+	</p>
+	<?php
+	}
+	?>
+	<p class="ft_title">Quarantine Account
+		<input type="checkbox" name="quarantine" id="quarantine" value="1" <?php if($user['quarantine']=='1'){echo 'checked';} ?> />
+	</p>
+	
+    <input type="hidden" name="id" value="<?php echo $user['uid'];?>">
+	
+    <p class="ft_title">First Name</p>
+    <p class="setft"><input type="text" name="firstName" id="firstName" value="<?php echo $user['firstName'];?>"  class="adm_box1" disabled/></p>
+    <p class="ft_title">Last Name</p>
+    <p class="setft"><input type="text" name="lastName" id="lastName" value="<?php echo $user['lastName'];?>"  class="adm_box1" disabled/></p>
+
+    <p class="ft_title">Country</p>
+    <p class="setft"><input type="text" name="country" id="country" value="<?php echo $user['countryName'];?>"  class="adm_box1" disabled/></p>
+    <p class="ft_title">State</p>
+    <p class="setft"><input type="text" name="province" id="province" value="<?php echo $user['stateName'];?>"  class="adm_box1" disabled/></p>
+    <p class="ft_title">City</p>
+    <p class="setft"><input type="text" name="city" id="city" value="<?php echo $user['city'];?>"  class="adm_box1" disabled/></p>
+    <p class="ft_title">Age</p>
+    <p class="setft"><input type="text" name="age" id="age" value="<?php echo $user['age'];?>"  class="adm_box1" disabled/></p>
+    <p class="ft_title">Cell phone</p>
+    <p class="setft"><input type="text" name="cell" id="cell" value="<?php echo $user['cell'];?>"  class="adm_box1" disabled/></p>
+    <p class="ft_title">Course Rate</p>
+    <p class="setft"><input type="text" name="hRate" id="hRate" value="<?php echo $user['hRate'];?>"  class="adm_box1" disabled/></p>
+    <p class="ft_title">Account Balance</p>
+    <?php
+	if($isAccount == FALSE) { $disabled = ' disabled'; }
+	else { $disabled = ''; }
+	?>
+	<p class="setft"><input type="text" name="money" id="money" value="<?php echo $user['money'];?>"  class="adm_box1" <?php echo $disabled;?>/></p>
+	<!---- by viplove 24-2-14 edit free expiry session ----> 
+	<?php 
+	if($user['roleId'] == 0){
+	if($isAccount == TRUE) { ?>
+    <p class="ft_title">Free Session Expiry Date </p>
+    <p class="setft"><input type="text" name="exp_session" id="exp_session" value="<?php echo date("Y-m-d", strtotime($user['exp_session'])); ?>"  class="adm_box1"/></p>
+	<?php } 
+	}
+	?>	
+	<!---- by viplove 24-2-14 edit free expiry session ----> 
+	<?php 
+	if($user['roleId'] == 3){
+	if($isAccount == TRUE) { ?>
+    <p class="ft_title">PEXP Date</p>
+    <p class="setft"><input type="text" name="expDate" id="expDate" value="<?php echo date("Y-m-d", strtotime($expDate)); ?>"  class="adm_box1"/></p>
+	<?php } 
+	}
+	?>	
+    <p class="setft"><a href="javascript:void(0)" onclick="checkform()" class="button">submit</a></p>
+</form>
+
+
+<script type="text/javascript">
+function checkform(){
+	$('#edituserform').submit();
+}
+$("#expDate,#exp_session").datepicker({ dateFormat: 'yy-mm-dd' } );
+setTimeout('showmenu("usermenu",0)',1000);
+</script>
+</body>
+</html>

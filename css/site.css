@@ -1,0 +1,6 @@
+@charset "utf-8";
+/* CSS Document */
+.btn_blue_big{ display:inline-block; padding:0 15px; height:25px; border-radius:20px; border:1px solid #999999; background-image: -moz-linear-gradient(top, #c74b4b, #800303); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #c74b4b), color-stop(1, #800303)); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c74b4b', endColorstr='#800303', GradientType='0'); box-shadow:0 3px 2px rgba(0,0,0,0.6); font-size:12px; font-weight:600; color:#fff; text-align:center; line-height:25px; cursor:pointer;}
+.btn_blue_big{ background-image: -moz-linear-gradient(top, #26729c, #203240); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #26729c), color-stop(1, #203240)); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26729c', endColorstr='#203240', GradientType='0');}
+
+

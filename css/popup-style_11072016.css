@@ -1,0 +1,73 @@
+
+*{ list-style:none; margin:0px; padding:0px;}
+
+a {color: #083a7f;outline: medium none !important;text-decoration: none;/*transition: all 0.5s ease-in-out 0s;*/}
+.popup19416_main01,
+.popup19416_main01:before,
+.popup19416_main01:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+
+img{ border:0px; outline:0px;}
+h1, h2, h3, h4, h5, h6{ font-weight:normal;}
+
+.cf:before, .cf:after { content:""; display:table; }
+.cf:after { clear:both; }
+.cf { zoom:1; }
+.cl{ clear:both;}
+
+
+
+/* popup css 19-04-2016 START */
+.popup19416_main01{ background:url(../images/popup19416_bg.jpg) no-repeat center top; width:1020px;}
+.choseyourrole_main01{ text-align:center; padding:100px 0 100px 0;}
+.choseyourrole_main01 h1{ text-align:center; font-size:36px; color:#fff; padding-bottom:20px;}
+.choseyourrole_main01 h2{ text-align:center; font-size:24px; color:#fff; padding-bottom:20px;}
+.choseyourrole_main01 h4{ padding:60px 0 0 0;}
+.choseyourrole_main01 h4 a{ font-size:30px; color:#fff;}
+
+.choseyourrole_main02{ max-width:800px; margin:0 auto; text-align:center; padding:40px 0 0 0;}
+.choseyourrole_main02_left{ width:50%; float:left;}
+.choseyourrole_main02_right{ width:50%; float:left;}
+
+.choseyourrole_main02_left h3{ font-size:30px; color:#fff; font-weight:300; padding:10px 0;}
+.choseyourrole_main02_right h3{ font-size:30px; color:#fff; font-weight:300; padding:10px 0;}
+
+.popup_student190416_main{ padding:25px 0 25px 0;}
+.popup_student190416_left01{ width:50%; float:left; min-height:265px; padding:0 0px; text-align:center; color:#fff; position:relative;}
+.popup_student190416_left01 p{ font-size:22px; min-height:70px; padding:0 70px; color:#fff;}
+
+.number_190416{ position:absolute; top:50px; left:15%; font-size:48px; color:#fff;}
+.next_button190416{ position:absolute; bottom:10px; width:100%; text-align:center;}
+
+.what190416_main01{ max-width:760px; margin:0 auto; text-align:center; padding:150px 0;}
+.what190416_main01 h5{ font-size:34px; color:#fff; padding-bottom:75px;}
+
+.text_chat190416_main{}
+.text_chat190416_left01{ float:left; width:30.33%;}
+.text_chat190416_left02{ float:left; width:36.33%;}
+.text_chat190416_left03{ float:left; width:33.33%;}
+
+.text_chat190416_left01 p{ font-size:30px; color:#fff; padding-top:15px;}
+.text_chat190416_left02 p{ font-size:30px; color:#fff; padding-top:15px;}
+.text_chat190416_left03 p{ font-size:30px; color:#fff; padding-top:15px;}
+
+@media only screen and (max-width: 1024px) {
+.popup19416_main01{ background:url(../images/popup19416_bg.jpg) no-repeat center top; background-size:cover; width:100%;}
+.choseyourrole_main01{ text-align:center; padding:50px 0 50px 0;}
+}
+@media only screen and (max-width: 767px) {
+.popup_student190416_left01{ float:none; width:100%; padding:0 15px 30px 15px;}
+.next_button190416{ position:relative;}
+.number_190416{ position:absolute; top:50px; left:5%; font-size:48px; color:#fff;}
+.popup_student190416_left01 a p{ font-size:20px; min-height:70px; padding:0 0px 10px 0; color:#fff;}
+.what190416_main01{ max-width:760px; margin:0 auto; text-align:center; padding:50px 0;}
+}
+@media only screen and (max-width: 640px) {
+.text_chat190416_left01{ float:none; width:100%; padding-bottom:30px;}
+.text_chat190416_left02{ float:none; width:100%; padding-bottom:30px;}
+.text_chat190416_left03{ float:none; width:100%; padding-bottom:30px;}
+}
+@media only screen and (max-width: 639px) {
+.choseyourrole_main02_left{ width:100%; float:none; padding-bottom:40px;}
+.choseyourrole_main02_right{ width:100%; float:none;}
+}
+/* popup css 19-04-2016 END */

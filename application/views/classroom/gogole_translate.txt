@@ -1,0 +1,44 @@
+<table border="1">
+
+<? for($i=0;$i<5;$i++)
+{
+?>
+<tr id="myRow<?echo $i?>">
+    <td dataId="<?php echo $gLangs['languages'][$i]['language'];?>" class="langItem" ><?php //echo $i ; ?> <?echo $gLangs['languages'][$i]['name']?></td>
+    </tr>
+	<?php } 
+	for($j=6;$j<11;$j++){
+	static $k=6;
+	static $z = 0;
+	?>
+	<script>
+	var row = document.getElementById("myRow<?php echo $z ;?>");
+var x = row.insertCell(1);
+x.innerHTML="<td><?php //echo $a ;?> <?echo $gLangs['languages'][$k]['name']?></td>";
+x.className = "langItem";
+var dataId="<?php echo $gLangs['languages'][$k]['language'] ;?>";
+x.id = x.dataId;
+</script><? $k++;$z++;}?>
+	<?php for($l=10	;$l<15;$l++){
+	static $a=10;
+	static $y = 0;
+	?>
+	<script>
+	var row = document.getElementById("myRow<?php echo $y ;?>");
+var x = row.insertCell(2);
+x.innerHTML="<?php //echo $a ;?> <?echo $gLangs['languages'][$a]['name']?>";
+x.className = "langItem";
+ 
+</script><? $a++;$y++;}?>
+<?php for($b=16	;$b<21;$b++){
+	static $t=16;
+	static $u = 0;
+	?>
+	<script>
+	var row = document.getElementById("myRow<?php echo $u ;?>");
+var x = row.insertCell(3);
+x.innerHTML="<?php //echo $a ;?> <?echo $gLangs['languages'][$t]['name']?>";
+x.className = "langItem";
+ 
+</script><? $t++;$u++;}?>
+</table>

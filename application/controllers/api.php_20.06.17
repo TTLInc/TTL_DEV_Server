@@ -1,0 +1,1378 @@
+<?php
+require(APPPATH.'/libraries/REST_Controller.php');
+class Api extends REST_Controller
+{
+	// Constructor
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model(array('api_model','user_model','profile_model')); // Load Client, Profile Model
+	}
+	
+	// Check User Exist or Not
+	public function login_post()
+	{
+	
+		// Call loginByEmail Function of user_model
+		$result = $this->api_model->loginByEmail(array(
+            'email' 	=> $_GET['email'],
+            'password'	=> $_GET['password']
+        ));
+		
+		//print_r($result);
+        if ($result) {
+			if ($result['isconfirmedAccount'] == 0) {
+				$this->response(array('status' => 1, "error"=>"Please verify your email address.")); // Failed Result
+			} else {
+			
+				//$this->response(array('status' => 0)); // Success Result
+				//$this->booking_post($result);
+				
+				$this->response(array('status'=>0,'message'=>"Successfully Login","result"=>$result));
+			}
+        } else {
+			$this->response(array('status' => 1, "error"=>"Invalid Login")); // Failed Result
+        }
+	}
+	
+	//facebook Login
+	public function fblogin_post(){
+		/* $result = $this->user_model->checkEmail($_GET['email']);
+		if ($result['success']=="" and isset($result['message'])) {
+			$this->response(array('status' => 1, "error"=>$result['message'])); // Email Already Exist.
+		} else {
+		
+		} */
+		$result = $this->api_model->loginByfbid(array(
+            'email' 	=> $_GET['email'],
+            'facebook_id'	=> $_GET['facebook_id']
+        ));
+		
+		if ($result) {
+			if ($result['isconfirmedAccount'] == 0) {
+				$this->response(array('status' => 1, "error"=>"Please verify your email address.")); // Failed Result
+			} else {
+			
+				//$this->response(array('status' => 0)); // Success Result
+				//$this->booking_post($result);
+				
+				$this->response(array('status'=>0,'message'=>"Successfully Login","result"=>$result));
+			}
+        } else {
+			//$this->response(array('status' => 1, "error"=>"Invalid Login")); // Failed Result
+		
+		$userform = $_GET;
+		$facebook_id = $userform['facebook_id'];
+		$firstname = $userform['firstname'];
+		$lastname = $userform['lastname'];
+		$email = $userform['email'];
+		$gender = $userform['gender'];
+		$birthday = $userform['birthday'];
+		
+	    $user = "";
+		$this->load->library('session');
+	    $this->load->library('facebook');
+	    $userId = $this->facebook->getUser();  
+	   
+       /* if ($userId) {
+            try {
+                $user = $this->facebook->api('/me?fields=name,email,first_name,last_name,id,gender,birthday,age_range,location,hometown');
+            } catch (FacebookApiException $e) {
+                $user = "";
+            }
+        }else {
+            $this->facebook->destroySession();
+        } */
+	
+        if($user=="") :
+		$ipInfoSESSION = $this->geolocater->getMaxMindlocation();
+		//print_r($ipInfoSESSION); exit;
+			$userdata = $this->user_model->fnFacebookUser($userform['facebook_id'], $userform['email']);
+			//print_r($userdata); exit;
+			if(empty($userdata)) : 
+				$formData['isconfirmedAccount'] = '1';
+				$formData['firstName'] = $firstname; 
+				$formData['lastName'] = $lastname; 
+				$formData['username'] = $email; 
+				$formData['email'] = $email; 
+				$formData['facebook_id'] = $facebook_id;	
+				$formData['universal_roleId'] = '0';
+				$formData['free_session'] = 'y';
+				$formData['is_eligible'] = '1';
+				$formData['testAccount'] = '0';
+				$formData['roleId'] = '0';
+				if($userform['gender'] == 'male'){
+					$formData['gender'] = '1';
+				}else{
+					$formData['gender'] = '0';
+				}
+				$ipInfoSESSION = $this->geolocater->getMaxMindlocation();
+				/* Add Timezone */
+				$formData['timezone'] = $ipInfoSESSION['time_zone'];
+				$formData['country'] = $ipInfoSESSION['countryId'];
+				$formData['city'] = $ipInfoSESSION['geocity'];
+				// Insert User Data
+				$uid = $this->user_model->register($formData);
+				
+				$formData['uid'] = $uid;
+				$formData['new'] = 1;
+				$formData['alerts'] = 30;
+				$formData['textalert'] = 30;
+				$formData['alertType'] = '11';
+				
+				/*$ip = "122.170.115.66, 204.246.166.85";
+				$Ip = explode(",",$ip);
+				$realIp=$Ip[0];
+				$cname ='IN';
+				$sql = "Select id from countries where iso2 = '{$cname}'";
+				$query = $this->db->query($sql);
+				$cresult = $query->result_array();
+				$cid = $cresult[0]['id'];*/
+				//$formData['country'] = "";
+				$formData['ipaddress'] = $_SERVER['REMOTE_ADDR'];
+				$formData['school_id'] = '0';
+				$formData['hRate'] = '3.76';
+				$formData['nativeLanguage'] = "English";
+				if (isset($_SESSION['multi_lang_name'])) { 
+					$formData['nativeLanguage'] = $_SESSION['multi_lang_name'];
+				}
+				$this->profile_model->save($formData); // Insert Profile Data
+				$uinfo = array(
+					'username'=>$formData['username'],
+					'welcomeuser'=>$formData['firstName'] ,
+					'email'=>$formData['email'],
+					'uid'=>$uid,
+					'use'=>$uid,
+					'user_type' => '',
+					'free_session'=> 'y',					
+					'pic'=>'',
+					'roleId'=>'0',
+					'firstTime'=>'y',
+					'universal_roleId'=>'0'
+				);
+				$query = $this->db->query("update user set  is_login=1 where id='{$uid}'");
+				$this->session->set_userdata($uinfo);
+				$this->session->set_userdata('firstTimeRegister','yes');
+				$this->session->set_userdata('sturegister','yes');
+				//redirect(base_url('user/studentPopup')); 
+				$result = $this->api_model->loginByfbid(array(
+					'email' 	=> $_GET['email'],
+					'facebook_id'	=> $_GET['facebook_id']
+				));
+				if ($result) {
+					if ($result['isconfirmedAccount'] == 0) {
+						$this->response(array('status' => 1, "error"=>"Please verify your email address.")); // Failed Result
+					} else {
+						$this->response(array('status'=>0,'message'=>"Successfully Login","result"=>$result));
+						exit;
+					}
+				} else {
+					$this->response(array('status' => 1, "error"=>"Invalid Login")); // Failed Result
+					exit;
+	
+			}
+				      		
+			else :    
+				
+				$uinfo = array(
+					'username'=>$userdata['username'],
+					'welcomeuser'=>$userdata['firstName'] ,
+					'email'=>$userdata['email'],
+					'uid'=>$userdata['uid'],
+					'use'=>$userdata['uid'],
+					'user_type' => '',
+					'free_session'=> $userdata['free_session'],					
+					'pic'=>$userdata['pic'],
+					'roleId'=>$userdata['roleId'],
+					'firstTime'=>$userdata['firstTime'],
+					'universal_roleId'=>$userdata['universal_roleId']
+				);    
+				$this->session->set_userdata($uinfo);
+				redirect(base_url('user/dashboard'));
+				exit;
+			endif;
+        else :
+            //$data['login_url'] = $this->facebook->getLoginUrl(array('redirect_uri' => base_url('index'), 
+			//'scope' => array("email")));
+			$this->response(array('status'=>1,'message'=>"Already Registered."));
+			exit;
+		endif;
+       // redirect(base_url());
+		}
+    }
+	// Check User Email Exist
+	public function emailexist_post()
+	{
+		// Call register Function of user_model
+		$result = $this->user_model->checkEmail($this->input->post('email'));
+		if ($result['success']=="" and isset($result['message'])) {
+			$this->response(array('status' => 1, "error"=>$result['message'])); // Email Already Exist.
+		} else {
+			$this->response(array('status' => 0)); // Email Available.
+		}
+	}
+	
+	// User Signup
+	public function signup_post_backup()
+	{
+		// Check User Email Exist
+		$result = $this->user_model->checkEmail($this->input->post('email'));
+		if ($result['success']=="" and isset($result['message'])) {
+			$this->response(array('status' => 1, "error"=>$result['message'])); // Email Already Exist.
+		} else {
+			// Call register Function of user_model
+			$result = $this->user_model->register(array(
+				'email'				=>	$this->input->post('email'),
+				'password'			=>	$this->input->post('password'),
+				'roleId'			=>	$this->input->post('roleId'),
+				'universal_roleId'	=>	($this->input->post('roleId')==1) ? 1 : 0,
+				'refid'				=>	$this->input->post('refid'),
+				'free_session'		=>	($this->input->post('roleId')==0) ? 'y' : '',
+				'timezone'			=>	$this->input->post('timezone'),
+				'is_eligible'		=>	($this->input->post('roleId')==0) ? 1 : 0,
+				'testAccount'		=>	(strstr($this->input->post('email'),'ttlmail.com')) ? 1 : 0
+			));
+			if ($result) {
+				$this->response(array('status' => 0)); // Success Result
+			} else {
+				$this->response(array('status' => 1, "error"=>"Registration Failed")); // Failed Result
+			}
+		}
+	}
+	
+	// User Signup 
+	public function signup_post()
+	{
+		$result = $this->user_model->checkEmail($_GET['email']);
+		if ($result['success']=="" and isset($result['message'])) {
+			$this->response(array('status' => 1, "error"=>$result['message'])); // Email Already Exist.
+		} else {
+			
+			$this->load->library('geolocater');
+			$ip				=	"122.170.115.66, 204.246.166.85";
+			$Ip				=	explode(",",$ip);
+			$realIp			=	$Ip[0];
+			$cname			=	'IN';
+			$sql			=	"Select id from countries where iso2 = '{$cname}'";
+			$query			=	$this->db->query($sql);
+			$cresult		=	$query->result_array();
+			$cid			=	$cresult[0]['id'];
+			$userModel		=	$this->user_model;
+			$profileModel	=	$this->profile_model;
+			$formData		=	$_GET;
+			$refid			=	'';
+			$diffurl		=	'';
+
+			if($formData['roleId'] == ''){
+				$formData['roleId'] = '0';
+			}
+			/* code added by haren for  March scope */
+			$testAccount=$_POST['email'];
+			$domain = substr(strrchr($testAccount, "@"), 1);
+			$domain = mb_strtolower($domain,'UTF-8');
+			if($domain == 'ttlmail.com')
+			{
+				$formData['testAccount']='1';	
+			}
+			else
+			{
+				$formData['testAccount']='0';
+			}
+			/* End haren code */
+			 
+			if( $formData['password']=='' && $formData['cpassword'] !='')
+			{
+				$formData['password'] = $formData['cpassword'];
+			}
+			 
+			if (preg_match("/([.]+)/", $formData['refid'], $matches)) {
+				$pieces = explode(".",$formData['refid']);		
+				$decode =  $this->user_model->decode($pieces[1],"This is a key"); 
+				$formData['refid'] = $this->session->userdata('decode');
+				$refid = $this->session->userdata('decode');
+				$refid  = $decode; 
+			} else {
+				$decode =  $this->user_model->decode($formData['refid'],"This is a key"); 
+				$formData['refid'] = $this->session->userdata('decode');
+				$refid = $this->session->userdata('decode');
+				$refid  = $decode;
+			}
+			
+			if($refid !='')
+			{
+				$refdata=$this->user_model->getByUid($refid);
+			}
+			
+			if ($refdata['roleId']==4 && $formData['roleId'] <=1) {
+				$formData['refid'] = $refid;
+				$diffurl='yes';
+			} else {
+				$formData['refid'] = 0;
+			}
+			
+			if ($refdata['roleId']!=4) {
+				$formData['refid'] = $refid;
+			}		
+			//$this->session->unset_userdata('decode');
+			if ($formData['roleId'] == '-1') {
+				$formData['roleId'] =0;
+			}
+			//$_SESSION['isRegError'] = TRUE;
+			//$_SESSION['regError']   = $errorMsg;
+			
+			if (isset($_POST['regPage']) && $_POST['regPage'] =='ppc') {
+				$formData['username'] = $formData['email'];
+			}
+			$errorMsg = $this->user_model->checkEmail($formData['email']);	// Email Cann't be Empty.
+			if ($errorMsg['success']) {
+				$errorMsg = $this->user_model->checkPassword($formData['password']);
+				if ($errorMsg['success']===false) {
+					$this->response(array('status' => 1, "error"=>$errorMsg['message'])); // Password Cann't be Empty.
+				}
+			}
+			$multi_lang = 'en';
+			/*if (!isset($_SESSION)) {
+				session_start();
+			}*/
+			
+			/*if (isset($_SESSION['multi_lang'])) {
+				$multi_lang = $_SESSION['multi_lang'];
+			} else {
+				$multi_lang = 'en';
+			}
+			$this->session->set_userdata('firstTimeRegister','yes');
+			$this->session->set_userdata('sturegister','yes');*/
+			$this->load->model(array('lookup_model'));
+			$arrVal = $this->lookup_model->getValue('815', $multi_lang);
+			$selecType = $arrVal[$multi_lang];
+			if ($formData['roleId']==9) {
+				$errorMsg['message'] = $selecType;
+				$errorMsg['success'] = false;
+			}  
+			if ($errorMsg['success'] == false) {
+				if (!isset($_POST['regPage'])) {
+					echo json_encode($errorMsg);
+					exit;
+				} else {
+					//$_SESSION['isRegError'] = TRUE;
+					//$_SESSION['regError']   = $errorMsg['message'];
+					//$this->session->set_userdata('RegLink',$errorMsg['message']);
+					redirect($_POST['regReturn']);
+					exit;
+				}
+			} else {
+				if ($formData['roleId']  == 0) {
+					$formData['free_session'] = 'y'; 
+					$formData['is_eligible'] = 1;
+				} else {
+					$formData['free_session'] = 'y';
+				}
+				
+				if ($formData['roleId']  == 1) {
+					$formData['universal_roleId'] = '1';
+				} else {
+					$formData['universal_roleId'] = '0';
+				}
+				/* Added By Ilyas */	
+				/*$formData['universal_roleId'] = 0;
+				if ($formData['roleId']  == 1) {
+					$formData['universal_roleId'] = 1;
+				}*/
+				/* end */
+				$uid = $userModel->register($formData);
+			} 
+			if ($uid) { 
+				$formData['uid'] = $uid;
+				$formData['new'] = 1;
+				$formData['alerts'] = 30;
+				$formData['textalert'] = 30;
+				$formData['alertType'] = '11';
+				$formData['country'] = $cid;
+				$formData['ipaddress'] = $realIp;
+				if ($refdata['roleId']==4) {
+					$formData['school_id'] = $refid;
+				} else {
+					$formData['school_id'] = '0';
+				}
+				if ($formData['roleId']  == 1) {
+					 $formData['hRate'] = '7.50';
+				}
+				$profileModel->save($formData);
+				$profile = $this->db->query("SELECT uid,firstName,lastName,hRate,pic,Lat,Lng,user.username,countries.country ,provices.provice ,city FROM profile LEFT JOIN user ON user.id = profile.uid LEFT JOIN countries ON profile.country = countries.id LEFT JOIN provices ON profile.province = provices.id where user.id=".$uid);		
+				$profile->result_array();
+				$profile_res = $profile->result_array();
+				$address = '';
+				if ($profile_res[0]['city'] != '') {
+					$address = $address.$profile_res[0]['city'].' ';
+				}
+				if ($profile_res[0]['provice'] != '') {
+					$address = $address.$profile_res[0]['provice'].' ';
+				}
+				if ($profile_res[0]['country'] != '') {
+					$address = $address.$profile_res[0]['country'];
+				}
+				if ($address != '') {
+					//$this->getFirstLatLong($uid,$address);
+				}
+				$uid=base64_encode($formData['uid']);
+				if ($formData['roleId'] == 0) {
+					$str = "<b>Welcome to TheTalkList.com, where you will speak like a native!</b>   We have worked hard at building the best 1 to 1 learning environment.  Learning a language will be more convenient than ever.  \r\n<br/>";
+					$str .= "\r\n<br/>";
+					$str .= "Please click on below link to activate your account: <a target='_blank' href='".base_url('user/confirm?confrim='.$uid)."'>Confirmation Link</a>\r\n<br/>";
+					$str .= "<a>".base_url('user/confirm?confrim='.$uid)."</a>\r\n<br/>";
+					$str .= "\r\n<br/>";
+					$str .= "Your login information:\r\n<br/>";
+					$str .= "Email: {$formData['email']}\r\n<br/>";
+					$str .= "Password: {$formData['password']}\r\n<br/>";
+					$str .= "\r\n<br/>";
+					$str .= "New Students Tips: \r\n<br/>";
+					$str .= "<ul>";
+					$str .= "<li>Schedule your first Free Session.</li>";
+					$str .= "<li>Test our Video Session tools using a high speed connection (greater than 1 mbps).</li>";
+					$str .= "<li>Post to our Facebook page to interact with many other users.</li>";
+					$str .= "</ul>";
+				}
+				
+				if ($formData['roleId'] == 1) {
+					$str = "<b>Welcome to TheTalkList.com, where you will earn money helping people speak like a native!</b>   We have worked hard at building the best 1 to 1 learning environment. Learning a language will be more convenient than ever.  \r\n<br/>";
+					$str .= "\r\n<br/>";
+					$str .= "Please click on below link to activate your account: <a target='_blank' href='".base_url('user/confirm?confrim='.$uid)."'>Confirmation Link</a>\r\n<br/>";
+					$str .= "<a>".base_url('user/confirm?confrim='.$uid)."</a>\r\n<br/>";
+					$str .= "\r\n<br/>";
+					$str .= "Your login information:\r\n<br/>";
+					$str .= "Email: {$formData['email']}\r\n<br/>";
+					$str .= "Password: {$formData['password']}\r\n<br/>";
+					$str .= "\r\n<br/>";
+				}
+				
+				if ($formData['roleId'] == 4) {
+					$str = "<b>Welcome to TheTalkList.com, where you will help learners speak like a native!</b> We have worked hard at building the best 1 to 1 learning environment. Learning a language will be more convenient than ever.  \r\n<br/>";
+					$str .= "\r\n<br/>";
+					$str .= "New School Tips:\r\n<br/>";
+					$str .= "<ul>";
+					$str .= "<li>Get your tutors to enroll in TheTalkList.</li>";
+					$str .= "<li>Login and add your tutors to your School Community.</li>";
+					$str .= "<li>Advertise by emailing out your School Link and posting our linkable ad to your website.</li>";
+					$str .= "<li>Monitor transactions and earnings through your account page.</li>";
+					$str .= "</ul>";
+				}
+				
+				if ($formData['roleId'] == 5) {
+					$str = "<b>Welcome to TheTalkList.com, where you will earn money as your referrals learn to speak like a native!</b> We have worked hard at building the best 1 to 1 learning environment. Learning a language will be more convenient than ever.\r\n<br/>";
+					$str .= "\r\n<br/>";
+					$str .= "New Affiliate Tips: \r\n<br/>";
+					$str .= "<ul>";
+					$str .= "<li>Login and view your custom affiliate URL link.</li>";
+					$str .= "<li>Download advertisements for distribution </li>";
+					$str .= "<li>Advertise by posting our linkable ads to your marketing channels.</li>";
+	
+					$str .= "<li>Monitor transactions and earnings through your account page.</li>";
+					$str .= "</ul>";
+				}
+				
+				if ($formData['roleId'] > 3) {	
+					$str .= "Please click on below link to activate your account: <a target='_blank' href='".base_url('user/confirm?confrim='.$uid)."'>Confirmation Link</a>\r\n<br/>";
+					$str .= "<a>".base_url('user/confirm?confrim='.$uid)."</a>\r\n<br/>";
+					$str .= "\r\n<br/>";
+					$str .= "\r\n<br/>";
+					$str .= "Your login information:\r\n<br/>";
+					$str .= "Email: {$formData['email']}\r\n<br/>";
+					$str .= "Password: {$formData['password']}\r\n<br/>";
+					$str .= "\r\n<br/>";
+				}
+				
+				$str .= "If you have any problems please email the support team at: <a href='mailto:support@thetalklist.com'>support@thetalklist.com</a>\r\n<br/>";
+				$str .= "Thank you,\r\n<br/>";
+				$str .= "TheTalkList Support Team";
+				$this->load->library('email');
+				$this->email->mailtype = 'html';
+				$this->email->from('admin@thetalklist.com','TheTalklist');
+				$this->email->to($formData['email']);
+				$this->email->subject('Sign-Up with TheTalkList.com by '.$formData['firstName']);
+				$this->email->message($str);
+				$this->email->send();
+				// End email function code
+				 
+				//$this->session->set_userdata('RegLink','Please check your email to confirm your registration and jump into our site.');
+				//redirect(base_url());
+				if ($formData['roleId'] == 4 || $formData['roleId'] == 5) {
+					//redirect('user/registeredit');
+					$this->response(array('status' => 0)); //  Success
+				}
+				if (isset($_POST['regPage']) && $_POST['regPage'] =='ppc'  && $errorMsg['success'] == true) {
+					if ($formData['roleId'] == 0) {
+						//redirect (base_url('user/studentPopup'));
+						$this->response(array('status' => 0)); //  Success
+					} else {
+						 //redirect('user/registeredit');
+						 $this->response(array('status' => 0)); //  Success
+					}
+				} else {
+					if ($formData['roleId'] == 0) {
+						$this->response(array('status' => 0)); //  Success
+						//echo json_encode(array('success'=>true,'redirect'=>Base_url('user/dashboard')));
+					} else {
+						$this->response(array('status' => 0));  // Success
+						//echo json_encode(array('success'=>true,'redirect'=>Base_url('user/profile')));
+					}
+				}
+			} else {
+				$this->response(array('status' => 1, "error"=>'Something wrong, Please contact to admin please!'));
+			}
+		}
+	}
+	
+	// User's Scheduled Booking 
+	public function booking_post($uInfo){
+		if (is_array($uInfo)) {
+			$uInfo = $uInfo;
+		} else {
+			$uInfo = $this->user_model->getUserEmail($this->uri->segment(3));
+		}
+		
+		$uid = $uInfo['id']; // User ID
+		if (!$uid) {
+			$this->response(array('status' => 1, "message"=>"Something is wrong."));
+			exit;
+		}
+		
+		$this->load->model('class_model');
+		if ($uInfo['roleId']==0) {
+			$classes = $this->class_model->getBySid($uid); // Get Student Schedule Booking Details
+		} else {
+			$classes = $this->class_model->getByTid($uid); // Get Tutor Schedule Booking Details
+		}
+		
+		$timeNow	=	date('Y-m-d H:i:s',time());
+		$timeNowStr	=	strtotime($timeNow);
+		$response = array();
+		if(count($classes)>0)
+		{
+			foreach($classes as $class)
+			{
+				$i = $class['id'];
+				
+				$respnse[$i]['sid'] = $class['sid'];
+				// Get Student Details
+				$studentDetails = $this->user_model->getByprofileUid($class['sid']);
+				$respnse[$i][$class['sid']]	=	array(
+													"firstname"	=>	$studentDetails['firstName'],
+													"lastname"	=>	$studentDetails['lastName'],
+													"email"		=>	$studentDetails['email'],			  
+													"img"		=>	(!empty($studentDetails['pic'])) ? base_url("uploads/images/thumb")."/".$studentDetails['pic'] : "",
+													"vedio"		=>	$studentDetails['vedio']
+												);
+				
+				$respnse[$i]['tid'] = $class['tid'];
+				// Get Tutor Details
+				$tutorDetails = $this->user_model->getByprofileUid($class['tid']);
+				$respnse[$i][$class['tid']]	=	array(
+													"firstname"	=>	$tutorDetails['firstName'],
+													"lastname"	=>	$tutorDetails['lastName'],  
+													"email"		=>	$tutorDetails['email'],			  
+													"img"		=>	(!empty($tutorDetails['pic'])) ? base_url("uploads/images/thumb")."/".$tutorDetails['pic'] : "",
+													"vedio"		=>	$tutorDetails['vedio']
+												);				
+				
+				$respnse[$i]['startTime'] = $class['startTime'];
+				$respnse[$i]['endTime'] = $class['endTime'];
+				$respnse[$i]['createAt'] = $class['createAt'];
+				$respnse[$i]['session_type'] = $class['session_type'];
+				$respnse[$i]['Booking'] = $class['Booking'];
+			}
+		}
+		//$this->response($respnse, 200);
+		$this->response(array('status' => 0, "uid"=>$uid, "sessions"=>$respnse));
+	}
+	
+	// Update Password
+	public function updatepassword_post()
+	{
+		if (($_GET['uid']!="") and ($_GET['password']!="")) {
+			// Check User Exist
+			$result = $this->user_model->getUserEmail($_GET['uid']);
+			if ($result) {
+				$result = $this->user_model->changePassword($_GET['uid'] , $_GET['password']);
+				$this->response(array('status' => 0)); // Success Result
+			} else {
+				$this->response(array('status' => 1, "error"=>"User Not Exist")); // User Not Exist.
+			}
+		} else {
+			$this->response(array('status' => 1,'error'=>'Something Wrong')); // Failed Result
+		}
+	}
+	
+	// Reset Password
+	public function resetpassword_post(){
+		// Check post data
+
+        if ($_GET['email']!="") {
+			$multi_lang = 'en'; // Set Lang
+			$data	=	array();
+			$data['email']	=	$_GET['email'];
+			$this->load->model(array('lookup_model'));
+			$arrVal					=	$this->lookup_model->getValue('962', $multi_lang);
+			$passsent				=	$arrVal[$multi_lang];
+			$arrVal					=	$this->lookup_model->getValue('963', $multi_lang);
+			$incorrectmail			=	$arrVal[$multi_lang];
+			$data['username']		=	$data['email'];
+			$corect					=	$this->user_model->checkForgetInfo($data);
+            if($corect){
+                $info	=	$this->user_model->makeMd5Str($data);
+                $link	=	Base_url("user/changepw?email=".base64_encode($info['email'])."&str=".base64_encode($info['str'])."&time={$info['time']}");
+                $str = "A change of password has been requested for your account with Thetalklist.com.  If you initiated this, then click this link or copy it into a new browser:<a href='{$link}'>".$link."</a>\r\n<br/>";
+                $str .= "\r\n<br/>";
+                $str .= "This change request is good for 24 hours and applies to your account:\r\n<br/>";
+                //$str .= "Username:{$info['username']}\r\n<br/>";
+                $str .= "Email:{$info['email']}\r\n<br/>";
+                $str .= "Request Time:".date('Y-m-d H:i:s',$info['time'])."\r\n<br/>";
+                $str .= "\r\n<br/>";
+                $str .= "If you have any problems please email the support team at:  support@thetalklist.com\r\n<br/>";
+                $str .= "Thank you,           TheTalkList Support Team";
+				$this->load->library('email');
+                $this->email->mailtype = 'html';
+                $this->email->from('admin@thetalklist.com','TheTalklist');
+                $this->email->to($data['email']);
+                $this->email->subject('Forget password in thetalklist.com by '.$info['username']);
+                $this->email->message($str);
+                if ($this->email->send()) {
+					$this->response(array('status' => 0,'message'=>$passsent)); // Success Result
+				} else {
+					$this->response(array('status' => 1,'error'=>'Email Sending Failed')); // Failed Result
+				}
+            } else {
+                $this->response(array('status' => 1,'error'=>$incorrectmail)); // Failed Result
+            }
+        } else {
+			$this->response(array('status' => 1,'error'=>'Something Wrong')); // Failed Result
+		}
+    }
+	
+	
+	// Tutor Search
+	public function tutorsearch_post(){
+		$featureTeacherPerCount = 2;
+		// Default Value		
+		$_data = array();
+		$_data					=	$this->input->_requestAll();
+		if($_POST['data'] != ''){
+		$_data['anytutor']		=	(isset($_POST['anytutor']) and !empty($_POST['anytutor'])) ? $_POST['anytutor'] : 'true'; // Any Tutor Value
+		$_data['availableTobook']=	false;
+		$_data['country'] 		=	(isset($_POST['country']) and !empty($_POST['anytutor'])) ? $_POST['country'] : 0; // Country Value
+		$_data['datetime']		=	(isset($_POST['datetime']) and !empty($_POST['anytutor'])) ? $_POST['datetime'] : 'false'; // DateTime Value
+		$_data['fltr_business']	=	(isset($_POST['fltr_business']) and !empty($_POST['anytutor'])) ? $_POST['fltr_business'] : 'false'; // fltr_business Value
+		$_data['fltr_finance']	=	(isset($_POST['fltr_finance']) and !empty($_POST['anytutor'])) ? $_POST['fltr_finance'] : 'false'; // fltr_finance Value
+		$_data['fltr_medical']	=	(isset($_POST['fltr_medical']) and !empty($_POST['anytutor'])) ? $_POST['fltr_medical'] : 'false'; // fltr_medical Value
+		$_data['fltr_software']	=	(isset($_POST['fltr_software']) and !empty($_POST['anytutor'])) ? $_POST['fltr_software'] : 'false'; // fltr_software Value
+		$_data['freeSes']		=	(isset($_POST['freeSes']) and !empty($_POST['anytutor'])) ? $_POST['freeSes'] : ""; // free_session Value
+		$_data['fromTime']		=	(isset($_POST['fromTime']) and !empty($_POST['anytutor'])) ? $_POST['fromTime'] : "0:00"; // fromTime Value
+		$_data['toTime']		=	(isset($_POST['toTime']) and !empty($_POST['anytutor'])) ? $_POST['toTime'] : "23:30"; // toTime Value
+		$_data['gender']		=	(isset($_POST['gender']) and !empty($_POST['anytutor'])) ? $_POST['gender'] : "all"; // gender Value
+		$_data['hRateEnd']		=	(isset($_POST['hRateEnd']) and !empty($_POST['anytutor'])) ? $_POST['hRateEnd'] : "50000"; // Hour Rate End Value
+		$_data['hRateStart']	=	(isset($_POST['hRateStart']) and !empty($_POST['anytutor'])) ? $_POST['hRateStart'] : "0"; // Hour Rate Start Value
+		$_data['keyword']		=	(isset($_POST['keyword']) and !empty($_POST['anytutor'])) ? $_POST['keyword'] : ""; // keyword Value
+		$_data['langInput1']	=	(isset($_POST['langInput1']) and !empty($_POST['anytutor'])) ? $_POST['langInput1'] : "English"; // langInput1 Value
+		$_data['langInput2']	=	(isset($_POST['langInput2']) and !empty($_POST['anytutor'])) ? $_POST['langInput2'] : "0"; // langInput2 Value
+		$_data['langs']			=	(isset($_POST['langs']) and !empty($_POST['anytutor'])) ? $_POST['langs'] : ""; // langs Value
+		$_data['last_toefl_score'] = (isset($_POST['last_toefl_score']) and !empty($_POST['anytutor'])) ? $_POST['last_toefl_score'] : 'false'; // discussiontopic1 Value
+		$_data['last_toiec_score'] = (isset($_POST['last_toiec_score']) and !empty($_POST['anytutor'])) ? $_POST['last_toiec_score'] : 'false'; // discussiontopic2 Value
+		$_data['online']		=	'false'; // Online Value
+		$_data['localTimeZone']	=	"-5.5";
+		$_data['page']			=	1;
+		$_data['perPage']		=	20;
+		$_data['province']		=	(isset($_POST['province']) and !empty($_POST['anytutor'])) ? $_POST['province'] : "0"; // Province Value
+		$_data['readytotalk']	=	(isset($_POST['readytotalknow']) and !empty($_POST['anytutor'])) ? $_POST['readytotalknow'] : 'false'; // readytotalknow Value
+		$_data['sch']			=	(isset($_POST['sch']) and !empty($_POST['anytutor'])) ? $_POST['sch'] : ""; // school ID Value
+		$_data['school']		=	(isset($_POST['school']) and !empty($_POST['anytutor'])) ? $_POST['school'] : ""; // school Value
+		
+		if ($_data['sch']=='' && $_data['school'] !='') {
+			$_data['sch']		=	'15000000'; 
+			$_data['school']	=	'';
+		}
+		
+		$_data['sort']			=	(isset($_POST['sort']) and !empty($_POST['anytutor'])) ? $_POST['sort'] : "select"; // school Value
+		$_data['sortAsc']		=	(isset($_POST['sortAsc']) and !empty($_POST['anytutor'])) ? $_POST['sortAsc'] : "0"; // sortAsc Value
+		$_data['today']			=	(isset($_POST['today']) and !empty($_POST['anytutor'])) ? $_POST['today'] : date("Y-m-d"); // today Value
+		
+		$multi_lang = 'en';
+		$this->load->model(array('lookup_model'));
+		$arrVal =	$this->lookup_model->getValue('916', $multi_lang);
+		$exp	=	$arrVal[$multi_lang];
+		if (trim($_data['keyword']) == $exp) {
+			$_data['keyword'] = '';
+		}
+		$this->load->model(array('location_model','langs_model','search_model'));
+		if ($_data['langInput2'] == '0' ) {
+			$_data['langInput2'] = 'English';
+		}
+		
+		// SKVIRJA checks for existing email id using keyword search
+		$_data['searchBy'] = 'keyword'; 
+		if ($_data['keyword'] != '') {
+			$emailExistsByKeyword = $this->user_model->getEmail($_data['keyword']);
+			if ($emailExistsByKeyword) {
+				$_data['searchBy'] = 'email'; 
+			} else {
+				$_data['searchBy'] = 'keyword'; 
+			}
+		}
+		
+		$currenttime	=	date('Y-m-d h:i:s');
+		$uid			=	(isset($_POST['uid']) and !empty($_POST['uid'])) ? $_POST['uid'] : "" ;
+		if ($uid !='') {
+        	$q		= "SELECT exp_session,is_eligible from user where  user.id='{$uid}' AND user.exp_session >='{$currenttime}' AND is_eligible=1 AND roleid=0";
+        	$query	= $this->db->query($q);
+			$resultmoney = 0;
+			if ($query->num_rows() > 0) {
+				$featureTeachers 		=	$this->search_model->getFreeFetureTeacherLessons();
+				$_data['freeSes']		=	'y';
+				$_data['freeSesUser']	=	'y'; 
+			} else {
+				if (strlen($_data['freeSes']) > 0) {
+					$featureTeachers = $this->search_model->getFreeFetureTeacherLessons();
+				} else {
+					$featureTeachers = $this->search_model->getFetureTeacherLessons();
+				}
+			}
+		} else {
+			$featureTeachers		=	$this->search_model->getFreeFetureTeacherLessons();
+			$_data['freeSes']		=	'y';
+			$_data['freeSesUser']	=	'y';
+		}
+		$featureTeachersCount	=	count($featureTeachers);
+		$searchData				=	$this->search_model->getResult($_data);
+		if (count($searchData)<=0) {
+			$featureTeachersCount = 0;
+			unset($featureTeachers); 
+			$featureTeachers = array();
+		}
+		else
+		{
+			foreach($searchData as $fkey=>$fval)
+			{
+				if (!empty($fval['pic'])) {
+					$searchData[$fkey]['pic'] = base_url("uploads/images/thumb")."/".$fval['pic'];
+				}
+			}
+		}
+		 
+		//$data['sname']	=	$_data['school'];
+		//$data['sid']	=	$_data['sch'];
+		$schoolName		=	$_data['school'];
+		$schoolId		=	$_data['sch'];
+		//$data['rows']['schoolVal']	=	$schoolName;
+		//$data['rows']['schoolidval']=	$schoolId;
+		if ($_data['school'] !='' && $_data['sch']!='') {
+			$this->session->set_userdata('sname',$_data['school']);
+			$this->session->set_userdata('sid',$_data['sch']);
+			$featureTeachersCount = 0;
+			unset($featureTeachers); 
+			$featureTeachers = array();
+		} else {
+			//$this->session->unset_userdata('sname','');
+			//$this->session->unset_userdata('sid','');
+		}
+		
+		$sortKey = (isset($_data['sort']) && $_data['sort']!='')?$_data['sort']:'hRate';
+		$sortAsc = isset($_data['sortAsc']) ?$_data['sortAsc']:0;
+		if ($sortKey!='select') {
+			$searchData =  $this->uasortFunction($searchData,$sortKey,$sortAsc);
+		}
+		
+		/*if ($sortKey=='select') {
+			$sortKey='avgRate';
+			$searchData =  $this->uasortFunction($searchData,'avgRate',0);
+		}*/
+		//echo $sortKey;die;
+		//echo "<pre>"; print_r($searchData);die;
+		$perpage =	isset($_data['perPage']) ? $_data['perPage'] : 6;
+		//$data['perPage']	=	$perpage; 
+		//$data['totalCount']	=	count($searchData) + $featureTeacherPerCount * ceil (count($searchData)/($perpage-$featureTeacherPerCount)) ;
+		//$data['page'] = $page = isset($_data['page']) ? $_data['page'] : 1;
+		$perpage -= 2; 
+		$startRow = ($page-1)*$perpage;
+		$rowCount = ($startRow + $perpage) > count($searchData)?count($searchData) - $startRow:$perpage;
+		$data['result'] =  array_slice($searchData,$startRow,$rowCount);
+		if ($featureTeachersCount == 0) {
+		} else if ($featureTeacherPerCount*($page-1) < $featureTeachersCount && $featureTeacherPerCount*$page > $featureTeachersCount) {
+			$featureTeachers = array_merge($featureTeachers,$featureTeachers);
+		} else if ($featureTeacherPerCount*$page > $featureTeachersCount) {
+			$page = $page % ceil($featureTeachersCount / $featureTeacherPerCount) +1;
+		}
+		if(count($featureTeachers)>0){
+			foreach($featureTeachers as $fekey=>$feval)
+			{
+				if (!empty($feval['pic'])) {
+					$featureTeachers[$fekey]['pic'] = base_url("uploads/images/thumb")."/".$feval['pic'];
+				}
+			}
+		}
+		$data['feature'] =  array_slice($featureTeachers,($page-1)*$featureTeacherPerCount,$featureTeacherPerCount);
+		//$data['count'] = count($data['rows']['feature'])+count($data['rows']['result']);
+		//$data['count1'] =  count($searchData);
+		$this->response(json_decode(json_encode(array('status' => 0,'tutors'=>$data))));
+		}else{
+			$this->db->select('profile.uid,user.readytotalk,profile.firstName,profile.lastName,profile.avgRate,user.roleId,profile.pic');
+			$this->db->from('profile');
+			$this->db->join('user',' profile.uid = user.id', 'inner');
+			$this->db->where('user.readytotalk',1);
+			$this->db->where_in('user.roleId',array('1','2','3'));	
+			$query = $this->db->get();
+			$result  = $query->result();
+			//$result = $query->result();
+			$this->response(json_decode(json_encode(array('status' => 0,'tutors'=>$result))));
+		}
+		
+	}
+	
+	// Previous Teachers
+	function myteachers_get(){
+		//$this->_profile();
+		$uid	=	$_GET['user_id'];//$this->uri->segment(3);	// Get Loggedin User ID		
+		if ($uid*1 > 0) {
+			$this->load->model(array('search_model','myTeacher_model'));	// Load My Teacher Model
+			$teachers	=	$this->myTeacher_model->getAll($uid);	// Get My Previous Tutor
+			$query  = $this->db->query("select refid from user where id='".$uid."'");
+			$result = $query->row_array();
+			//$this->layout->setData('Refid',$result['refid']);
+			$classquery  = $this->db->query("SELECT exp_session,is_eligible from user where  user.id='".$uid."'");
+			$classresult = $classquery->row_array();
+			$cdate		 = date('Y-m-d');
+			$free		 = '';
+			if ($classresult['exp_session'] > $cdate && $classresult['is_eligible']==1) {
+				for($i=0;$i<count($teachers);$i++)
+				{
+					$teachers[$i]['hRate']="0.00";					
+					if (!empty($teachers[$i]['pic'])) {
+						$teachers[$i]['pic'] = base_url("uploads/images/thumb")."/".$teachers[$i]['pic'];
+					}
+				}
+			} else {
+				for($i=0;$i<count($teachers);$i++)
+				{
+					$markup = $this->search_model->GetSchoolMarkup($uid);
+					$teachers[$i]['hRate']=$teachers[$i]['hRate'] + $markup;
+					if (!empty($teachers[$i]['pic'])) {
+						$teachers[$i]['pic'] = base_url("uploads/images/thumb")."/".$teachers[$i]['pic'];
+					}
+				}
+			}
+			$this->response(array('status' => 0,'tutors'=>$teachers));	// Response List of Teachers
+		} else {
+			$this->response(array('status' => 1,'message'=>"Something is wrong."));	// Response Failed
+		}
+	}
+	
+	// Tutor Calendar
+	function calendar(){
+		$uid	=	$this->uri->segment(3);	// Get Logged In User ID
+		if ($uid*1 > 0) {
+			$uri=$this->uri->segment(5);
+		if ($uri == 'Join') {
+			$this->layout->setData('uri',$uri);
+		} else {
+			$this->layout->setData('uri','');
+		}
+		$this->_profile();
+		$this->load->model('class_model');
+		$permisson = $this->getPermission($this->uid);
+		if ($permisson=='teacher_public') {
+			$this->layout->setData('school_id',$uri);
+			$this->layout->setLayoutData('linkAttr','calender');
+		}
+		$classes = array();
+		switch($permisson) {
+			case 'invalidUser':break;
+			case 'student_private':$classes = $this->class_model->getBySid($this->uid);break;
+			case 'teacher_private':$classes = $this->class_model->getByTid($this->uid);break;
+			case 'studdent_public':break;
+
+		}
+		$timeNow = date('Y-m-d H:i:s',time());
+		$timeNowStr = strtotime($timeNow);
+		if (count($classes)>0) {
+			$i = 0;
+			foreach($classes as $class)
+			{
+				$classTimeStr = strtotime($class['startTime']);
+				$classDiffInMin = round(($classTimeStr - $timeNowStr) / 60,2);
+				 
+				//checks for existing locked users
+				$existsLocked = 0;
+				if ($class['action'] != '') {
+					$action = unserialize($class['action']);
+					if ($this->session->userdata('roleId') == 0) {
+						if (@$action['studentConnected'] == 1) {
+							continue;
+						}
+					} else {
+						if (@$action['tutorConnected'] == 1) {
+							continue;
+						}
+					}
+					
+					if ($this->session->userdata('roleId') == 0) {
+						if (@$action['slocked'] == 1) {
+							$existsLocked = 1;
+						}
+					} else {
+						if (@$action['tlocked'] == 1) {
+							$existsLocked = 1;
+						}
+					}
+				}
+				
+				//checks for user enters on class
+				$lockedSession = 'locked_'.$class['id'];
+				if ($this->session->userdata($lockedSession)) {
+					if ($this->session->userdata($lockedSession) == 'No') {
+						$sessionUser = 'No';
+					} else {
+						$sessionUser = 'Yes';
+					}
+				} else {
+					$sessionUser = 'Yes';
+				}
+				
+				if ($classDiffInMin < -3 && $sessionUser == 'Yes' && $existsLocked == 1) { 
+					$classes[$i]['locked'] = 1;
+					//echo 'here';die;
+				} else {
+					$classes[$i]['locked'] = 0;
+				}
+				
+				if ($classes[$i]['Is_early'] == 1) {
+					$classes[$i]['locked'] = 1;
+				}
+				$i++;
+			}
+		}
+		
+		$schoolTut = $this->profile_model->CheckIsSchoolTutor($this->uid);
+		$Ismarkset=0;
+		if ($schoolTut['school_id'] > 0) {
+			$sql="select pic,curriculum,s_disc from profile where uid={$schoolTut['school_id']}";
+			$query = $this->db->query($sql);
+			$result = $query->row_array();
+			$Ismarkset=$result['curriculum'];
+		}
+		$this->layout->setData('schtut',$schoolTut['school_id']);
+		$this->layout->setData('Ismarkset',$Ismarkset); 
+		$ReadyTalk = $this->profile_model->CheckIsonline($this->uid);
+		$this->layout->setData('readyTalk',$ReadyTalk['readytotalk']);
+		//print_r($classes);die;
+		$chkfreesession = $this->search_model->chkfreesession($this->uid);
+		$this->layout->setData('chkfreesession',$chkfreesession);		
+		$this->layout->setData('classes',$classes);
+        //$this->layout->setData('SessionCost','test');
+		$uri=$this->uri->segment(5);
+		$this->load->model("user_model");
+		$config = $this->profile_model->getConfig();
+		$configvalues = ((1+$config['VEE_PRICE_PERCENT']['value']) *100);
+		//echo $this->uid." : ".$uri." : ".$this->session->userdata('uid');
+		if($this->session->userdata('uid') =='')
+		{
+		}
+		else
+		{
+			$this->layout->setData('SessionCost',$this->user_model->getsesstioncostnew($this->session->userdata('uid'),$configvalues,$this->uid));
+		}
+		}
+		$this->load->helper('date');
+		$this->layout->view($this->getViewTemp($this->uid,'user/calendarnew'));			
+	}
+	
+	//DELETE CLASS FUNCTION
+	public function deleteclass_post()
+	{
+		$_data = $this->input->post();
+		$result = $this->api_model->checkClassID($_data['cid'], $_data['uid']);
+		if(empty($_data['uid']))
+		{
+			$this->response(array('status' => 1,'error'=>'Something is wrong.')); // Failed Result
+		}
+		elseif(empty($result))
+		{
+			$this->response(array('status' => 1,'error'=>'Class is not found.')); // Failed Result
+		}
+		else
+		{
+			$this->load->model('class_model');
+			$this->load->model('pay_model');
+			
+			// Call getRoleID Function of api_model
+			$result = $this->api_model->getRoleID($_data['uid']);
+			
+			// TECHNO-SANJAY added below code for update user free session status
+			if($result['roleId'] == '2' || $result['roleId'] == '3' || $result['roleId'] == '1')
+			{
+				$rs = $this->class_model->getByCid($_data['cid']);
+				//$this->profile_model->updateFreeSession($rs['sid']);
+				$revertfee = $rs['fee'];
+				$studentid = $rs['sid'];
+			}else
+			{
+				$rs = $this->class_model->getBySid($_data['uid']);
+				if(count($rs) == 1)
+				{
+					$revertfee = $rs[0]['fee'];
+					$studentid = $rs[0]['sid'];
+				}else{
+					$this->response(array('status' => 1,'error'=>'No scheduled session.')); // Failed Result
+				}
+			}
+			/* Added by haren to Re-generate Free session Coupon */
+			$ClsId=$_data['cid'];
+			$ClassInfo = $this->class_model->GetClassDetail($ClsId);
+			if($ClassInfo !=array())
+			{
+				$studId=$ClassInfo['sid'];
+				if($ClassInfo['session_type']=='free' ||  $ClassInfo['session_type']=='Free' || $ClassInfo['session_type']=='FREE')
+				{
+				  $this->class_model->RegenerateCoupon($studId);
+				}
+			}
+			if($studentid)
+			/* Haren code End   */
+			$checkfreesession = "select free_session from user where id = {$studentid}";			
+			$checkquery = $this->db->query($checkfreesession);
+			if ($checkquery->num_rows() > 0)
+			{
+				$resultTeachers = $checkquery->result_array();
+				if($resultTeachers[0]['free_session'] != 'y'){
+					$feeSql = "update profile set money=money+{$revertfee} , frMoney=frMoney-{$revertfee} where uid={$studentid}";
+					$query = $this->db->query($feeSql);
+				}
+			}
+			
+           	//$this->message_send_cancel_class($this->input->_request('id'));
+			$this->class_model->delById($_data['cid'],$_data['uid']);
+			
+			if($rs)
+			{
+				$this->pay_model->calcel_disputes($rs);
+			}
+			$this->response(array('status' => 0,'message'=>'Class has been cancelled successfully.')); // Success Result
+		}
+	}
+	
+	
+	
+	public function index_get()
+	{
+		// Display all 
+		//$this->response($this->db->get('user')->result_array());
+		$this->response(NULL, 400);
+	}
+	
+	function user_get()
+    {
+        if(!$this->get('id'))
+        {
+            $this->response(NULL, 400);
+        }
+ 		
+        $user = $this->client_model->getMCInfo( $this->get('id') );
+        if($user)
+        {
+            $this->response($user, 200); // 200 being the HTTP response code
+        }
+ 
+        else
+        {
+            $this->response(NULL, 404);
+        }
+    }
+     
+    function user_post()
+    {
+        $result = $this->user_model->update( $this->post('id'), array(
+            'name' => $this->post('name'),
+            'email' => $this->post('email')
+        ));
+         
+        if($result === FALSE)
+        {
+            $this->response(array('status' => 'failed'));
+        }
+         
+        else
+        {
+            $this->response(array('status' => 'success'));
+        }
+         
+    }
+     
+    function users_get()
+    {
+        $users = $this->user_model->get_all();
+         
+        if($users)
+        {
+            $this->response($users, 200);
+        }
+ 
+        else
+        {
+            $this->response(NULL, 404);
+        }
+    }
+	
+	function updateRoleID_post(){
+		
+		if ($_GET['email']!="") {
+			// Check User Exist
+			$result = $this->api_model->updateUserRole($_GET['email'],$_GET['roleId']);
+			$this->response(array('status' => 0)); // Success Result
+		} else {
+			$this->response(array('status' => 1,'error'=>'Something Wrong')); // Failed Result
+		}
+	}
+	
+	function updateProfile_post(){
+		if ($_GET['userid']!="") {
+			if($_GET['userid'] !="" && $_GET['country'] != "" && $_GET['state'] != "" && $_GET['city'] != "" && $_GET['gender'] != "" && 
+			$_GET['language1'] != "" &&	 $_GET['language2'] != "" && $_GET['age'] != "" && $_GET['firstName'] != '' && $_GET['lastName'] != '',
+			$_GET['cell'] != ""){
+			// Check User Exist
+			$_data['userid'] = $_GET['userid'];
+			$_data['firstName'] = $_GET['firstName'];
+			$_data['lastName'] = $_GET['lastName'];
+			$_data['country'] = $_GET['country'];
+			$_data['state'] = $_GET['state'];
+			$_data['city'] = $_GET['city'];
+			$_data['gender'] = $_GET['gender']; 
+			$_data['cell'] = $_GET['cell']; 
+		/*	$_data['email'] = $_GET['email']; */
+			$_data['language1'] = $_GET['language1'];
+			$_data['language2'] = $_GET['language2'];
+		/*	$_data['language3'] = $_GET['language3']; */
+			//$_data['birthdate'] = $_GET['birthdate'];
+			$_data['age'] = $_GET['age'];
+
+			//$dob = $this->input->post('birthdate');
+			//$birthdate = strtotime($dob);
+			//$nowdate = time();
+			//$datediff = $nowdate - $birthdate;
+			//$_date['age'] = floor($datediff/(60*60*24*365));
+
+			$result = $this->api_model->updateUserProfile($_data);
+			$this->response(array('status' => 0,'result'=>$result)); // Success Result
+			}else{
+				$this->response(array('status' => 1,'error'=>'please fill up')); // Failed Result
+			}
+		} else {
+			$this->response(array('status' => 1,'error'=>'Something Wrong')); // Failed Result
+		}
+	}
+	function countries_post(){
+	
+		$users = $this->api_model->get_countries();
+		if($users){
+			$this->response(array('status' => 0,'countries'=>$users));
+		}else{
+			$this->response(array('status' => 1,'error'=>'Something Wrong'));
+		}
+	}
+	function tutor_list_post(){
+		$data = $this->api_model->get_tutors();
+		if($users){
+			$this->response(array('status' => 0,'tutors'=>$users));
+		}else{
+			$this->response(array('status' => 1,'error'=>'Something Wrong'));
+		}
+	}
+	
+	function profile_pic_post(){
+		//echo $data = $_GET['uid'];
+		//echo $image = $_GET['image'];
+		$uid = $this->input->post('uid');
+		
+		$image = $this->input->post('image');
+		$year = date("Y");   
+		$month = date("m");   
+		$date = date("d");
+		
+		$img = str_replace('data:image/jpeg;base64,', '', $image);
+		
+		$img = str_replace(' ', '+', $img);
+		$data = base64_decode($img);
+
+		$filename = md5(uniqid(rand(), true));
+		if (!file_exists('uploads/images/'.$year)) {
+			mkdir('uploads/images/'.$year, 0777, true);
+		}
+		if (!file_exists('uploads/images/'.$year.'/'.$month)) {
+			mkdir('uploads/images/'.$year.'/'.$month, 0777, true);
+		}
+		if (!file_exists('uploads/images/'.$year.'/'.$month.'/'.$date)) {
+			mkdir('uploads/images/'.$year.'/'.$month.'/'.$date, 0777, true);
+		}
+		
+		$file = 'uploads/images/'.$year.'/'.$month.'/'.$date.'/'.$filename.'.jpg';
+		$imgname = $year.'/'.$month.'/'.$date.'/'.$filename.'.jpg';
+		$info = file_put_contents($file, $data);
+		
+		if($info){
+			$sql = "UPDATE profile set pic = '{$imgname}' WHERE uid = '{$uid}' ";
+			$query = $this->db->query($sql);
+			
+			$this->response(array('status' => 0));
+		}else{
+			$this->response(array('status' => 1,'error'=>'Something Wrong'));
+		
+		}
+	}
+	function profile_video_post(){
+		$uid = $this->input->post('uid');
+		$video = $this->input->post('video');
+	
+		$year = date("Y");   
+		$month = date("m");   
+		$date = date("d");
+		
+	 $this->load->helper('form');
+	 if (!file_exists('uploads/images/'.$year)) {
+			mkdir('uploads/images/'.$year, 0777, true);
+		}
+		if (!file_exists('uploads/images/'.$year.'/'.$month)) {
+			mkdir('uploads/images/'.$year.'/'.$month, 0777, true);
+		}
+		if (!file_exists('uploads/images/'.$year.'/'.$month.'/'.$date)) {
+			mkdir('uploads/images/'.$year.'/'.$month.'/'.$date, 0777, true);
+		}
+		$configVideo['upload_path'] = 'uploads/images/'.$year.'/'.$month.'/'.$date; # check path is correct
+		$configVideo['max_size'] = '10000000';
+		$configVideo['allowed_types'] = 'mp4|wmv'; # add video extenstion on here
+		$configVideo['overwrite'] = FALSE;
+		$configVideo['remove_spaces'] = TRUE;
+		$video_name = random_string('numeric', 5);
+		$configVideo['file_name'] = $video_name;
+
+		$this->load->library('upload', $configVideo);
+		$this->upload->initialize($configVideo);
+
+		if (!$this->upload->do_upload('uploadan')) # form input field attribute
+		{
+			# Upload Failed
+			$this->session->set_flashdata('error', $this->upload->display_errors());
+			$this->response(array('status' => 1,'error'=>'Something Wrong'));
+		}
+		else
+		{
+			# Upload Successfull
+			$url = 'uploads/images/'.$year.'/'.$month.'/'.$date;
+			$sql = "UPDATE profile set vedio = '{$url}' WHERE uid = '{$uid}' ";
+			$this->session->set_flashdata('success', 'Video Has been Uploaded');
+			$this->response(array('status' => 0));
+		}
+	}		
+		
+	/*	$vdo = str_replace('data:video/mp4;base64,', '', $video);
+		
+		$vdo = str_replace(' ', '+', $vdo);
+		$data = base64_decode($vdo);
+
+		$filename = md5(uniqid(rand(), true));
+		if (!file_exists('uploads/images/'.$year)) {
+			mkdir('uploads/images/'.$year, 0777, true);
+		}
+		if (!file_exists('uploads/images/'.$year.'/'.$month)) {
+			mkdir('uploads/images/'.$year.'/'.$month, 0777, true);
+		}
+		if (!file_exists('uploads/images/'.$year.'/'.$month.'/'.$date)) {
+			mkdir('uploads/images/'.$year.'/'.$month.'/'.$date, 0777, true);
+		}
+		
+		$file = 'uploads/images/'.$year.'/'.$month.'/'.$date.'/'.$filename.'.mp4';
+		$videoname = $year.'/'.$month.'/'.$date.'/'.$filename.'.mp4';
+		$info = file_put_contents($file, $data);
+		
+		if($info){
+			$sql = "UPDATE profile set vedio = '{$videoname}' WHERE uid = '{$uid}' ";
+			$query = $this->db->query($sql);
+			
+			$this->response(array('status' => 0));
+		}else{
+			$this->response(array('status' => 1,'error'=>'Something Wrong'));
+		
+		}
+	} */
+	function videolist_post(){
+		
+		$videos = $this->api_model->get_videos();
+		
+		if($videos){
+			$this->response(array('status' => 0,'videos'=>$videos));
+		}else{
+			$this->response(array('status' => 1,'error'=>'Something Wrong'));
+		}
+	}
+	function tutoring_subject_post(){
+		$t_id = $_GET['tutor_id'];
+		$subject = $this->api_model->get_subject($t_id);
+		
+		if($subject){
+			$this->response(array('status' => 0,'subjects'=>$subject));
+		}else{
+			$this->response(array('status' => 1,'error'=>'Something Wrong'));
+		}
+	}
+	function tutoring_video_post(){
+		$t_id = $_GET['tutor_id'];
+		$video = $this->api_model->tutor_video($t_id);
+		
+		if($video){
+			$this->response(array('status' => 0,'video'=>$video));
+		}else{
+			$this->response(array('status' => 1,'error'=>'Something Wrong'));
+		}
+	}
+	
+	function forgot_post(){
+		if($postData['email'] = $_GET['email']){
+			$multi_lang = 'en';
+	
+			$this->load->model(array('lookup_model'));
+			$arrVal = $this->lookup_model->getValue('962', $multi_lang);
+			$passsent = $arrVal[$multi_lang];
+			$arrVal = $this->lookup_model->getValue('963', $multi_lang);
+			$incorrectmail = $arrVal[$multi_lang];
+			$postData['username'] = $postData['email'];
+			$corect = $this->user_model->checkForgetInfo($postData);
+            if($corect){
+                $info = $this->user_model->makeMd5Str($postData);
+                $link = Base_url("user/changepw?email=".base64_encode($info['email'])."&str=".base64_encode($info['str'])."&time={$info['time']}");
+                //$str = "A change of password has been requested for your account with Thetalklist.com.  If you initiated this, then click this link or copy it into a new browser:<a href='{$link}'>".$link."</a>\r\n<br/>";
+				$str = "A change of password has been requested for your account with TheTalkList. If you initiated this, then click this link or copy it into a new browser:<a href='{$link}'>".$link."</a>\r\n<br/>";
+                $str .= "\r\n<br/>";
+                $str .= "This change request is good for 24 hours and applies to your account:\r\n<br/>";
+                //$str .= "Username:{$info['username']}\r\n<br/>";
+                $str .= "Email:{$info['email']}\r\n<br/>";
+                $str .= "Request Time:".date('Y-m-d H:i:s',$info['time'])."\r\n<br/>";
+                $str .= "\r\n<br/>";
+                $str .= "If you have any problems please email the support team at:  support@thetalklist.com\r\n<br/>";
+                $str .= "Thank you,           TheTalkList Support Team";
+				$this->load->library('email');
+                $this->email->mailtype = 'html';
+                $this->email->from('admin@thetalklist.com','TheTalklist');
+                $this->email->to($postData['email']);
+                //$this->email->subject('Forget password in thetalklsit.com by '.$info['username']);
+				$this->email->subject('Forgot password on TheTalkList.com by '.$info['username']);
+                $this->email->message($str);
+                $this->email->send();
+			
+                //$errorMsg = "We have sent you an email.please get it for change password.If you can not get it,please put admin@thetalklist.com into your white list.";
+				$errorMsg = $passsent;
+				$this->response(array('status' => 0,'errorMsg'=>$errorMsg));
+            }
+            else{
+                $errorMsg = $incorrectmail;
+				$this->response(array('status' => 1,'errorMsg'=>$errorMsg));
+            }
+			
+        }
+      
+	}
+}
+?>

@@ -1,0 +1,7 @@
+@charset "utf-8";
+/* CSS Document */
+.privacy{ padding:0px 35px 60px;}
+.privacy_top{ height:40px; line-height:40px; color:#133e5f; font-size:24px; font-weight:bold; border-bottom:1px solid #e6e6e6;}
+.privacy_mid{ }
+.privacy_mid h1{ padding:30px 0 0; font-size:14px; font-weight:bold; font-family:Arial; line-height:20px; color:#0d5782;}
+.privacy_mid p{ padding:20px 0 0; text-indent:2em; color:#585858; font-family:Arial; line-height:18px; font-size:14px;}

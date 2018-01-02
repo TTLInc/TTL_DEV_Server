@@ -1,0 +1,238 @@
+.banner_slogan_1{	
+	color:#fff; 
+	font-size:42px;
+	position:relative; 
+	text-align:center; 
+	left:0%;
+}
+.banner_slogan_2{
+	left: 30%; 
+	color:#fff; 
+	font-size:42px;
+	position:relative; 
+	text-align:center; 
+	left:0%;
+}
+.banner_slogan_3{
+	color:#fff; 
+	font-size:42px;
+	position:relative; 
+	text-align:center; 
+	left:0%;
+}
+.banner_slogan_3_st1{
+	color:#fff; 
+	font-size:42px;
+	position:relative; 
+	text-align:center; 
+	left:0%;
+}
+.banner_slogan_3_tu{
+	color:#fff; 
+	font-size:42px;
+	position:relative; 
+	text-align:center; 
+	left:0%;
+}
+.banner_slogan_3_tu2{
+	color:#fff; 
+	font-size:42px;
+	position:relative; 
+	text-align:center; 
+	left:0%;
+}
+.banner_slogan_4{
+	color:#fff; 
+	font-size:42px;
+	position:relative; 
+	text-align:center; 
+	left:0%;
+}
+.banner_slogan_4_sc{
+	color:#fff; 
+	font-size:42px;
+	position:relative; 
+	text-align:center; 
+	left:0%;
+}
+.banner_slogan_4_st{
+	color:#fff; 
+	font-size:42px;
+	position:relative; 
+	text-align:center; 
+	left:0%;
+}
+.school_content{
+	font-size:24px; 
+	padding:25px; 
+	padding-left:150px; 
+	padding-right:150px; 
+	line-height:35px; 
+	text-align:justify;
+}
+.banner_content_main{
+	 position:absolute; 
+	 top:70%; 
+	 left:0%; 
+	 margin:0 auto; 
+	 width:100%;
+}
+
+.banner_links_btn_1{
+	color:#fff; 
+	cursor:pointer;
+	background-color:#ff6633;
+	outline:0; 
+	position: absolute; 
+	top: 85%; 
+	left: 45%;
+	padding: 12px 25px; 
+	border: none; 
+	border-radius: 5px; 
+	font-size: 18px;
+}
+.banner_links_btn_1_tu{
+	color:#fff; 
+	cursor:pointer;
+	background-color:#ff6633;
+	outline:0; 
+	position: absolute; 
+	top: 85%; 
+	left: 45%;
+	padding: 12px 25px; 
+	border: none; 
+	border-radius: 5px; 
+	font-size: 18px;
+}
+.banner_links_btn_2{
+	color:#fff; 
+	cursor:pointer; 
+	background-color:#ff6633; 
+	outline:0;  
+	position: absolute; 
+	top: 85%; 
+	left: 45%; 
+	padding: 12px 25px;
+	border: none; 
+	border-radius: 5px; 
+	font-size: 18px;
+}
+.banner_links_btn_2_st1{
+	color:#fff; 
+	cursor:pointer; 
+	background-color:#ff6633; 
+	outline:0;  
+	position: absolute; 
+	top: 85%; 
+	left: 45%; 
+	padding: 12px 25px;
+	border: none; 
+	border-radius: 5px; 
+	font-size: 18px;
+}
+.banner_links_btn_2_tu{
+	color:#fff; 
+	cursor:pointer; 
+	background-color:#ff6633; 
+	outline:0;  
+	position: absolute; 
+	top: 85%; 
+	left: 45%; 
+	padding: 12px 25px;
+	border: none; 
+	border-radius: 5px; 
+	font-size: 18px;
+}
+.banner_links_btn_3 {
+	color:#fff; 
+	cursor:pointer; 
+	background-color:#ff6633; 
+	outline:0;  
+	position: absolute;
+	top: 85%; 
+	left: 44%; 
+	padding: 12px 25px; 
+	border: none; 
+	border-radius: 5px; 
+	font-size: 18px;
+}
+.banner_links_btn_3_st{
+	color:#fff; 
+	cursor:pointer; 
+	background-color:#ff6633; 
+	outline:0;  
+	position: absolute;
+	top: 85%; 
+	left: 44%; 
+	padding: 12px 25px; 
+	border: none; 
+	border-radius: 5px; 
+	font-size: 18px;
+}
+.banner_links_btn_3_tu{
+	color:#fff; 
+	cursor:pointer; 
+	background-color:#ff6633; 
+	outline:0;  
+	position: absolute;
+	top: 85%; 
+	left: 44%; 
+	padding: 12px 25px; 
+	border: none; 
+	border-radius: 5px; 
+	font-size: 18px;
+}
+.school_about{
+	position:absolute; 
+	top:70%; 
+	font-size:42px; 
+	color:#fff; 
+	left:20%;
+}
+.school_main{
+	width:100%; 
+	margin-top:3%;
+}
+.school_left{
+	width:50%; 
+	float:left;
+}
+.school_content_signin{
+	width:80%; 
+	text-align:center; 
+	font-size:24px; 
+	margin:5% auto; 
+	text-align: justify;
+}
+.school_content_info{
+	width:80%; 
+	text-align:center;
+	margin:5% auto;
+}
+.sc_info{
+	width:30%; 
+	float:left; 
+	font-size:24px;
+}
+.school_right{
+	width:50%; 
+	float:left;
+}
+.school_right_content{
+	width:100%; 
+	margin:0 auto; 
+	padding: 10px 50px 7% 10px;
+}
+.sc_information{
+	width:100%;
+	margin:0 auto; 
+	font-size:20px; 
+	background-color:#f2f2f2; 
+	padding:15px;
+}
+.school_signupform{
+	width:100%; 
+	margin:0 auto; 
+	font-size:20px; 
+	background-color:#f2f2f2;
+}

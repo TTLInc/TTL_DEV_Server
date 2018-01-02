@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [L,R=301]	
+
+AddType audio/ogg .oga
+AddType video/ogg .ogv .ogg
+AddType video/webm .webm
+AddType video/mov .mov
+AddType video/mp4 .mp4
+
+<FilesMatch "\.(jpg|jpeg|png|gif|swf|css|js)$">
+    Header set Cache-Control "max-age=604800, public"
+</FilesMatch>

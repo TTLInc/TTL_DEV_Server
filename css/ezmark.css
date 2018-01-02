@@ -1,0 +1,21 @@
+/**
+ * CSS File for ezMark jQuery Plugin
+ *
+ **/
+.ez-hide { opacity: 0; filter:alpha(opacity=0); }
+.ez-checkbox { background: transparent url('../images/checkbox.png') 0 0px no-repeat; display:inline-block; width:15px; height:15px;  }
+.ez-radio { background: transparent url('../images/checkbox.png') 0 0px no-repeat; display:inline-block; width:15px; height:15px;  }
+.ez-checked { background-position: 0 bottom; }
+.ez-selected { background-position: 0 bottom; }
+.ez-checkbox-green { background: transparent url('../images/checkbox-green.png') 0 0px no-repeat; display:inline-block;  *display: inline;}
+.ez-checked-green { background-position: 0 bottom; }
+.ez-checkbox, .ez-radio { zoom: 1; *display:inline;_height:30px;}
+/* SELECT BOX STRAT */
+
+/*left page*/
+.bknwhwr .defaultP{ float:left; margin:0px 10px 0 0;}
+.bknwhwr .defaultP input{ float:left;  width: 55px;  height: 56px;cursor:pointer;}
+.bknwhwr .defaultP .ez-checkbox{background: url(../images/unavailable-dot.png) 0 0 no-repeat; width: 55px;  height: 56px;}
+.bknwhwr .defaultP .ez-checked{background: url(../images/available-dot.png) 0 0 no-repeat;}
+.bknwhwr{display: inline-block; position: relative;   width: 55px;  height: 56px; margin-top:-27px;}
+/*left page*/

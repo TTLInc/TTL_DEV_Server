@@ -1,0 +1,1894 @@
+<?php
+/*
+* @autor TECHNO-SANJAY
+* @package student private dashboard
+* @date 10 May 2013
+**/
+header("Cache-Control: no-cache, must-revalidate" ); 
+header("Pragma: no-cache" );
+header("Expires: -1" );
+$bbase = base_url();
+$basePath =  substr(BASEPATH,0,-7); 
+
+$this->layout->appendFile('javascript',"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js");
+$this->layout->appendFile('javascript',"js/chat.js");
+?>
+<?php
+$multi_lang = 'en';
+if(!isset($_SESSION)) {
+    session_start();
+}
+
+if(isset($_SESSION['multi_lang']))
+{
+	$multi_lang = $_SESSION['multi_lang'];
+}
+else
+{
+	$multi_lang = 'en';	
+}
+$this->load->model(array('lookup_model'));
+$arrVal 	= $this->lookup_model->getValue('742', $multi_lang);
+$dashboard	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('743', $multi_lang);
+$message	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('744', $multi_lang);
+$cbalance	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('745', $multi_lang);
+$nextsession	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('746', $multi_lang);
+$join	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('969', $multi_lang);
+$tooltip	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('748', $multi_lang);
+$ttlmap	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('749', $multi_lang);
+$livechat	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('750', $multi_lang);
+$newtutor	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('751', $multi_lang);
+$suggest_tutor	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('752', $multi_lang);
+$facebook_feed	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('753', $multi_lang);
+$tstsurvey	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('411', $multi_lang);
+$send	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('754', $multi_lang);
+$chat_inavite	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('740', $multi_lang);
+$send_message	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('731', $multi_lang);
+$schedule	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('741', $multi_lang);
+$talk	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('755', $multi_lang);
+$credits	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('756', $multi_lang);
+$none	= $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('886', $multi_lang);
+$buzzword = $arrVal[$multi_lang];
+
+$arrVal = $this->lookup_model->getValue('270', $multi_lang);
+$lchatinvite = $arrVal[$multi_lang];
+
+$arrVal = $this->lookup_model->getValue('286', $multi_lang);
+$nameprivatechat = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('283', $multi_lang);
+$lok = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('298', $multi_lang);
+$lcancel = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('293', $multi_lang);
+$linviteonlineuser = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('524', $multi_lang);
+$linvitetxt = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('525', $multi_lang);
+$lenternametxt = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('439', $multi_lang);	
+$ltypemessage = $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('925', $multi_lang);	$talknotavail 	= $arrVal[$multi_lang];
+
+$arrVal 	= $this->lookup_model->getValue('1119', $multi_lang);	$NoSesssion 	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1132', $multi_lang);	$ChooseTutor 	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1133', $multi_lang);	$SetCriteria 	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1134', $multi_lang);	$STep 	= $arrVal[$multi_lang];
+
+$arrVal 	= $this->lookup_model->getValue('1173', $multi_lang);	$ThanksForCmp 	= $arrVal[$multi_lang];
+//for new scope
+$arrVal 	= $this->lookup_model->getValue('1174', $multi_lang);	$LanguageApp 	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1175', $multi_lang);	$AllApp 	= $arrVal[$multi_lang];
+
+$arrVal 	= $this->lookup_model->getValue('1181', $multi_lang);	$Recoomend 	= $arrVal[$multi_lang];
+
+/* Milestone 2 */
+
+$arrVal 	= $this->lookup_model->getValue('1208', $multi_lang);	$Previewour  	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1209', $multi_lang);	$MustBewithin  	= $arrVal[$multi_lang];
+
+$arrVal 	= $this->lookup_model->getValue('1217', $multi_lang);	$sorrylate  	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('283', $multi_lang);	$Ohk  	= $arrVal[$multi_lang];
+/* end milestone2 */
+$arrVal 	= $this->lookup_model->getValue('1167', $multi_lang);	$FreeGroup  	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1323', $multi_lang);	$lngbtnAllTut  	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1324', $multi_lang);	$lngTalkSmile  	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1325', $multi_lang);	$lngTalkSmileHead  	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1342', $multi_lang);	$lngTestVideoSessionTT  	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1337', $multi_lang);	$lngTestVideoSessionBTN  	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1350', $multi_lang);	$lngJoinSession  	= $arrVal[$multi_lang];
+$arrVal 	= $this->lookup_model->getValue('1351', $multi_lang);	$lngFreeGroupSess  	= $arrVal[$multi_lang];
+?>
+<?php 
+
+// checks for quarantine users
+if($profile['quarantine'] == 1){?>
+	<script>
+		alert("Your account has been quarantined possibly due to inappropriate content. Please remove from Profile or Video Lessons and send message to support@thetalklist.com to reinstate your account.");
+	</script>
+	<style>
+		.from {display:none;}
+	</style>
+<?php } ?>
+
+<script type="text/javascript" src="<?php echo base_url();?>js/banner.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>js/buzzword_medium.js"></script>
+
+
+<script type="text/javascript" src="<?php echo base_url().'js/jsapi.js' ?>" ></script>
+<script src="<?php echo base_url();?>js/bjqs-1.3.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>css/bjqs.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/demo.css">
+<link rel="stylesheet" href="<?php echo base_url();?>css/popup-css.css">
+<?php if($this->session->userdata('sturegister')=='yes'){?>
+		<?php //include dirname(__FILE__).'/../studentpopup.php';?>
+		<?php }?>
+<script>
+
+ 
+
+ $(window).load(function() {
+ // executes when complete page is fully loaded, including all frames, objects and images
+ 
+});
+
+function checksession()
+{
+	alert('You have no scheduled Vee-sessions.');
+	return false;
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+<?php if(@$classes[0]['startTime']): ?>
+var _currentTime = <?php echo strtotime($classes[0]['startTime']);?>;
+<?php else: ?>
+var _currentTime = 0;
+<?php endif; ?>
+
+var _setintvalNextSession = setInterval(checkNextSession,1000);
+function checkNextSession(){
+	/*var foo = new Date;
+	var unixtime = parseInt(foo.getTime() / 1000);
+	var unixtime_to_date = new Date(unixtime*1000);*/
+<?php if(@$classes[0]['id']): ?>
+var _cid = <?php echo @$classes[0]['id'];?>;
+var isEarly=<?php echo @$classes[0]['Is_early'];?>;
+<?php else: ?>
+var _cid ='';
+<?php endif; ?>
+
+	$.ajax({
+         url: "<?php echo base_url();?>user/gettime/cid/"+_cid,
+        type: "post",
+        success: function(val){
+        var next="<?php echo $nextTOdISP ?>";
+		var _test1 = val;
+		/*if (_test1 <=15 && _test1 >0)
+		{
+			 
+			$("#redurl").text("<?php echo $FreeGroup;?>");
+			$("#myfreegroup").removeClass('myfreegroup');
+			
+			document.getElementById('myfreegroup').className = 'myres vsession';
+				//$('.myfreegroup').css('background-color', '#D7BC4D');
+			<?php if($Participant >=20 ) { ?>
+			 $("#joinMe").attr("onclick", "openfullDialog();",false);
+			<?php } else {?>
+			 $("#joinMe").attr("href", "<?php echo base_url('multi?id='.$nextSession['gropsessionId']); ?>");
+			<?php }?> 
+		}
+		else if(_test1 == 0 && next=='group')*/
+		if (_test1 <=15 && _test1 >0 && next=='group')
+		{
+			/*document.getElementById('myfreegroup').className = 'myfreegroup';
+			 $("#joinMe").text("<?php echo $FreeGroup;?>");
+			 $("#myfreegroup").click(function(){
+					Beforethetime();
+					});
+			// $("#redurl").attr("href", "javascript:void(0)");*/
+			$("#redurl").text("<?php echo $FreeGroup;?>");
+			$("#myfreegroup").removeClass('myfreegroup');
+			
+			document.getElementById('myfreegroup').className = 'myres vsession';
+			$(".btnBlueGroup").addClass("vsession");
+			$(".nextsess").html("<?php echo $join;?>");
+				//$('.myfreegroup').css('background-color', '#D7BC4D');
+			<?php if($Participant >=20 ) { ?>
+			 $("#joinMe").attr("onclick", "openfullDialog();",false);
+			<?php } else {?>
+				$("#joinMe").html("<?php echo $lngFreeGroupSess;?>");
+				$("#joinMe").attr("href", "<?php echo base_url('multi?id='.$nextSession['gropsessionId']); ?>");
+				$(".vsession").attr("href", "<?php echo base_url('multi?id='.$nextSession['gropsessionId']); ?>");
+				$(".vsession .nextsess").html('<?php echo $lngJoinSession;?>');
+			<?php }?> 
+			
+			
+		}
+		//else if(_test1 == 0 && next=='class')
+		else if (_test1 <=15 && _test1 >0 && next=='class')	{ 
+			$("#redurl").text("<?php echo $join;?>");
+			// $("#redurl").attr("href", "javascript:void(0)");
+		} else {
+			if (val == 'deleted') {			
+				_startTime='500';
+			} else {
+				var unixtime = val;
+				var _startTime = _currentTime - unixtime;
+		    }
+		    //console.log(_startTime);
+			if (_startTime < 900 && isEarly==0 && _startTime > -(180*1)) {
+				document.getElementById('Dynamicount').className = 'rcr-ses vsession';	
+				$("#redurl").attr("href", "<?php echo base_url('classroom/index/cid/'.$classes[0]['id']); ?>");
+			} else {
+				document.getElementById('Dynamicount').className = 'vsession-gray-btn';	
+				$("#redurl").attr("href", "javascript:void(0)");
+			}
+			if (_startTime <= 1) {
+				$('.classTimer').css('color','#333333');
+				$('.classTimer').html('None');
+			} else if(isNaN(_startTime)) {
+				$('.classTimer').css('color','#333333');
+				$('.classTimer').html('Cancelled');
+			} else {
+				$('.classTimer').css('color','red');
+				$('.classTimer').html('  will start after '+formatMinute(_startTime)+' sec.');
+			}
+		}}
+	});
+	
+	
+}
+function formatMinute(seconds){
+	seconds = Math.abs(seconds);
+	var _minutes = parseInt(seconds / 60);
+	var _seconds = seconds % 60;
+	return _minutes + 'Min ' + _seconds;
+}
+
+function openfullDialog()
+{
+		  $('#fullDialog').dialog({
+					modal:true,
+					width:'300px'
+				}); 
+}
+function closeFullpopup()
+{
+		$('#fullDialog').dialog('close');
+}
+</script>
+
+
+
+
+<script language="JavaScript" type="text/javascript">
+/**
+* Script for livechat
+* SKVIRJA - 25 June 2013
+*/			var timthumbUrl = '<?php echo base_url()."timthumb.php?src=";?>';
+			var profileImgPath = '<?php echo base_url("uploads/images/thumb/");?>';
+			var profileImgNull = '<?php echo profile_image("");?>';
+			
+			function profileImgChatThumb(src){
+				if(src=='' || src=="\'\'" || src=="&#39;&#39;"){
+					
+					return profileImgNull;
+				}
+				return src;
+			}
+			function profileImgChatThumbInv(src){
+				if(src=='' || src=="\'\'" || src=="&#39;&#39;"){
+					
+					return profileImgNull;
+				}
+				return src;
+			}
+			
+			$(document).ready(function() {
+				h2();
+				$("span.dasinvchat").hover(function () {
+					$(this).append('<div class="dasinvchat-tooltip"><p><?php echo $linvitetxt; ?></p></div>');
+				}, function () {
+					$("div.dasinvchat-tooltip").remove();
+				});
+				$("span.daschatsug").hover(function () {
+					$(this).append('<div class="tooltipusr"><p><?php echo $lenternametxt; ?></p></div>');
+				}, function () {
+					$("div.tooltipusr").remove();
+				});
+				
+				$("span.rcr-ses").hover(function () { 
+				var a=$('#redurl').text();
+			 
+					$(this).append('<div class="tooltipusr"><p><?php echo $tooltip; ?></p> </div>');
+					}, function () {
+					$("div.tooltipusr").remove();
+				});
+				
+				
+					
+				$("span.myfreegroup").hover(function () { 
+				
+				 $(this).append('<div class="tooltipusr"><p><?php echo $lngTestVideoSessionTT; ?></p> </div>');
+				 }, function () {
+					$("div.tooltipusr").remove();
+				});
+				
+					$("span.myres").hover(function () { 
+				 $(this).append('<div class="tooltipusr"><p><?php echo $Previewour; ?></p> </div>');
+				 }, function () {
+					$("div.tooltipusr").remove();
+				});
+				
+				$("span.vsession-gray-btn").hover(function () {
+				 
+					$(this).append('<div class="tooltipusr"><p><?php echo $NoSesssion; ?></p></div>');
+				}, function () {
+					$("div.tooltipusr").remove();
+				});
+			});
+			function h2()
+			{
+				var chatgroupid = document.getElementById('currentgroupid').value;
+				var lastMessage  = 0;
+				document.getElementById('lastmessage').value = 0;
+				startChat();
+			}
+			
+			var lastMessage = 0;
+			var mTimer;
+			
+			function startChat() {
+				getChatText();
+			}		
+			
+			
+			function getChatText() {
+				var chatgroupid = document.getElementById('currentgroupid').value;
+				var lastMessage = document.getElementById('lastmessage').value;
+				//checks for exists group chat
+				if(chatgroupid != 1)
+				{
+					$.get("<?php echo base_url();?>user/chat_check_exists_group",{
+								chat: chatgroupid
+							}, function(st) {
+								if(st.status == 'no')
+								{
+									changegroup('1');
+								}
+					});
+					document.getElementById('createchatgroup').style.display = 'none';
+					
+				}
+				$.get("<?php echo base_url();?>user/chat_get_message",{
+							chat: chatgroupid,
+							last: lastMessage
+						}, function(xml) {
+							 
+							addMessages(xml);
+							
+				});
+				if(document.getElementById('invitations').innerHTML == '')
+				{
+					$.get("<?php echo base_url();?>user/chat_get_invitation",{
+								chat: 1,
+								last: lastMessage
+							}, function(xml) {
+								addInvitations(xml);
+								
+					});
+				}
+				// checks for accepted invitation 
+				var chatstartedvalue = 0;
+				$.get("<?php echo base_url();?>user/chat_check_to_start",{
+							chatstarted: chatstartedvalue
+						}, function(msg) {
+							if(msg.gid)
+							{
+								$.get("<?php echo base_url();?>user/chat_check_to_start_update",{
+											chatstarted: chatstartedvalue,
+											chatid: msg.gid
+										}, function(msg1) {
+										document.getElementById('cancelchat').style.display = '';
+										changegroup(msg.gid);	
+											
+								});
+								
+							}
+							
+				});
+				
+				
+			}
+			function addMessages(xml)
+			{
+				clearTimer();
+				var chat_div = document.getElementById('div_chat');
+				var xmldoc = xml;
+				
+				var message_nodes = xmldoc.getElementsByTagName("message"); 
+				var n_messages = message_nodes.length
+				for (i = 0; i < n_messages; i++) {
+					var user_node = message_nodes[i].getElementsByTagName("user");
+					var text_node = message_nodes[i].getElementsByTagName("text");
+					var time_node = message_nodes[i].getElementsByTagName("time");
+					//var msgid = message_nodes[i].getElementsByTagName("msgid");
+					 
+					var user_id = message_nodes[i].getElementsByTagName("user_id");
+					var user_img = message_nodes[i].getElementsByTagName("user_img");
+					var user_id_role = message_nodes[i].getElementsByTagName("roleid");
+					//alert(user_id_role[0].firstChild.nodeValue);
+					var msgid = message_nodes[i].getAttribute( 'id' );
+					/*if(user_id_role[0].firstChild.nodeValue != '')
+					{
+						var imgclass = "ttimg";
+					}else{
+						var imgclass = "stimg";
+					}*/
+					var imgclass = "stimg";
+					// get online user status
+					//var imgclass = "ttimg";
+					var user_online = message_nodes[i].getElementsByTagName("online");
+					var online = user_online[0].firstChild.nodeValue;
+					
+					
+					if(online == 1)
+					{
+						var onlineclass = "stonline";
+					}else{
+						var onlineclass = "stoffline";
+					}
+					//alert(text_node);
+					
+					var imgsrc =  user_img[0].firstChild.nodeValue;
+					var userprofilelink = '';
+					
+					var tmpmsgid = 'chatmsgitems_'+msgid;
+					//alert(document.getElementById(tmpmsgid))
+					var roleid=user_id_role[0].firstChild.nodeValue;
+					var is_hidden = message_nodes[i].getElementsByTagName("hiddenRole");
+					var hidden=is_hidden[0].firstChild.nodeValue;
+					
+					if(roleid==0)
+					{
+						var link="javascript:void(0)";						
+					}
+					else
+					{
+						var link="<?php echo base_url('user/profile/uid');?>"+"/"+user_id[0].firstChild.nodeValue;
+					}
+
+					if(document.getElementById(tmpmsgid))
+					{
+						chat_div.innerHTML += '';
+					}else{
+						chat_div.innerHTML += '';
+						chat_div.innerHTML += '<div class="chatitems" id="chatmsgitems_'+msgid+'">'+ '<div class="chat_time">' + time_node[0].firstChild.nodeValue + '</div>' + '<div class="chatimg '+imgclass+'"><a class="'+onlineclass+'" href="'+link+'"><span class="grn-dot"> </span><img src="'+profileImgChatThumb(imgsrc)+'" width="30" height="40"/></a></div>' + '<div class="chatuser">' + '<span><a href="<?php echo base_url();?>user/profile/uid/'+user_id[0].firstChild.nodeValue+'">' + user_node[0].firstChild.nodeValue + '</a>:</span>' + text_node[0].firstChild.nodeValue + '</div></div>';
+					
+					}
+					
+					chat_div.scrollTop = chat_div.scrollHeight;
+					lastMessage = (message_nodes[i].getAttribute('id'));
+					
+					document.getElementById('lastmessage').value = lastMessage;
+				}
+				mTimer = setTimeout('getChatText();',2000); 
+			}
+			
+			function addInvitations(xml)
+			{
+				var invitation_div = document.getElementById('invitations');
+				var xmldoc = xml;
+				var message_nodes = xmldoc.getElementsByTagName("message"); 
+				var n_messages = message_nodes.length
+				var invcheck = 0;
+				for (i = 0; i < n_messages; i++) {
+					var user_node = message_nodes[i].getElementsByTagName("user");
+					var chatid = message_nodes[i].getElementsByTagName("chatid");
+					var user_id = message_nodes[i].getElementsByTagName("user_id");
+					var user_img = message_nodes[i].getElementsByTagName("user_img");
+					var invid = message_nodes[i].getElementsByTagName("invid");
+					
+					var imgsrc = user_img[0].firstChild.nodeValue;
+					
+					
+					var tmpinvid = 'chatitems_'+invid;
+					if(document.getElementById(tmpinvid))
+					{
+						invitation_div.innerHTML += '';
+					}else{
+						invitation_div.innerHTML += '';
+						invitation_div.innerHTML += '<div class="chatitems" id="chatitems_'+invid[0].firstChild.nodeValue+'" >' + '<div class="chatimg"><a href="<?php echo base_url();?>user/send_message"><img src="'+profileImgChatThumbInv(imgsrc)+'"  /></a></div>' + '<div class="chatuser">' + user_node[0].firstChild.nodeValue + '</div>'  + '<div class="chattext"><div class="grp-btn"><a href="#" onclick="joingroup('+chatid[0].firstChild.nodeValue+');"><span class="red-btn">Join</span></a><a href="#" onclick="deleteinvitation('+chatid[0].firstChild.nodeValue+','+invid[0].firstChild.nodeValue+');" style="margin-left:10px;"><span class="blu-btn">Delete</span></a></div></div></div>';
+					
+					}
+					
+					invitation_div.scrollTop = invitation_div.scrollHeight;
+					lastMessage = (message_nodes[i].getAttribute('id'));
+					
+					invcheck = 1;
+				}
+				if(invcheck == 1)
+				{
+					document.getElementById('invlbl').style.display = '';
+				}
+				
+			}
+			function joingroup(chatid)
+			{
+				$.get("<?php echo base_url();?>user/chat_update_invitation",{
+							chat: chatid
+													
+						}, function(msg) {
+							document.getElementById('invitations').innerHTML = '';
+							$('.invitations').hide();
+							//window.location.href="<?php echo base_url();?>user/invite/gid/"+chatid;
+							document.getElementById('currentgroupid').value = chatid;
+							document.getElementById('cancelchat').style.display = 'block';
+							changegroup(chatid);
+							/*var chat_div = document.getElementById('div_chat');
+							chat_div.innerHTML += 'HAS ENTERED';*/
+				});
+			}
+			//Add a message to the chat server.
+			function sendChatText() {
+				//clearTimeout(mTimer);
+				
+				var chatgroupid = document.getElementById('currentgroupid').value;
+				var lastMessage = document.getElementById('lastmessage').value;
+				if(document.getElementById('txt_message').value == '' || document.getElementById('txt_message').value == 'Type message' || document.getElementById('txt_message').value == 'tipo de mensagem' || document.getElementById('txt_message').value == 'Tipo de mensaje') {
+					alert("You have not entered a message");
+					return;
+				} 
+				$.getJSON("<?php echo base_url();?>user/chat_update",{
+							chat: chatgroupid,
+							last: lastMessage,							
+							message: document.getElementById('txt_message').value,							
+							name: 'test name'						
+						}, function(msg) {
+							if(msg.blocked == 'blocked')
+							{
+								alert('You are blocked from chat please contact administrator');
+								return false;
+							}
+							if(msg.banded == 'banded')
+							{
+								alert("You have typed an offensive word in your message. Please rephrase.");
+								return false;
+							}
+							setTimeout('getChatText();',3000); 
+				});		
+				
+				document.getElementById('txt_message').value = '';
+				document.getElementById('txt_message').innerHTML = '';
+			}
+			function deletegroup()
+			{
+				var id = document.getElementById('grps').value;
+				if(id)
+				{
+					$.getJSON("<?php echo base_url();?>user/chat_delete_group",{
+								gid: id						
+							}, function(msg) {
+								
+								if(msg.result == 'success')
+								{
+									window.location.reload();
+								}
+								
+					});
+				}
+				
+			}
+			function deleteinvitation(gid,invid)
+			{
+				
+				if(gid)
+				{
+					var ddataStringinvt = "gid="+gid;
+					$.ajax({
+						url: "<?php echo base_url();?>user/chat_delete_invitation",
+						type: 'POST',
+						data: ddataStringinvt,
+						dataType: 'json',
+						cache: false,
+						success: function (msg){
+							if(msg.result == 'success')
+							{
+								var tmpid = 'chatitems_'+invid;
+								document.getElementById(tmpid).innerHTML = '';
+								$('#invitations').hide();
+								$('.invitations').hide();
+								
+							}
+							
+						}
+					});
+					
+					
+				}
+				
+			}
+			function changegroup(gid)
+			{
+				document.getElementById('currentgroupid').value = gid;
+				document.getElementById('lastmessage').value = 0;
+				document.getElementById('div_chat').innerHTML = '';
+				
+				dataString = "gid="+gid;
+				if(gid != 1)
+				{
+					if(document.getElementById('createchatgroup'))
+					{
+						document.getElementById('createchatgroup').style.display = 'none';
+					}
+				}else{
+					if(document.getElementById('createchatgroup'))
+					{
+						document.getElementById('createchatgroup').style.display = '';
+					}
+					if(document.getElementById('cancelchat'))
+					{
+						document.getElementById('cancelchat').style.display = 'none';
+					}
+				}
+				
+				$.ajax({
+					url: "<?php echo base_url("user/groupname");?>",
+					type: 'POST',
+					data: dataString,
+					dataType: 'json',
+					cache: false,
+					success: function (msg){
+					userid = msg.results.uid;
+					suserid = msg.sresults.uid;
+					var profileid = <?php echo $profile['uid']; ?>;
+						if(profileid == userid){
+							var chat_div = document.getElementById('div_chat');
+							chat_div.innerHTML += msg.sresults.firstName + ' has entered private chat room.';
+						}else{
+							var chat_div = document.getElementById('div_chat');
+							chat_div.innerHTML += msg.results.firstName + ' has entered private chat room.';
+						}
+					}
+				});
+				
+				getChatText();
+			}
+
+			function sendChatTextForm()
+			{
+				sendChatText();
+				return false;
+			}
+			
+			function cancelprivatechat()
+			{
+				
+				var id = document.getElementById('currentgroupid').value;
+				if(id)
+				{
+					var didataString = "gid="+id;
+					$.ajax({
+						url: "<?php echo base_url();?>user/chat_delete_invitation",
+						type: 'POST',
+						data: didataString,
+						dataType: 'json',
+						cache: false,
+						success: function (msg){
+							document.getElementById('currentgroupid').value = '0';
+							if(document.getElementById('cancelchat'))
+							{
+								document.getElementById('cancelchat').style.display = 'none';
+							}
+							if(document.getElementById('privatechat'))
+							{
+								document.getElementById('privatechat').style.display = 'none';
+							}
+							if(document.getElementById('createchatgroup'))
+							{
+								document.getElementById('createchatgroup').style.display = '';
+							}
+							changegroup('1');
+						}
+					});
+					
+				}
+			}
+			function clearTimer()
+			{
+				clearTimeout(mTimer);
+			}
+/**
+* End live chat script
+* Script for livechat
+*/	
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=638391592856781";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>
+function sendBeepBoxMessage(uid)
+{ //alert(uid);
+	if(_uid == '')
+	{
+		alert('Login First!');
+		return false;
+	}
+	var lodUrl = '<?php echo base_url(); ?>user/load_send_message/uid/'+ uid;
+	$('#sendMessageView').load(lodUrl);
+	$('#sendMessageView').show();
+}
+
+ 
+
+function bookNow(tid,username)
+{
+var lastClickedOnBook = false;
+	//prevent multiple clicks
+	if(lastClickedOnBook == true){return false;}
+	lastClickedOnBook = true;
+	
+	//if(_uid == '')
+	//{
+		//alert('Login First!');
+		//return false;
+	//}
+	var _data = {};
+	<?php if($this->session->userdata('uid')): ?>
+	_data['sid'] = <?php echo $this->session->userdata('uid'); ?>;
+	<?php else: ?>
+	_data['sid'] = 0;
+	<?php endif; ?>
+	_data['tid'] = tid;
+	//window.returnvar = true;
+	
+	$.post('<?php echo Base_url('user/checkClassBookNow');?>',_data,function(msg){
+	/*alert(msg);
+	return false;*/
+		if (String == msg.constructor) {
+			eval ('var json = ' + msg);
+		} else {
+			var json = msg;
+		}
+		if(json.success == 'false' || json.success == false){
+			alert(json.msg);
+		}else if(!json.enough){
+			window.returnvar = false;
+			window.avl = true;
+			window.profileComplete = true;
+			
+		}else if(!json.availabletobook){
+			window.returnvar = false;
+			window.avl = false;
+			window.profileComplete = true;
+			
+		}else if(!json.profileCompletion){
+			window.returnvar = false;
+			window.avl = true;
+			window.profileComplete = false;
+			
+		}else{
+			window.returnvar = true;
+		}
+		if(!json.firstBookNow ){
+			window.firstBookNow = false;
+		}else{
+			window.firstBookNow = true;
+		}
+		if(json.totalNumSess > 1){
+			window.totalNumSess = false;
+		}else{
+			window.totalNumSess = true;
+		}
+		
+		
+		
+	})
+	setTimeout(function(){
+		lastClickedOnBook = false;
+		if(window.returnvar == false)
+		{
+			lastClickedOnBook = false;
+			if(window.avl == false)
+			{
+				//var alertHTML = 'You have alredy booked.';
+				if(window.firstBookNow == false){
+					var alertHTML = 'You have already booked your Session.';
+				}else{
+					var alertHTML = 'You have already booked your Free Session.';
+				}
+				
+				
+				$( "#dialog").html(alertHTML);
+				$( "#dialog").dialog({modal: true});
+				return false;
+			}else if(window.profileComplete == false){
+				alert('Please complete your personal profile before your booking');
+				window.location.href = "<?php echo base_url(); ?>user/registeredit/";
+				return false;
+			}else{
+				var rechargeURL = '<?php echo base_url(); ?>user/account/';
+				var alertHTML = 'Insufficient credits to buy a session.  Please <a href="'+rechargeURL+'" >recharge</a> account.';
+				$( "#dialog").html(alertHTML);
+				$( "#dialog").dialog({modal: true});
+				return false;
+			}
+		}else{
+			if(window.firstBookNow == false){
+				var message = "Tutor will be sent invitation and will have 5 minutes to join your tutoring session.  You will be sent to Dashboard page with a countdown timer.  When tutor arrives, you will be automatically launched into your session and your account will be debited.";
+			}else{
+				var message = "Tutor will be sent invitation and will have 5 minutes to join your tutoring session.  You will be sent to Dashboard page with a countdown timer.  When tutor arrives, you will be automatically launched into your session.";
+			}
+			//var message = "You are booking a class with "+username+" right now. If they confirm this booking then you will automatically be launched into the Vee-session. If they haven’t entered your classroom within the 3minute countdown timer, then feel free to exit the session and your account will be credited.";
+			//var message = "Tutor will be sent invitation and will have 5 minutes to join your tutoring session.  You will be sent to Dashboard page with a countdown timer.  When tutor arrives, you will be automatically launched into your session and your account will be debited.";
+			
+			var conf = confirm(message);
+			if(conf == true)
+			{
+				// send message to tutor
+				$.getJSON('<?php echo Base_url("user/sendBookNowMessage");?>',{tid:tid},function(msg){
+				
+						//redirect to student dashboard page
+						window.location.href = '<?php echo Base_url("user/dashboard");?>';
+				});
+			}else{
+				return false;
+			}
+			lastClickedOnBook = false;
+		}
+		
+		
+	},2500);
+	//lastClickedOnBook = false;
+}
+
+
+function Beforethetime()
+{
+ $('#preventdialog').dialog({
+					modal:true,
+					width:'300px'
+			});
+}
+function closePrevent()
+{
+	$('#preventdialog').dialog('close');
+}
+</script>
+
+	<div id="fullDialog" style="display:None;">
+			<div class="ratelist">
+			<?php
+				if($AdvanceSession=='None')
+				{
+					$AdvanceSession='none';
+				} 
+				else 
+				{ 
+					$AdvanceSession=hiaOutTime($AdvanceSession['Time']); 
+				};
+			?>
+				<span class="title" style="float:left;margin-top:10px;margin-bottom:15px;font-size:16px;"><?php echo $sorrylate."   ". $AdvanceSession; ?></span>  
+			</div>
+			<br><br><br>
+			<p><input type="button" value="Ok" onclick="closeFullpopup();" id="buttonOk" class="blu-btn"/>
+			
+			</p>
+		</div>
+
+<div id="preventdialog" style="display:None;">
+	<div class="ratelist">
+		<span class="title" style="float:left;margin-top:10px;margin-bottom:15px !important;;font-size:16px !important;"><?php echo $MustBewithin;?></span>  
+	</div>
+	<br><br><br>
+	<p><input type="button" value="<?php echo $Ohk;?>" onclick="closePrevent();" id="buttonOk" class="blu-btn"/>
+	
+	</p>
+</div>
+
+<div class="baseBox baseBoxBg clearfix">
+ <div id="sendMessageView" class="sendMessageView" style="display:none;"></div>
+        <div class="content_main fr">
+        	<div class="main_inner">
+                <!--<ul class="student_prof">
+                    <?php echo profile_menu('s_private','p_dasb',$profile['uid']);?>
+                </ul>-->
+                <!--/student_prof-->
+                <div id="student_prof_Wp">
+                	<div class="mod">
+                        <div class="hd">
+                            <div class="pro_tle tle"><h3 style="margin-top:0px;"><?php echo $dashboard;?>
+							<div style="padding-top:0px;float: right;">
+						<?php $a=$this->session->userdata['uid'];
+						//$rid="vcl";
+						
+	                    //$arg=base64_encode($rid);
+						$arg="Join";
+						?>
+						<?php //echo $nextTOdISP;?>
+                        <div class="serch-btn2">
+							<?php  $Timer=strtotime($classes[0]['startTime']) - now();; 
+							?>
+						 <?php if($nextTOdISP=='class'){?>
+						<span <?php if($Timer < 900  && $Timer > -180 && $classes[0]['Is_early'] == 0){?> class="rcr-ses vsession"  <?php }else{?>class="vsession-gray-btn" <?php }?> id="Dynamicount"><a id="redurl" <?php if($Timer < 900  && $Timer > -180 && $classes[0]['Is_early'] == 0){?> href="<?php echo base_url('classroom/index/cid/'.$classes[0]['id']) ?>"  <?php } ?> style="float:left;cursor:pointer;margin-right:0px;" > <?php echo $join;?> </a></span>
+						<?php } else {?> 
+						<span  class="myfreegroup"   id="myfreegroup"><a id="joinMe"     style="float:left;cursor:pointer;margin-right:0px;color:white" href="<?php echo base_url('testveesession/testVeeSession');?>" target="_blank" > <?php echo $lngTestVideoSessionBTN;?> </a></span>	
+					<?php }?>
+					   </div>
+						</div>
+							
+							</h3></div>
+                        </div>						
+                        <div class="bd">
+							<!--- dashboard integration code start --->							
+							<!--raxa code strat-->
+                           	<div class="dasbord">
+								<?php 
+								$cnt1 = count($result1);
+								if($cnt1 > 0){
+									$cgid = $result1[0]['chatid'];
+								}else{
+									$cgid = 1;
+								}
+								
+								?>
+								<input type="hidden" name="currentgroupid" id="currentgroupid" value="<?php echo $cgid; ?>" />
+								<input type="hidden" name="lastmessage" id="lastmessage" value="" />
+                            	<div class="das-tle">
+									
+                                	<div class="col1" style="font-size:16px;">
+									<?php
+									echo anchor($base.'user/inbox/',$message.":", 'title='.$message);
+									?>
+									<span><?php echo $msgcnt; //if($classes != 0){echo $classes[0]['alerted']; }  else { echo "0"; } ?></span>
+									</div>
+                                    <div class="col2" style="font-size:16px;">
+									<a href="<?php echo Base_url('user/account');?>"><?php echo $cbalance;?></a>: <span><?php if($profile['money'] < 0){ echo "0.00 ".$credits;}else{ echo $profile['money']." ".$credits; }?></span>
+									</div>
+                                    <div class="col3" style="font-size:16px;">
+									<?php 
+									$base = base_url();
+									echo anchor($base.'user/calendar/uid/'.$a.'/'.$arg,$nextsession.":", 'title='.$nextsession);
+									?>
+								 <?php if($nextTOdISP=='class'){?>
+									  
+									<span  <?php 
+									
+									if($classes[0]['type'] == 'now'){ ?> class="classTimer" <?php } ?> style="font-size:15px;"><?php if($classes != 0 ){ echo hiaOutTime($classes[0]['startTime']);} else { echo $none; } ?></span>
+									<?php } else {?>
+									<span  style="font-size:15px;"><?php if($nextSession != array()){ echo hiaOutTime($nextSession['Time']);
+									echo "<br>";
+									echo "(".$FreeGroup.")";} else { echo $none; } ?></span>
+									<?php }?>
+									</div>
+                                </div>
+								
+                                <div class="box-row">
+                                	<div class="das-box das-box3 das-box-teh  no-bor">
+                                    	<div class="box-tle gray-ttl"><div class="leftbg ttl7"><span><?php echo $Recoomend; ?></span></div></div>
+                                         <div class="border-all new-tutors" style="overflow:hidden; width:345px; margin-top:-1px !important;">
+                                        <div  class="stepcarousel" style="margin:0 10px; height:346px;">
+                                        <div id="mygallery1" class="stepcarousel">
+                                                <ul class="bjqs">                                        
+												<?php
+												foreach($newtutors as $newtutor): ?>
+												<li>
+                                                <div class="belt"> 
+                                                <div class="panel">
+													<div class="box-cont over-hid">
+														<div class="tutor-ttl"><a href="<?php echo base_url('/user/profile/uid/'.@$newtutor['uid']); ?>"><?php echo ucfirst(@$newtutor['firstName']).@$newtutor['uid']; ?></a></div>
+                                                        <div class="tu-dis" style="font-size:15px">
+                                                        		<?php
+																if(@$newtutor['city'] != "" && trim($newtutor['city']) !="")
+																{
+																	echo $newtutor['city'].', ';
+																}
+																else
+																{
+																	echo @$newtutor['city'];
+																}
+																if(@$newtutor['provice'] != "" && trim($newtutor['provice']) !="")
+                                                                {
+																	echo  $newtutor['provice'].', ';
+                                                               	}
+																else 
+																{
+																	echo  @$newtutor['provice'];
+																}																
+																if(@$newtutor['country'] != "" && trim($newtutor['country']) !="")
+                                                                {
+																	echo $newtutor['country'];
+                                                               	}
+																else 
+																{
+																	echo @$newtutor['country'];
+																}
+																
+																?>
+																
+                                                        </div>
+														<div class="tutor-cont">
+															<div class="imag">
+                                                            <?php if($newtutor['ecp'] !=''){?><span class="new-stud">New</span>	<?php }?>
+																<?php if($newtutor["pic"] != ''): ?>
+																<a href="<?php echo base_url('/user/profile/uid/'.@$newtutor['uid']); ?>"><img src="<?php echo $bbase.'uploads/images/thumb/'.$newtutor["pic"]; ?>" width="150" height="150" alt="02" /></a>
+																<?php else: ?>
+																<a href="<?php echo base_url('/user/profile/uid/'.@$newtutor['uid']); ?>"><img src="<?php echo $bbase.'images/header.jpg';?>" width="150" height="150" alt="021" /></a>
+																<?php endif; ?>
+																
+															</div>
+															<div class="tu-dis"> 
+																<?php 
+																
+																	$newtutor['hRate'] = @$newtutor['hRate'] * (1-(-$configdefault['VEE_PRICE_PERCENT']['value']) );
+																	$newtutor['hRate'] = round(($newtutor['hRate'] *10000) /100)  /100;
+																	$newtutor['hRate'] = number_format($newtutor['hRate'],2);
+																	
+																
+																?>
+																<span>Rate:</span>
+																<?php echo $newtutor['hRate'].' credits/class'; ?>	
+
+																
+															</div>
+                                                            <div class="nw-tutr-btn">
+                                                                <a class="icon1 icon-popup"  onclick="sendBeepBoxMessage(<?php echo $newtutor['uid'] ;?>)">
+                                                                <?php if($newtutor['readytotalk'] != 1)
+																{?>
+                                                                <div class="tooltip_main02 clearfix">
+                                                                	<div class="tooltip02_left"></div>
+                                                                    <div class="tooltip02_right"><?php echo $send_message; ?></div>
+                                                                </div>
+                                                                <?php }?>
+                                                                &nbsp;<span class="classic"><?php echo $send_message; ?></span></a>
+                                                                <!---<a class="icon2 icon-popup" href="<?php echo base_url('/user/calendar/uid/'.@$newtutor['uid']); ?>">&nbsp;<span class="classic">Appointment</span></a>-->
+							<a class="icon2 icon-popup" href="<?php echo base_url('/user/calendar/uid/'.@$newtutor['uid']); ?>">&nbsp;<span class="classic"><?php echo $schedule; ?></span></a>
+															   <?php if($newtutor['readytotalk'] == 1)
+																{?>
+																<a class="icon3 icon-popup" onclick="bookNow(<?php echo $newtutor['uid'] ;?>,'<?php echo $newtutor['firstName'];?>')">
+																<div class="tooltip_main01 clearfix">
+                                                                	<div class="tooltip01_left"></div>
+                                                                    <div class="tooltip01_right"><?php echo $talk; ?></div>
+                                                                </div>
+																&nbsp;<span class="classic"><?php echo $talk; ?></span></a>
+                                                                <?}else{?>
+																<a class="icon3 icon-popup icon3-gray">
+                                                                &nbsp;<span class="classic"><?php echo $talknotavail; ?></span></a>
+																<?}?>
+																<a class="btnOrange recomndOrange" href="<?php echo base_url('/search/search'); ?>"><?php echo $lngbtnAllTut;?></a>
+                                                            </div>
+															<div class="btn-rw">
+															 </div>
+														</div>
+                                           
+													</div>
+                                                </div>
+                                                </div>
+                                                </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="das-box das-box4 das-box-teh2 no-bor">
+										<div class="box-tle gray-ttl"><div class="leftbg ttl8"><span><?php echo $lngTalkSmile; ?></span></div></div>
+                                        	<div class="border-all new-tutors" style="overflow:hidden; width:345px; margin-top:-1px !important;">
+												<div style="margin:0 10px;">
+													
+												 <?php 
+												 if($nextTOdISP=='class'){?>
+													  <div class="serch-btn2 block-grey-vs">
+														<div <?php if($Timer < 900  && $Timer > -180 && $classes[0]['Is_early'] == 0){?> class="rcr-ses vsession btnBlueClass"  <?php }else{?>class="vsession-gray-btn  btnBlueClass" <?php }?> id="Dynamicount"><a id="redurl" <?php if($Timer < 900  && $Timer > -180 && $classes[0]['Is_early'] == 0){?> href="<?php echo base_url('classroom/index/cid/'.$classes[0]['id']) ?>"  <?php } ?> > <?php echo $join;
+														echo "<br />".hiaOutTimedash($classes[0]['startTime']);?> </a></div>
+													   </div>
+													   <div class="classprofile">
+														<?php
+														$groupprofile = $this->profile_model->getTutorProfile($classes[0]['tid']);
+														?>
+														<div class="profile_thumb">
+														<?php 
+														if ($groupprofile["pic"]!="") {?>
+															<img src="<?php echo base_url('uploads/images/thumb/'.$groupprofile["pic"]); ?>" width="auto" alt="Tutor" />	
+														<?php }?>
+														</div>														
+														<div class="profile_detail">
+															<div class="heading" align="center"><?php 
+															$arrVal = $this->lookup_model->getValue('1339', $multi_lang);
+															$lngvideochat = $arrVal[$multi_lang];
+															$arrVal = $this->lookup_model->getValue('1341', $multi_lang);
+															$lngvideochatwith = $arrVal[$multi_lang];
+															?>
+															<p><?php echo $lngvideochat;?></p>
+															<p><?php echo $lngvideochatwith." ".$groupprofile["firstName"];?></p>
+															</div>													
+														</div>
+													</div>
+													<?php } else {?>
+													<div class="block_description"><?php echo $lngTalkSmileHead;?></div>
+													<div class="block_content">
+														<ul class="ultalksmile">
+														<?php 
+														if ($categories) {
+															foreach ($categories as $cat) {
+															?>
+															<li>
+																<?php 
+																$url = "#";
+																if(!empty($cat['pfile']) and file_exists(FCPATH.'uploads/categories/'.$cat['pfile'])){
+																	$url = base_url("/uploads/categories/".$cat['pfile']);
+																}?>
+																<a href="<?php echo $url;?>" target="new">
+																	<?php echo $cat['category'];?>
+																</a>
+															</li>
+															<?php }
+														}?>
+														</ul>
+													</div>
+													<div class="block_description" style="clear:both;">
+														<?php 
+														$arrVal = $this->lookup_model->getValue('1336', $multi_lang);
+														$lnglblFF = $arrVal[$multi_lang];
+														echo $lnglblFF;
+														?>
+													</div>
+													
+													<?php }?>
+												</div>
+                                        	</div>
+										</div>
+									</div>
+                                <div class="box-row">
+                                	<div class="das-box das-box1 das-box7 no-bor" style="width:347px; ">
+										<?php
+										$arrVal = $this->lookup_model->getValue('1338', $multi_lang);
+										$lnghdFGSF = $arrVal[$multi_lang];
+										?>
+                                    	<div class="box-tle gray-ttl"><div class="leftbg ttl5"><span><?php echo $lnghdFGSF;?></span></div></div>
+                                        <div class="border-all sponsor" style="overflow:hidden; width:345px; margin-top:-1px !important;">
+											<div style="margin:30px 10px 0;">
+												<?php
+												if($nextTOdISP=='group' and !empty($nextSession)) {?>
+												<a class="btnBlueGroup" href="#">
+													<label class="nextsess"><?php 
+													echo $nextsession;?></label>
+													<?php echo "<br/>";
+													if($nextSession != array()){ 
+														echo hiaOutTimedash($nextSession['Time']);
+													} else {echo $none;} ?>
+												</a>
+												<div class="groupprofile">
+													<?php
+													$groupprofile = $this->profile_model->getTutorProfile($nextSession['Tutor1']);?>
+													<div class="profile_detail">
+														<div class="heading" align="right"><?php 
+														$arrVal = $this->lookup_model->getValue('1339', $multi_lang);
+														$lngvideochat = $arrVal[$multi_lang];
+														$arrVal = $this->lookup_model->getValue('1341', $multi_lang);
+														$lngvideochatwith = $arrVal[$multi_lang];
+														?>
+														<p><?php echo $lngvideochat;?></p>
+														<p><?php echo $lngvideochatwith." ".$groupprofile["firstName"];?></p>
+														</div>
+														<div class="subject" align="right"><?php 
+														$arrVal = $this->lookup_model->getValue('1340', $multi_lang);
+														$lnggrpSubject = $arrVal[$multi_lang];?>
+														<p><?php echo $lnggrpSubject;?></p>
+														<p><?php echo $nextSession["Topic"];?></p>
+														</div>														
+													</div>
+													<div class="profile_thumb">
+													<?php 
+														if ($groupprofile["pic"]!="") {?>
+														<img src="<?php echo base_url('uploads/images/thumb/'.$groupprofile["pic"]); ?>" width="auto" alt="Tutor" />	
+														<?php }?>
+													</div>
+												</div>
+												<?php }?>
+											</div>
+										</div>
+                                    </div>
+                                    <div class="das-box das-box2 no-bor" style="width:345px">
+										<div id="currentlivechat">
+											<div class="box-tle gray-ttl"><div class="leftbg ttl6"><span><?php echo $livechat; ?></span></div></div>
+											<div class="box-cont border-all div_chat-div">
+												
+												<!--- main live chat container -->
+												<div id="chatcontainer" >
+												<div id="div_chat" class="div_chat">
+												</div>
+												<div class="from">
+													<!--<form autocomplete="off" id="frmmain" name="frmmain" onSubmit="javascript:return sendChatTextForm();">-->
+													<form autocomplete="off" id="frmmain" name="frmmain" onSubmit="javascript:return false;" >
+													
+														
+														<input type="text" onblur="this.value=!this.value?'Type message':this.value;" onfocus="this.select()" onclick="if (this.value=='Type message')this.value='';" value="Type message" id="txt_message" name="txt_message" style="width: 317px;height:35px;margin-top:5px;padding:3px;" autocomplete="off" onKeydown="Javascript: if (event.keyCode==13) sendChatTextForm();" />
+														<input type="button" name="btn_send_chat" id="btn_send_chat" value='<?php echo $send?>' onClick="javascript:sendChatText();" class="aqua_btn"/>
+														<input type="hidden" name="chatstatus" id="chatstatus" value="1" />
+														<!--<a href="<?php echo base_url(); ?>user/chat_create_group" class="link">Create chat Group</a>-->
+														<!--<a href="javascript:void(0);" id="crgroupid" class="link">Create chat Group</a>-->													
+														
+														
+														<a href="javascript:void(0);" id="createchatgroup" class="link btn_send_chat" ><?php echo $chat_inavite; ?></a>
+														
+														<?php
+														$cnt = count($result1);
+														if($cnt > 0){
+															//echo '1';
+														?>
+														<!--<a href="<?php echo base_url(); ?>user/invite" id="privatechat" class="link">Private Chat</a>-->
+														<!--<a href="javascript:void(0);" onclick="cancelprivatechat();"  id="privatechat" class="link btn_send_chat">End Private Chat</a>-->
+															
+														<?php
+														}
+														?>
+														<a href="javascript:void(0);" style="display:none;" onclick="cancelprivatechat();" id="cancelchat" class="link btn_send_chat">End Private Chat</a>
+														<!--<a href="<?php echo base_url(); ?>user/chat_groups" class="link">Your group</a>-->
+													</form>
+											   </div> 
+											   </div>
+											   <!-- main live chat container end --->
+												<!-- create your group container start -->
+														
+												<!-- create your group container end -->
+												
+											   
+											   <!--<h2 class="invitations" id="invlbl" style="display:none;">Invitations</h2>
+											   <div id="invitations"></div>-->
+											</div>
+										</div>
+										<div class="owngroup" id="owngroup" style="display:none;">		
+											<div class="das-box das-box2 no-bor" style="width:345px">
+												
+												<div id="student_prof_Wp">
+														<div class="box-tle gray-ttl"><div class="leftbg ttl6"><span><?php echo $lchatinvite;?></span></div></div>
+														
+														<div class="box-cont border-all div_chat-div">
+															<div class="inbox_mod">
+																<div id="suggest">
+																<span style="float:left;"><?php echo $linviteonlineuser;?>:</span> <span class="daschatsug"><img src="<?php echo Base_url('images/arrow.png') ?>" style="float:left;" /></span> <br />
+																	<input type="text" size="25" value="" autocomplete="off" id="country" onKeyUp="suggest(this.value);" onBlur="fill();fillId();" class="" />
+																	<input type="hidden" name="country_id" id="country_id" value="" />
+																	<div id="suggestions" style="display: none;"> <div id="suggestionsList"> &nbsp; </div>
+																	</div>
+																</div>
+																
+															</div>
+															<div>
+															<a href="javascript:void(0);" id="cancellivechat" class="btn_send_chat"><?php echo $lcancel; ?></a>
+															<a href="javascript:void(0);" id="backlivechat" class="btn_send_chat"><?php echo $lok;?></a>
+															
+															</div> 
+														</div>
+												</div> 
+											</div>
+										</div>
+									</div>
+									<h2 class="invitations" id="invlbl" style="display:none;">Private Chat Invitations</h2>
+									<div id="invitations"></div>
+									<!-- Create own group start-->
+									<!-- Create own group end-->
+                                </div>
+								
+									<?php /*<div class="das-box das-box4 das-box-teh2 no-bor">
+                                    	<div class="box-tle gray-ttl"><div class="leftbg ttl8"><span><?php echo $LanguageApp; ?></span></div></div>
+                                        	<div class="border-all new-tutors" style="overflow:hidden; width:345px; margin-top:-1px !important;">
+                                        	<div id="mygallery2" class="stepcarousel" style="margin:0 10px;">
+                                            <ul class="bjqs">
+                                                <?php
+												foreach($langApp as $App):?>
+                                                <li>
+                                                <div class="belt">
+                                                <div class="panel">
+                                                <div class="box-cont over-hid">
+                                        	<div class="tutor-ttl" style="margin-top:20px;"><a  target="_blank" href="<?php  echo 'http://'.$App['Link']; ?>"><?php echo ucfirst($App['Title']);?></a></div>
+                                            <div class="tu-dis" style="font-size:14px">
+											 </div>
+                                            <div class="tutor-cont">
+                                            	<div class="imag" style="margin-top:10px;">
+													<?php if($App["Source"] != ''){?>
+													<a  target="_blank" href="<?php echo 'http://'.$App['Link']; ?>"><img src="<?php echo base_url().'LanuageApp/'.$App["Source"]; ?>" width="150" height="150" alt="02" /></a>
+													
+													<?php } ?>
+                                                </div>
+                                                <div class="tu-dis">
+													 <?php echo $App['Desc'];?>
+                                                </div>
+                                            <div class="nw-tutr-btn">
+                                                                <a class="applink" href="<?php echo base_url('user/Apps');?>">&nbsp;<?php echo $AllApp;?></a>
+                                                             
+                                                            </div>
+											</div>
+                                        </div>
+                                    </div> </div>
+                                                 </li>
+                                                <?php endforeach; ?>
+                                           </ul>
+                                              
+                                           
+                                        </div>
+                                        	</div>
+                                       
+                                    </div>
+                                </div>*/?>
+                                
+                                <div class="box-row">
+                                	<div class="das-box das-box3 das-box-teh3 no-bor over-hid">
+                                    	<div class="box-tle gray-ttl"><div class="leftbg ttl9"><span><?php if($multi_lang != 'ch'){ echo $facebook_feed; }else{ echo 'Sina Weibo Feed';} ?></span></div></div>
+                                        <div class="box-cont border-all fb-cont" style="margin:0px;padding:0px;">
+                                            <div class="all-txt">
+												<!--
+												<fb:activity site="www.technoinfonet.com" app_id="598282750195467" width="348" height="480" header="true" font="arial" recommendations="true" ref="www.facebook.com/TheTalkList"></fb:activity>
+												-->
+<?php  if($multi_lang != 'ch'){ ?>
+<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FTheTalkList&amp;width=348&amp;height=590&amp;show_faces=true&amp;colorscheme=light&amp;stream=true&amp;show_border=false&amp;header=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:348px; height:590px;" allowTransparency="true"></iframe>
+<?php }else{ ?>
+<iframe src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=2952211760&height=590&skin=wd_01&showpic=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:348px; height:590px;" allowTransparency="true"></iframe>
+<?php } ?>												</div>
+                                      </div>
+                                    </div>
+                                    <div class="das-box das-box4 das-box-teh4 no-bor">
+                                    	<div class="box-tle gray-ttl"><div class="leftbg ttl10"><span><?php echo $buzzword; ?></span></div></div>
+										<div id="chart_div" class="box-cont div_chat2 border-all" style="height:150px;padding-left:50px;" >
+										<div id="medo_buzzword" style="width:308px important;"></div>
+										<div id="chartholder" style="font-size:10px !important;"></div>
+                                        <!--<script type="text/javascript" src="js/swfobject.js"></script>-->
+										<!--<script type="text/javascript">
+											/*
+											swfobject.embedSWF(
+												"open-flash-chart.swf", "my_chart",
+												"300", "200", "9.0.0", "expressInstall.swf",
+												{"data-file":"gallery/bar-filled-chart.php"} 
+											);*/
+										</script>-->
+										<!-- chages on 20-5-2013 -->
+		<?php
+		/*echo "<pre>";
+		
+		print_r($chart_data);*/
+		
+		/*$total =  ($chart_data["totalLastToiecScore"] / $chart_number_data["countLastToiecScore"] + $chart_data["totalLastToeflScore"] / $chart_number_data["countLastToeflScore"] );	
+        $pre_total=$total ;
+
+        $total1=($chart_data["totalCurrentToiecScore"] / $chart_number_data["countCurrentToiecScore"] + $chart_data["totalCurrentToeflScore"] / $chart_number_data["countCurrentToeflScore"] );
+		$post_total=$total1;
+
+		if($pre_total > $post_total){				
+				//$score_per=$pre_total/300;
+				$score_per = (($post_total - $pre_total)/$pre_total)*100;
+				echo $score_per_new= number_format($score_per,2).'% decrease';
+			}
+			elseif($pre_total < $post_total){
+				//$score_per=$post_total/300;
+				$score_per = (($post_total - $pre_total)/$pre_total)*100;
+				echo $score_per_new= number_format($score_per,2).'% increase';
+			}	*/
+	?>
+    <!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
+   <!-- <script type="text/javascript">
+      
+			google.load("visualization", "1", {packages:["corechart"]});
+			google.setOnLoadCallback(drawChart);
+			function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+					['Score', 'TOIEC','TOEFL'],
+					['Pre TTL',  <?php echo $chart_data["totalLastToiecScore"] / $chart_number_data["countCurrentToiecScore"];?>,<?php echo $chart_data["totalLastToeflScore"] / $chart_number_data["countLastToeflScore"];?> ],
+					['Post TTL',  <?php echo $chart_data["totalCurrentToiecScore"] / $chart_number_data["countCurrentToiecScore"];?>,<?php echo $chart_data["totalCurrentToeflScore"] / $chart_number_data["countCurrentToeflScore"];?> ]
+				]);
+
+			var options = {
+			  title: 'How our Students are Progressing',
+			  hAxis: {title: '<?php echo ($score_per_new);?>', titleTextStyle: {color: 'red', fontSize:12}},
+			  'colors' : [ 'green', 'blue','purple'],
+			   width: 350, height: 250,
+			   legendFontSize: 9
+			};
+
+			var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+		}
+    </script>	-->		
+    
+    </div>
+									</div>
+								</div>
+							</div>
+                           <!--raxa code end-->
+							
+							<!-- dashboard integration code end --->
+		
+							
+                        </div>
+                    </div>
+					
+                </div>
+                <!--/student_prof_Wp-->
+            </div>
+        </div>
+		
+		
+		
+        <!--/content_main-->
+		<?php include dirname(__FILE__).'/../leftSide.php';?>
+		
+    </div>
+	
+	
+	 
+	
+	
+	<div id="firstTour" title="" style="display:None;">
+    	<span class="popup-no">1</span>
+			<div class="ratelist popup-row">
+				<span class="title" style="float:left"><?php echo $ChooseTutor;?></span>  
+			</div>
+			<div class="ratelist popup-row">
+				<p><span class="title" style="float:left;line-height:15px;"><?php echo $SetCriteria;?></span>  </p>
+ 				<p class="clearer"></p>
+			</div>
+			<div class="popup-step">
+            	<div class="step-div-bg">
+                	<div class="pop-pagin">
+                    	<ul>
+                        	<li class="active"><span>1</span></li>
+                            <li><span>2</span></li>
+                            <li><span>3</span></li>
+                            <li><span>4</span></li>
+                            <li><span>5</span></li>
+                            <li><span>6</span></li>
+                        </ul>
+                    </div>
+            		<a href="<?php echo base_url('search/search?step=1');?>"><?php //echo $STep;?>Next</a> 
+                </div>
+            </div>
+		</div>
+	
+<style>
+ .myfreegroup
+ {
+ 
+    background: #3399CC;
+    border: 0 none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    display: inline-block;
+    font: bold 12px/30px Arial,Helvetica,sans-serif;
+    padding: 0 10px;
+    text-align: center;
+    text-shadow: none;
+    vertical-align: middle;
+ }
+ .thanks{background: url("<?php echo base_url();?>images/test-vs-btn.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+    box-shadow: none !important;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 14px;
+    height: 34px;
+    line-height: 32px;
+    margin-top: 4px !important;
+    outline: medium none;
+    text-align: center;
+    text-decoration: none;
+    width: 110px;}
+ 
+.ui-widget-content{/*border: 4px solid #0087d0;    border-radius: 0 !important; background:#fff; padding:15px;*/}
+.ui-widget-header{ background:none; border:0 none !important;}
+.ui-widget-header{ float:right;}
+
+	.d-textbox{border:1px solid red;font-siz:15px;padding:5px;}
+	.d-ads{border:1px solid red;font-siz:15px;padding:5px; width:200px;margin-top:5px;}
+	.d-livechat{border:1px solid red;font-siz:15px;padding:5px; width:200px;margin-top:5px;float:left;}
+	.d-newtutors{border:1px solid red;font-siz:15px;padding:5px; width:200px;margin-top:5px;float:left;}
+	
+.das-box-teh{ width:347px !important; }
+.das-box-teh .box-tle{width:94.5% !important}
+/*.chatimg img{ width:30px; height:30px; }*/
+.chatimg {margin-right:5px;}
+
+.das-box-teh2{ width:345px !important; }
+.das-box-teh2 .box-tle{width:94.5% !important}
+
+.das-box-teh3{ width:349px !important; overflow-x: hidden;    overflow-y: scroll; }
+.das-box-teh3 .box-tle{width:94.5% !important}
+
+.das-box-teh4{ width:345px !important; }
+.das-box-teh4 .box-tle{width:94.5% !important}
+
+.das-box7{ min-height:375px !important;}
+.fb-cont{ height:323px; overflow-y: scroll;  overflow-x: hidden; width:99% !important;}
+
+
+#mygallery1{ height:343px !important}
+#mygallery1 .bjqs-wrapper{ height:340px !important}
+
+#mygallery1 ul.bjqs-controls.v-centered li.bjqs-prev a{ margin-top:146px  !important;}
+#mygallery1 ul.bjqs-controls.v-centered li.bjqs-next a{ margin-top:146px  !important;}
+
+/*#mygallery2{ height:380px !important}*/
+#mygallery3{ height:380px !important}
+.bjqs-wrapper{ height:380px !important}
+ul.bjqs{ height:380px !important}
+ul.bjqs-controls.v-centered li.bjqs-prev a{ margin-top:140px  !important;}
+ul.bjqs-controls.v-centered li.bjqs-next a{ margin-top:140px  !important;}
+
+.panel .box-cont{ padding:0px !important; width:100%  !important; margin:0px !important;}
+
+
+span.dasinvchat {
+  cursor: pointer;
+  display: inline-block;
+  color: White;
+  border-radius: 8px;
+  position: relative;
+}
+span.daschatsug {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 8px;
+  position: relative;
+}
+
+span.vsession-gray-btn {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 8px;
+  position: relative;
+}
+
+span.myfreegroup {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 8px;
+  position: relative;
+}
+span.myres {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 8px;
+  position: relative;
+}
+	div.dasinvchat-tooltip {
+	  background-color: #037898;
+	  color: White;
+	  position: absolute;
+	  left: -250px;
+	  top: -15px;
+	  z-index: 1000000;
+	  width: 230px !important;
+	  border-radius: 5px; word-wrap:break-word;
+	}
+	
+	div.dasinvchat-tooltip p{ font-size:12px; font-family:Arial, Helvetica, sans-serif; line-height:14px; font-weight:normal; padding:8px; color: White;}
+	
+	div.dasinvchat-tooltip:before {
+	  border-color: transparent #037898 transparent transparent;
+	  border-left: 6px solid #037898;
+	  border-style: solid;
+	  border-width: 6px 0px 6px 6px;
+	  content: "";
+	  display: block;
+	  height: 0;
+	  width: 0;
+	  line-height: 0;
+	  position: absolute;
+	  top: 40%;
+	  right: -6px !important;
+	}
+	
+	div.tooltipusr {
+	  background-color: #3399CC;
+	  color: White;
+	  position: absolute;
+	  left: -232px;
+	  top: -20px;
+	  z-index: 1000000;
+	  width: 230px !important;
+	  border-radius: 5px; word-wrap:break-word;
+	}
+	
+	div.tooltipusr p{ 
+		font-size:12px; 
+		font-family:Arial, Helvetica, sans-serif; 
+		line-height:14px; 
+		font-weight:normal; 
+		color: White;
+		padding:8px;
+	}
+	
+	div.tooltipusr:before {
+	  border-color: transparent #037898 transparent transparent;
+	  border-left: 6px solid #037898;
+	  border-style: solid;
+	  border-width: 6px 0px 6px 6px;
+	  content: "";
+	  display: block;
+	  height: 0;
+	  width: 0;
+	  line-height: 0;
+	  position: absolute;
+	  top: 40%;
+	  right: -6px !important;
+	}
+	div.tooltip p{ font-size:12px; line-height:14px; font-weight:normal; font-family:Arial, Helvetica, sans-serif;}
+	.div_chat-div {overflow:visible !important;}
+	
+	
+	.applink{background: none repeat scroll 0 0 #3399CC;
+    border: 0 none;
+    border-radius: 5px;
+    box-shadow: none;
+    color: #fff !important;
+    cursor: pointer;
+    float: right;
+    font-family: "Lato",Arial,Helvetica,sans-serif;
+    font-size: 15px;
+    height: 32px;
+    line-height: 34px;
+    margin: 15px 15px 15px 0;
+    padding: 3px 0;
+    text-align: center;
+    width: 108px !important;
+	}
+	
+</style>
+<script>
+// create your group javascript start
+function sendMessage(){
+	var _groupname = $('#chat_name').val();
+	var _ownermessage = $('#owner_message').val();
+	
+	if(!_groupname){
+		$('#dialog').html('The group name can not be empty!.');
+		$('#dialog').dialog({modal:true});
+		return;
+	}
+	if(!_ownermessage){
+		$('#dialog').html('Please enter owner message!.');
+		$('#dialog').dialog({modal:true});
+		return;
+	}
+	$(this).attr('buttontype','doing');
+	var _data = {groupname:_groupname,ownermessage:_ownermessage};
+	
+	$.getJSON('<?php echo base_url("user/chat_save_group");?>',_data,function(msg){
+		if (String == msg.constructor) {      
+			eval ('var json = ' + msg);
+		} else {
+			var json = msg;
+		}
+		
+		if(json.status){
+			$('#dialog').html('Send Success..');
+			$('#dialog').dialog({modal:true});
+			$('#chat_name').val('');
+			$('#owner_message').val('');
+
+			alert('group created');
+			//document.location.href = '<?php echo base_url('user/chat_group/gid/');?>' + '/' + json.gid;
+		}
+		else{				
+			$('#dialog').html(json.msg);
+			$('#dialog').dialog({modal:true});
+		}
+		$('#send').attr('buttontype','done');
+	})
+}
+$(function(){
+	$('a@[href=#]').attr('href','javascript:void(0)');
+	//username = false;
+	$('#chat_name').blur(function(){
+		//checkGroupname();
+	});
+	$('#send').click(function(){
+		sendMessage();
+	});
+	
+})
+$('#crgroupid').click(function(){
+	$('#createyourgroupcontainer').attr('style','display:block');
+	$('#chatcontainer').attr('style','display:none;');
+});
+// create your group javascript end
+</script>
+	
+	<style>
+	#chart_div>div{ margin-left:-34px !important;}
+	#div_chat{ height:285px;}
+	
+	.inbox_mod{ height:315px;}
+a.btn_send_chat{ margin-left:15px;}
+ul.bjqs-controls.v-centered li.bjqs-prev a{ margin-top:125px;}
+ul.bjqs-controls.v-centered li.bjqs-next a{ margin-top:125px;}
+.das-box1 .box-cont{ height: 350px;
+    overflow-x: hidden;}
+    </style>
+	<script class="secret-source">
+        jQuery(document).ready(function($) {
+
+          $('#mygallery1').bjqs({
+            animtype      : 'slide',
+            height        : 320,
+            width         : 620,
+            responsive    : true,
+            randomstart   : true
+          });
+          
+        });
+		
+		jQuery(document).ready(function($) {
+          
+          $('#mygallery2').bjqs({
+            animtype      : 'slide',
+            height        : 320,
+            width         : 620,
+            responsive    : true,
+            randomstart   : true
+          });
+          
+        });
+		jQuery(document).ready(function($) {
+          
+          $('#mygallery3').bjqs({
+            animtype      : 'slide',
+            height        : 320,
+            width         : 620,
+            responsive    : true,
+            randomstart   : true
+          });
+          
+        });
+      </script>
+<script>
+function sendMessage1(){
+		var _groupname = $('#chat_name1').val();
+		var _ownermessage = $('#owner_message1').val();
+		
+		if(!_groupname){
+			$('#dialog').html('The group name can not be empty!.');
+			$('#dialog').dialog({modal:true});
+			return;
+		}
+		if(!_ownermessage){
+			$('#dialog').html('Please enter owner message!.');
+			$('#dialog').dialog({modal:true});
+			return;
+		}
+		
+
+		$(this).attr('buttontype','doing');
+		var _data = {groupname:_groupname,ownermessage:_ownermessage};
+		$.getJSON('<?php echo base_url("user/chat_save_group");?>',_data,function(msg){
+			if (String == msg.constructor) {
+				eval ('var json = ' + msg);
+			} else {
+				var json = msg;
+			}
+
+			if(json.status){
+				//$('#dialog').html('Send Success..');
+				$('#dialog').dialog({modal:true});
+				$('#chat_name').val('');
+				$('#owner_message').val('');
+				//var HOST = 'http://localhost/dev.thetalklist.com/';
+				//document.location.href = '<?php echo base_url('user/chat_group/gid/');?>' + '/' + json.gid;
+				
+				$('#owngroup').load('<?php echo base_url('user/chat_group/gid/');?>' + '/' + json.gid);
+				//$(".owngroup").load(HOST+'user/chat_group/gid/' + json.gid);
+			}
+			else{
+				$('#dialog').html(json.msg);
+				$('#dialog').dialog({modal:true});
+			}
+			$('#send').attr('buttontype','done');
+		})
+	}	
+</script>
+<script>
+function suggest(inputString){
+
+if(inputString.length == 0) {
+$('#suggestions').fadeOut();
+} else {
+$.ajax({
+url: "<?php echo base_url('user/auto_chat_suggestion/');?>",
+data: 'act=autoSuggestUser&queryString='+inputString,
+success: function(msg){
+
+if(msg.length >0) {
+$('#suggestions').fadeIn();
+//alert(msg)
+$('#suggestionsList').html(msg);
+$('#country').removeClass('load');
+}
+}
+});
+}
+}
+</script>
+<?php
+$cnt = count($result1);
+if($cnt > 0){
+	//echo '1';
+?>
+<!--<a href="<?php echo base_url(); ?>user/invite" id="privatechat" class="link">Private Chat</a>-->
+<!--<a href="javascript:void(0);" onclick="cancelprivatechat();"  id="privatechat" class="link btn_send_chat">End Private Chat</a>-->
+	<script type="text/javascript">
+		if(document.getElementById('cancelchat')){
+			document.getElementById('cancelchat').style.display = '';
+		}
+	</script>
+<?php
+}
+?>
+<style>
+  #sendMessageView .content_main{ border-radius:0 !important; border:4px solid #0087D0;}
+</style>
+<?php
+if($this->session->userdata('roleId')=="0" and (isset($_GET['step']) and $_GET['step']=="final")) {?>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#alertMsg').dialog({
+		modal:true,
+		//height:100,
+		width:600,
+		title:false,
+		resizable:false
+	});
+$( ".blog-hight-light" ).addClass( "likepopup" );
+});
+</script>
+<style>
+ .ui-dialog .ui-dialog-titlebar-close{display:none;}
+</style>
+<?php 
+$arrVal = $this->lookup_model->getValue('1322', $multi_lang); $lngWhat = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('1319', $multi_lang); $lngChat = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('1320', $multi_lang); $lngSrchTut = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('1321', $multi_lang); $lngSetup = $arrVal[$multi_lang];
+?>
+<div id="alertMsg" style="display:none;" class="like-popup">
+	<div class="popup-step margin-top tutoe-step1">
+		<h2><?php echo $lngWhat;?></h2>
+		<ul>
+			<li><a href="<?php echo base_url("user/dashboard?c=hang");?>" class="text-icon"><span><?php echo $lngChat;?></span></a></li>
+			<li><a href="<?php echo base_url("search/search");?>" class="search-icon"><span><?php echo $lngSrchTut;?></span></a></li>
+			<li><a href="<?php echo base_url("user/registerEdit");?>" class="setup-icon"><span><?php echo $lngSetup;?></span></a></li>
+		</ul>
+	</div>	
+</div>
+<?php }
+if((isset($_GET['c'])) and $_GET['c']=="hang") {?>
+<script type="text/javascript">
+$(document).ready(function(){
+$("html, body").animate({ scrollTop: 620 }, 800);
+});
+</script>
+<?php }?>

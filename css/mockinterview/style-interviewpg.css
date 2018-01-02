@@ -1,0 +1,149 @@
+@charset "utf-8";
+/* CSS Document */
+body{ background:#fff;  font-family:'Lato',Arial,Helvetica,sans-serif;}
+.nw-landingpg .wrapper{ margin:0 auto; width:1065px;}
+.nw-landingpg header{border-bottom: 4px solid #d7bc4d; margin-bottom: 15px; padding-bottom:15px; float:left; display:block; clear:both; width:100%;}
+.nw-landingpg header .logo{float:left;}
+.nw-landingpg header nav{float:right;}
+
+.nw-landingpg header nav ul{ margin:0px; padding:0px;}
+.nw-landingpg header nav ul li{ float:left; background: url(../images/divider_navi.png) 0 center no-repeat; list-style:none; width:258px; text-align:center;}
+.nw-landingpg header nav ul li a{ float:left;  display: block; text-align: center; text-decoration: none; color: #676363; font-size: 16px; line-height:20px; padding:70px 0 0 0; width:100%; background:url(../images/icons_header.png) no-repeat center 19px;}
+
+.nw-landingpg header .right-hdr-div{float:right; width:170px; text-align:center; background: url(../images/divider_navi.png) 0 center no-repeat; padding-top:12px; }
+.nw-landingpg header .right-hdr-div .signin{ float:left; display:block; clear:both; width:100%; text-align:center; }
+.nw-landingpg header .right-hdr-div .signin a{color: #3399cc; cursor: pointer; font-size: 18px; text-decoration:none;}
+.nw-landingpg header .right-hdr-div .signup{float:left; display:block; clear:both; width:100%; text-align:center; margin:10px 0;}
+.nw-landingpg header .right-hdr-div .signup a{ color: #ff6633;  cursor: pointer; font-size:26px; text-decoration:none;}
+.nw-landingpg header .right-hdr-div .chang-lang ul{ margin:0px; padding:0px;}
+.nw-landingpg header .right-hdr-div .chang-lang li{ list-style:none;}
+.nw-landingpg header .right-hdr-div .chang-lang{float:left; display:block; clear:both; width:100%; text-align:center;}
+.nw-landingpg header .right-hdr-div .chang-lang a{color: #3399cc; cursor: pointer; font-size: 18px; text-decoration:none;}
+.nw-landingpg header .right-hdr-div .chang-lang ul li ul{ display:none;}
+.nw-landingpg header .right-hdr-div .chang-lang ul li:hover ul{ display:block; position:absolute;  background: #666 ; font-size:14px; width:200px;}
+.nw-landingpg header .right-hdr-div .chang-lang ul li ul li{ border-bottom: 1px solid #777; display: block; text-align:left; float:left; width:100%;}
+.nw-landingpg header .right-hdr-div .chang-lang ul li ul li a {color: #fff; padding: 8px 15px; text-decoration: none; width:83%; float:left;}
+
+
+.interviewpg{display:block; clear:both; width:100%;}
+.interviewpg .left-text{float:left; width:425px;}
+.interviewpg .left-text h1{color: #000; font-size:40px; font-weight: normal; line-height:50px; padding: 0; text-align: center; margin:10px 0;}
+.interviewpg .left-text h2{clear: both; color: #000; display: block;  font-size:32px;  font-weight: 300; text-align: center; margin:20px 0}
+.interviewpg .left-text .signup-btn{ float:left; display:block; clear:both; width:100%; text-align: center; margin:10px 0 30px 0;}
+.interviewpg .left-text .signup-btn a{background:url(../images/register_btn.png) no-repeat 0 0;color: #ffffff; display: block; font-size:36px;
+font-weight: normal; height:44px; line-height: 39px; text-align: center; text-decoration: none;text-transform:capitalize; width: 244px; margin:0 auto;}
+.interviewpg .left-text .cont-fb{ float:left; display:block; clear:both; width:100%; text-align: center;}
+.interviewpg .left-text .cont-fb a{color: #000; font-size: 18px; margin: 10px 0 0 ; text-align: center; text-decoration: none;}
+.interviewpg .left-text .cont-fb a span{ color:#3398cc}
+
+.interviewpg .right-video-cnt{ float:right; margin:10px 0 0 0;}
+.interviewpg .right-video-cnt h3{ float:left; display:block; clear:both; width:100%; text-align:center; font-size:32px; font-weight:normal; margin:15px 0px;}
+
+.interviewpg .pro-benefits{ float:left;  width:100%; margin:70px 0 0 0;}
+.interviewpg .pro-benefits .left-txt{ float:left;  width:730px; margin:50px 0;}
+.interviewpg .pro-benefits h1{float:left; display:block; clear:both; width:100%; color:#329bcb; font-size:45px; font-weight:400;margin:0.67em;}
+.interviewpg .pro-benefits h1 span{ font-weight:300;}
+.interviewpg .pro-benefits .left-txt{ float:left; margin:0 30px 0 0px;}
+.interviewpg .pro-benefits .left-txt ul{ margin:0px 0 0 100px; padding:0px;}
+.interviewpg .pro-benefits .left-txt ul li{float:left; clear:both; width:100%; color:#329bcb; font-size:32px; margin:10px 0 30px 0;list-style:disc;}
+
+
+.interviewpg .right-tutor{ float:right; width:300px; min-height:300px;  border: 1px solid #c5c5c5;    color: #666;    float: left; border-radius:5px; overflow:hidden;}
+.interviewpg .right-tutor h1{ background:#e9e7e8; color:#000; font-size:16px; margin:0px; padding:8px 13px;}
+.interviewpg .right-tutor .rec-cnt{ float:left; display:block; clear:both; padding:15px; width:270px;}
+.interviewpg .right-tutor .rec-cnt h2{color:#477099; font-size:20px; float:left; display:block; clear:both; width:100%; margin:0px;}
+.interviewpg .right-tutor .rec-cnt h3{ font-size:15px; color:#666; margin:5px 0; float:left; display:block; clear:both; width:100%;}
+.interviewpg .right-tutor .rec-cnt .tutr-cnt{ display:block; clear:both; margin:10px 0; float:left; width:100%;}
+.interviewpg .right-tutor .rec-cnt .tutr-cnt .tutr-img{float: left; height: 100px; margin-right: 10px; overflow: hidden; width:100px;}
+.interviewpg .right-tutor .rec-cnt .tutr-cnt .turcnt{ float:left;   font-size: 15px;  line-height: 20px;   width: 160px; color:#333;}
+.interviewpg .right-tutor .rec-cnt .tutr-cnt .turcnt span{ color: #658d97; font-size: 18px;}
+.interviewpg .right-tutor .rec-cnt .tutr-cnt .turcnt p{ margin:0px}
+.interviewpg .rec-tutr-btn{display:block; clear:both; margin:15px 0 0 0; float:left; width:100%;}
+.interviewpg .rec-tutr-btn .icon-popup {cursor: pointer;  outline: medium none; position: relative; text-decoration: none;}
+.interviewpg .rec-tutr-btn .icon1{background:url(../images/sed-msg-icon.png) no-repeat 0 0; float: left;  height: 38px; margin: 0 10px 0 0px; width: 38px;}
+.interviewpg .rec-tutr-btn .icon2{background:url(../images/appo-icon.png) no-repeat 0 0; float: left; height: 38px; margin: 0 10px 0 0;  width: 38px;}
+.interviewpg .rec-tutr-btn .icon3{  background:url(../images/tlk-nw-icon.png) no-repeat 0 0; float: left; height: 38px; margin: 0 10px 0 0px; width: 38px;}
+
+.interviewpg .rec-tutr-btn .icon-popup .classic {  background: #3399cc none repeat scroll 0 0;  border: 1px solid #fff;  color: #fff;  font-size: 13px; padding: 7px;  margin-left: -999em;    position: absolute;}
+.interviewpg .rec-tutr-btn .icon-popup:hover span {    border-radius: 5px;    left: 1em;    margin-left: 0;    position: absolute;    top: 3em;    width: 85px;    z-index: 99;}
+.interviewpg .rec-cnt ul li{ list-style:none;}
+.interviewpg .right-tutor .rec-cnt{height:300px !important; }
+.interviewpg .bjqs-markers{ display:none !important}
+.interviewpg .bjqs-controls .bjqs-prev a, .bjqs-controls .bjqs-next a{margin-top: 135px !important; text-indent:-2000px; width:18px; height:17px; }
+.interviewpg ul.bjqs-controls.v-centered li.bjqs-prev a {background:url(../images/prv.png) no-repeat scroll 0 0;}
+.interviewpg ul.bjqs-controls.v-centered li.bjqs-next a {background:url(../images/next.png) no-repeat scroll 0 0;}
+
+.interviewpg .how-works{ float:left; display:block; clear:both; width:100%; margin:40px 0 50px 0}
+.interviewpg .how-works h1{ float:left; display:block; clear:both; width:100%; color:#379ed8; font-size:45px;margin:0.67em;}
+.interviewpg .how-works h1 span{ font-weight:300;}
+.interviewpg .how-works ul{ margin:0px; padding:0px; display:block; clear:both; width:100%;}
+.interviewpg .how-works ul li{ margin:0px; padding:0px; display:block; clear:both; list-style:none; padding-left:120px; min-height:40px; margin:40px 0; font-size:30px;}
+
+.interviewpg .how-works ul li.orange{background:url(../images/orange-arrow.jpg) no-repeat 0 0; color:#ff6525;}
+.interviewpg .how-works ul li.green{background:url(../images/green-arrow.jpg) no-repeat 0 0; color:#2f90c7;}
+.interviewpg .how-works ul li.blue{background:url(../images/blue-arrow.jpg) no-repeat 0 0; color:#7bbb1f;}
+
+.nw-landingpg .footer{ border-top:4px solid #d7bc4d; display:block; clear:both; width:100%; margin:20px 0 0 0;}
+.nw-landingpg .footer .speak_like_native { color: #3399cc;    float: left;   font-size: 2.8em;    font-weight: 700;    letter-spacing: 1px;    padding: 35px 0 0;}
+.nw-landingpg .footer .socialize {   float: right;   padding: 42px 0 0;}
+.nw-landingpg .footer .footer_links {    clear: both;    color: #646464;  font-size: 1em;  padding: 35px 0 20px;}
+.nw-landingpg .footer .socialize span {    color: #3399cc;    float: left;    font-size: 1em;    padding: 5px 0 0;}
+.nw-landingpg .footer .socialize a {    float: left;    height: 32px;    margin-left: 10px;    width: 32px;}
+.nw-landingpg .footer .socialize a.ln {  background:url("../images/socialize.png") no-repeat scroll -84px 0;}
+.nw-landingpg .footer .socialize a.fb {  background:url("../images/socialize.png") no-repeat scroll 0 0;}
+.nw-landingpg .footer .socialize a.tw {  background: url("../images/socialize.png") no-repeat scroll -42px 0;}
+.nw-landingpg .footer .socialize a.gp {  background:url("../images/socialize.png") no-repeat scroll -126px 0;}
+.nw-landingpg .footer .socialize a.yt {  background:url("../images/socialize.png") no-repeat scroll -167px 0;}
+.nw-landingpg .footer .socialize a.blog { background:url("../images/socialize.png") no-repeat scroll -208px 0;}
+.nw-landingpg .footer .footer_links span {  margin-right: 15px;}
+.nw-landingpg .footer .footer_links a { background: url(../../images/main/divider_f.gif) no-repeat scroll left center; color: #646464; padding: 0 14px 0 15px;  text-decoration: none;}
+
+/*brazilpage css start*/
+.brazilpage{}
+.brazilpage .left-text h2{ font-weight:400; font-size:30px;}
+.brazilpage .forfreescs{ float:left; display:block; clear:both; width:100%;  text-align:center; font-size:35px;}
+.brazilpage .left-text .signup-btn{ margin-bottom:5px;}
+
+.brazilpage .right-video-cnt{ float:right; margin:10px 120px 0 0;}
+.brazilpage .right-photo-div{ float:left; width:268px; border:2px solid #d7bc4d; }
+.brazilpage .right-photo-div ul{ margin:0px; padding:0px;}
+.brazilpage .right-photo-div ul li{ float:left; list-style:none;}
+.brazilpage .right-photo-div ul li img{ float:left;}
+
+.brazilpage .how_it_works { clear: both;   display: block;   float: left;   margin:50px 0 0;   padding: 0 0 25px;    width: 100%;}
+.brazilpage .how_it_works h2 {  color: #3399cc;    font-size: 3.3em;    font-weight: 400;    margin-top: 0;   padding: 30px 0 25px; margin:0px;}
+.brazilpage .hw-lft {    float: left;    width: 330px; margin-top: -50px;}
+.brazilpage .hw-rgt {    float: right;    margin-top: -85px;    width: 540px;}
+.brazilpage .how_it_works .hiw_col {    float: left;    width: 320px;}
+.brazilpage .how_it_works .hiw_col_last {    float: left;    width: 310px;}
+.brazilpage .how_it_works .search {    padding: 0;}
+.brazilpage .how_it_works .search h3 {    background: rgba(0, 0, 0, 0) url("../images/how_it_works.jpg") no-repeat scroll 0 0;   color: #84c022;    height: 46px;    margin-bottom: 10px;    padding: 0 0 0 107px;}
+.brazilpage .how_it_works .hiw_col h3 {    font-size: 2.7em;    font-weight: 300;    margin-bottom: 27px;}
+.brazilpage .how_it_works .search .hiw_txt {    background: rgba(0, 0, 0, 0) url("../images/how-wrk1.png") no-repeat scroll 0 0;   font-size: 14px;
+    min-height:85px;    padding: 0 10px 0 107px;}
+.brazilpage .how_it_works .search .hiw_txt p {    font-size: 16px;    line-height: 1.4;}
+.brazilpage .how_it_works .schedule h3 {    background: rgba(0, 0, 0, 0) url("../images/how_it_works.jpg") no-repeat scroll -320px 0;    color: #dfc964;
+    height: 46px;    margin-bottom: 10px;    padding: 0 0 0 107px;}
+.brazilpage .how_it_works .schedule .hiw_txt {    background: rgba(0, 0, 0, 0) url("../images/how-wrk2.png") no-repeat scroll 0 0;    font-size: 14px;
+    min-height:85px;    padding: 0 10px 0 111px;}
+.brazilpage .how_it_works .schedule .hiw_txt p {    font-size: 16px;    line-height: 1.4;}
+.brazilpage .how_it_works .talk {    padding: 0;}
+.brazilpage .how_it_works .talk h3 {    background: rgba(0, 0, 0, 0) url("../images/how_it_works.jpg") no-repeat scroll -640px 0;
+    color: #3399cc;    height: 46px;    margin-bottom: 10px;    padding: 0 0 0 107px;}
+.brazilpage .how_it_works .talk .hiw_txt {    background: rgba(0, 0, 0, 0) url("../images/how-wrk3.png") no-repeat scroll 0 0;    font-size: 14px;
+    min-height:85px;    padding: 0 10px 0 117px;}
+.brazilpage .how_it_works .talk .hiw_txt p {    font-size: 16px;    line-height: 1.4;}
+.brazilpage .hw-wrks {    background: rgba(0, 0, 0, 0) url("../images/hw-wrks-v2.jpg") no-repeat scroll left 5px;    clear: both;    color: #333;
+    display: block;    float: left;    font-family: "Shadows Into Light Two",cursive;    font-size: 30px;    font-weight: normal;   margin-bottom: 20px;
+    margin-left: 118px;    min-height: 93px;    text-align: center;    width: 64%;}
+.brazilpage .vid-marg-top {    float: left;    margin-top: 10px;}
+.brazilpage .hw-do-benefit {    clear: both;    display: block;    float: right;    margin: 35px 0 30px;    width: 665px;}
+.brazilpage .hw-do-benefit h2 {    background: rgba(0, 0, 0, 0) url("../images/benefit-dv-arrow.jpg") no-repeat scroll 133px 85px;   color: #333;
+    float: left;    font-family: "Shadows Into Light Two",cursive;    font-size: 30px;    font-weight: normal;    line-height: 40px;    margin: 0;
+    min-height: 170px;    min-width: 107px;    padding: 0;    width: 240px;}
+.brazilpage .hw-do-benefit .ben-img {    float: right;    margin-right: 50px;    width: 330px;}
+.brazilpage .video-js {    -moz-user-select: none;    background-color: #000;    font-family: Arial,sans-serif;    font-size: 10px;    font-style: normal;    font-weight: 400;    padding: 0;    position: relative;    vertical-align: middle; height: 319px;    width: 538px; float:left;}
+.brazilpage .hw-do-benefit .register_btn {    background: rgba(0, 0, 0, 0) url("../images/register_btn.png") no-repeat scroll 0 0;    border: medium none;    color: #ffffff;    display: block;    float: left;    font-family: "Lato",Arial,Helvetica,sans-serif;    font-size: 36px;    font-weight: normal;
+    height: 44px;    line-height: 39px;    margin: 15px 0 0;    outline: medium none;    padding-left: 0;    text-align: center;    text-decoration: none;    text-transform: capitalize;    width: 244px;}
+.brazilpage .how_it_works .hiw_col a{ text-decoration:none;}
+.brazilpage .brows-btn{font-family: "Shadows Into Light Two",cursive;  font-size: 30px;  font-weight: normal; color:#000; float:left; background:url(../images/brows-arrow.jpg) no-repeat center 0; clear:both;  margin: -120px 0 0 -120px; padding: 60px 0 0;  width: 150px;}

@@ -1,0 +1,1 @@
+<iframe id="sina_widget_2952211760" style="width:100%; height:500px;" frameborder="0" scrolling="no" src="http://v.t.sina.com.cn/widget/widget_blog.php?uid=2952211760&height=500&skin=wd_01&showpic=1"></iframe>

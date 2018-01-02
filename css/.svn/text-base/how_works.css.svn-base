@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+.how_works{ padding:35px 35px 60px;}
+.how_works_top{ height:40px; line-height:40px; color:#133e5f; font-size:24px; font-weight:bold; border-bottom:1px solid #e6e6e6;}
+.how_works_mid{ padding:20px 16px;}
+.how_works_mid h1{ padding-top:20px; font-size:14px; font-weight:bold; font-family:Arial; line-height:20px; color:#0d5782;}
+.how_works_mid p{ padding-top:20px; text-indent:2em; color:#585858; font-family:Arial; line-height:18px; font-size:14px;}
+.how_works_mid .list{ padding-top:20px;}
+.how_works_mid dl{ margin-top:16px; border:1px solid #c7c7c7; border-radius:15px; padding:15px 18px; overflow:hidden; zoom:1;}
+.how_works_mid dl.even{ background-color:#e9e9e9;}
+.how_works_mid dt{ float:left; display:inline;}
+.how_works_mid dd{ float:right; display:inline; width:680px;}
+.how_works_mid dd .h1{ display:block; padding-top:30px; font-size:14px; font-weight:bold; font-family:Arial; line-height:20px; color:#0d5782;}
+.how_works_mid dd p{ color:#707070;}
+.how_works_mid dd .h2{ padding-left:34px; padding-top:0; height:16px; line-height:16px; font-style:italic; font-size:12px;}
+.how_works_mid dd .intr{ padding-left:34px; padding-top:10px; font-size:14px; font-weight:bold;}
+.how_works_mid dd .tr{ text-align:right;}
+.how_works_mid dd .more{ font-size:10px; font-style:italic; color:#707070;}
+
+
+.mgauto{ margin: 0 auto;}
+.play_box{ position:relative; width:474px; height:296px;}
+.play_box .img{ width:474px; height:296px; border:0; vertical-align:top;}
+.play_box .layer{ position:absolute; left:0; top:0; right:0; bottom:0; background-color:#000; opacity:.65; filter:alpha(opacity=65);}
+.play_box .icon_play{ position:absolute; left:184px; top:105px; width:111px; height:93px; background:url(../images/how_works/icon_play_big.png) no-repeat;}
+
+.play_box_small{ position:relative; width:234px; height:156px;}
+.play_box_small .img{ width:234px; height:156px; border:0; vertical-align:top;}
+.play_box_small .layer{ position:absolute; left:0; top:0; right:0; bottom:0; background-color:#000; opacity:.65; filter:alpha(opacity=65);}
+.play_box_small .icon_play{ position:absolute; left:97px; top:61px; width:111px; height:93px; background:url(../images/how_works/icon_play_small.png) no-repeat;}
+

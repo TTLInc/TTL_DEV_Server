@@ -1,0 +1,88 @@
+@charset "utf-8";
+/* CSS Document */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+}
+
+@media only screen and (max-width: 1160px) {
+.wrapper{padding:0 0;  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+}
+
+@media only screen and (min-width: 914px) and (max-width: 1082px) {
+}
+
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 999px) {
+body,html{overflow-x:hidden;}
+.nw-landingpg .wrapper{ width:100%;}
+.nw-landingpg header .logo{ text-align:center; width:100%;}
+.nw-landingpg header .right-hdr-div{ float: none;  margin: 20px auto;}
+.interviewpg .left-text{ width:100%;}
+.brazilpage .right-video-cnt{ margin:0px; float:left;}
+.brazilpage .how_it_works{ margin-top:50px;}
+.brazilpage .how_it_works h2{ font-size:2.5em;}
+.brazilpage .hw-lft, .how_it_works .hiw_col{ width:100%;}
+.brazilpage .hw-rgt{ margin:0px; float:left; width:100%;}
+.brazilpage .hw-wrks{ margin:0px; width:95%;}
+.brazilpage .video-js{ width:100%;}
+.brazilpage .hw-do-benefit{ width:100%;}
+.brazilpage .hw-do-benefit .ben-img{ width:100%; margin:0px;}
+
+.interviewpg .right-video-cnt{ width:100%; float:left;}
+.interviewpg .pro-benefits .left-txt ul{ margin:0px;}
+.interviewpg .pro-benefits .left-txt{ width:100%; margin:0px;}
+.interviewpg .pro-benefits .left-txt ul {    margin: 0 0 0 30px;}
+.interviewpg .pro-benefits .left-txt ul li{ font-size:22px;}
+.interviewpg .pro-benefits h1{ font-size:35px;}
+.interviewpg .how-works ul li{ font-size:20px;}
+.interviewpg .right-video-cnt h3{ font-size:22px;}
+.interviewpg .left-text h1{ font-size:30px;}
+.interviewpg .left-text h2{ font-size:22px;}
+.brazilpage .forfreescs{ font-size:25px; margin-bottom:50px;}
+.brazilpage .brows-btn{ margin:20px 0 0 0; background:url(../images/brows-arrow-mobile.jpg) no-repeat 0 0; padding:30px 0 0 90px}
+}
+
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+body,html{overflow-x:hidden;}
+.nw-landingpg .wrapper{ width:100%;}
+.nw-landingpg header .logo{ text-align:center; width:100%;}
+.nw-landingpg header .right-hdr-div{ float: none;  margin: 20px auto;}
+.interviewpg .left-text{ width:100%;}
+.brazilpage .right-video-cnt{ margin:0px; float:left;}
+.brazilpage .how_it_works{ margin-top:50px;}
+.brazilpage .how_it_works h2{ font-size:2.5em;}
+.brazilpage .hw-lft, .how_it_works .hiw_col{ width:100%;}
+.brazilpage .hw-rgt{ margin:0px; float:left; width:100%;}
+.brazilpage .hw-wrks{ margin:0px; width:95%;}
+.brazilpage .video-js{ width:100%;}
+.brazilpage .hw-do-benefit{ width:100%;}
+.brazilpage .hw-do-benefit .ben-img{ width:100%; margin:0px;}
+
+.interviewpg .right-video-cnt{ width:100%; float:left;}
+.interviewpg .pro-benefits .left-txt ul{ margin:0px;}
+.interviewpg .pro-benefits .left-txt{ width:100%; margin:0px;}
+.interviewpg .pro-benefits .left-txt ul {    margin: 0 0 0 30px;}
+.interviewpg .pro-benefits .left-txt ul li{ font-size:22px;}
+.interviewpg .pro-benefits h1{ font-size:35px;}
+.interviewpg .how-works ul li{ font-size:20px;}
+.interviewpg .right-video-cnt h3{ font-size:22px;}
+.interviewpg .left-text h1{ font-size:30px;}
+.interviewpg .left-text h2{ font-size:22px;}
+.brazilpage .forfreescs{ font-size:25px; margin-bottom:50px;}
+.brazilpage .brows-btn{ margin:20px 0 0 0; background:url(../images/brows-arrow-mobile.jpg) no-repeat 0 0; padding:30px 0 0 90px}
+}
+
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+}
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {
+}
+	
+	
+@media only screen and (min-width: 361px) and (max-width: 640px) {
+}

@@ -1,0 +1,207 @@
+<?php
+$multi_lang = 'en';
+if(!isset($_SESSION)) {
+     session_start();
+}
+if(isset($_SESSION['multi_lang']))
+{
+	$multi_lang = $_SESSION['multi_lang'];
+}
+else
+{
+	$multi_lang = 'en';	
+}
+$this->load->model(array('lookup_model')); 
+
+$arrVal = $this->lookup_model->getValue('81', $multi_lang);
+$composetxt = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('82', $multi_lang);
+$totxt = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('76', $multi_lang);
+$subjecttext = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('83', $multi_lang);
+$msgtext = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('84', $multi_lang);
+$discardtext = $arrVal[$multi_lang];
+$arrVal = $this->lookup_model->getValue('34', $multi_lang);
+$sendtext = $arrVal[$multi_lang];
+
+$arrVal = $this->lookup_model->getValue('298', $multi_lang);
+$discardtext = $arrVal[$multi_lang];
+?>
+
+<?php $this->layout->appendFile('javascript',"js/jquery-jtemplates.js");?>
+<?php $this->layout->appendFile('javascript',"js/jquery.poshytip.min.js");?>
+<?php $this->layout->appendFile('css',"css/cupertino/theme.css");?>
+<?php $this->layout->appendFile('css',"css/search.css");?>
+
+<input type="hidden" name="baseurl" id="baseurl" value="<?php echo base_url();?>" />
+ <div class="baseBox baseBoxBg clearfix">
+    	
+        <div class="content_main fr clearfix" style="border-radius:30px">
+        	<div class="main_inner">
+                 <!--/student_prof-->
+                <div id="student_prof_Wp">
+                    <div class="mod">
+                        <div class="hd">
+							<br>
+                            <div class="pro_tle tle"><h1><?php echo $composetxt;?></h1></div>
+                            <div class="inbox_mod">
+                            	<div class="inbox_list inbox_tle">
+                                	<label><?php echo $totxt;?>:</label>
+									
+                                    <input type="text"  class="input" disabled name="keyword" id="keyword" tabindex="0"  autocomplete="off" value="<?php echo @$fresult['firstName']. ' '.@$fresult['lastName'] ; ?>" >
+									<div class="autosug" id="ajax_response" style="display:none"  >
+										<div class="wrapper systemError" id="nameErrorBox" style="display: none;"></div>
+									</div>
+									<?php 
+									//print_r($fresult[0]['email']);
+									if(@$fresult == '') {
+									//echo 'sdfsdf';exit;
+									?>
+									<input type="hidden" value="<?php echo @$email;?>" id="email"  /> 
+									<?php
+									} else {
+										//echo $fresult['email'];exit;
+									?>
+									<?php //echo $fresult[0]['email'];?>
+									<input type="hidden" value="<?php echo @$fresult['email'];?>" id="email"  /> 
+									<?php } ?>
+									<input type="hidden" value="<?php echo $uidurl;?>" id="uidurl"  /> 
+									<span class="error" id="err_username"></span>
+                                </div>
+                                
+                                <div class="inbox_list ">
+                                	<label><?php echo @$subjecttext;?>:</label>
+                                    <input type="text" class="inbox_ipt_text c000" name="" value="" id="subject" placeholder="Subject Line" /> 
+									<span class="error" id="err_subject"></span>
+                                </div>
+                                
+                                <div class="inbox_subject">
+                                	<label><?php echo @$msgtext; ?>:</label>
+                                    <textarea class="inbox_textarea" id="message"></textarea>
+									<span class="error" id="err_message" ></span>
+                                </div>
+                                
+                            </div>
+							<div class="agnR">
+									<a class="norBtn whiteRadiusBtn discard_send_left w96" id="discard" onclick="dgClose();"><?php echo $discardtext; ?></a>
+                                    <a class="norBtn redRadiusBtn2 discard_send_right  w96" id="send" onclick="sendMessage();"><?php echo $sendtext; ?></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/student_prof_Wp-->
+            </div>
+        </div>
+        
+    </div>
+	
+	<script type="text/javascript">
+	function dgClose()
+	{
+		$('#username').val('');
+		$('#subject').val('');
+		$('#message').val('');
+		$('#sendMessageView').html('');
+		$('#sendMessageView').hide();
+	}
+	function sendMessage(){
+		//var _username = $('#username').val();
+		var _username = $('#email').val();
+		<?php if(@$fresult['email'] != ''): ?>
+			var _username = '<?php echo $fresult['email']; ?>';
+		<?php endif;?>
+		
+		var _uidurl = $('#uidurl').val();
+		
+		//alert(_username)
+		var _subject = $('#subject').val();
+		var _message = $('#message').val();
+		
+		if(_uidurl !=0)
+		{
+			var _username = '0'; 
+		}
+		
+		if(!_username){
+			$('#err_username').html('The username can not be empty!.');
+			$('#err_username').show();
+			return;
+		}else{
+			$('#err_username').hide();
+		}
+		if(!_subject){
+			$('#err_subject').html('Please enter email subject.');
+			$('#err_subject').show();
+			return;
+		}else{
+			$('#err_subject').hide();
+		}
+		if(!_message){
+			$('#err_message').html('Please enter email content.');
+			$('#err_message').show();
+			return;
+		}else{
+			$('#err_message').hide();
+		}
+		//alert(_uidurl);return false;
+		
+		$('#send').attr('buttontype','doing');
+		var _data = {uname:_username,subject:_subject,message:_message,uidurl:_uidurl,popup:1};
+		
+		$.post('<?php echo base_url("user/message_tutor_send");?>',_data,function(msg){
+		
+			if (String == msg.constructor) {      
+				eval ('var json = ' + msg);
+			} else {
+				var json = msg;
+			}
+			//return false;
+			if(json.status){
+				
+				alert('Sent successfully');
+				
+				$('#username').val('');
+				$('#subject').val('');
+				$('#message').val('');
+				$('#sendMessageView').html('');
+				$('#sendMessageView').hide();
+			}
+			else{
+				alert(json.msg)
+				//$('#dialog').html(json.msg);
+				//$('#dialog').dialog({modal:true});
+			}
+			$('#send').attr('buttontype','done');
+		})
+	}
+	function setemail(email)
+	{
+		//alert(email)
+		$('#email').val(email);
+	}
+	</script>
+    <style>
+	.inbox_tle label{ float:left; width:12%;}
+	.inbox_list{ margin:0px; border-bottom:0px solid #dddbdb;}
+	.inbox_list .input{ border:1px solid #dddbdb; width:250px; margin-top:3px; height:28px;  padding:2px 10px; color:#999; font-size:12px;}
+	.inbox_list .inbox_ipt_text{ border:1px solid #dddbdb; width:84%;  height:28px; padding:2px 10px; color:#999; font-size:12px;}
+	.inbox_subject{ margin:10px 0; padding:0px;}
+	.inbox_subject .inbox_textarea{border:1px solid #dddbdb; width:588px; height:150px; padding:2px 10px; color:#999; font-size:12px;}
+	.autosug{ width:266px !important; border:1px solid #dddbdb !important; overflow:hidden !important;}
+	.autosug ul li{ margin:5px 0;}
+	.autosug ul li a{ width:100% !important; font-weight:normal; font-size:13px; font-weight:bold; padding:3px 0; height:30px;}
+	.autosug ul li a img{ width:30px !important; height:30px !important; float:left; margin:0 10px 0 3px;}
+	.autosug ul li a span.bold{ color:#658D97;}
+	.selected{ color:#000;}
+	.selected span.bold{ color:#fff !important;}
+	.error{color:red;margin-left: 83px;display:none;}
+	.pro_tle h1{font-size:15px;}
+	</style>
+	<?php 
+	if(@$fresult['email'] != '')
+	{
+		echo '<script>setemail("'.$fresult['email'].'");</script>';
+	}
+	?>

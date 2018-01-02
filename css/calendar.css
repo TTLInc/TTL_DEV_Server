@@ -1,0 +1,62 @@
+.month{text-align:center; font-size:initial;}
+.prev,.next {text-align:center}
+td.col{vertical-align: top;margin:2px;border-color:gray;}
+#calendar table{border-color:gray; border:1px solid;}
+#calendar table th{ border:1px solid #999;}
+#calendar table td{ border:1px solid #999;}
+div.title {background: #F0F1F2; font-size:12px;}
+div.day {font-size: 22px;text-align: center;height: 70px;line-height: 70px;vertical-align: center;}
+.outMonth {color: #000;background:#F0F1F2;}
+.inMonth {color: black;background: #fff;}
+.today .day{/*color:red*/ font-weight: bold;font-size: 36px}
+div.title .event{float:right;margin-right:5px}
+.count0{color:#222222;}
+.count1{color:red;}
+.count2{color:red;}
+.count3{color:red;}
+
+
+.timeSlot{text-align:left;cursor: pointer;width:124px;}
+.minuts{text-align:left;}
+.slotList tr{border-top:1px solid lightgray}
+.myEvent thead tr, .slotList thead tr{background:url('../images/base/bg_title_gray.jpg') bottom repeat-x #eee; border-radius: 13px; padding: 10px 0;font-size:16px;color: #494949;text-shadow: 0px 1px 0px #fff;}
+/*.timeSlot{background:lightgray}*/
+/*.timeSlot{background:#58ACFA}*/
+.timeSlot{background:#3399C9}
+.setted{background:#98EE98}
+.status{background:red}
+.createTs,.myList,.myCalendar{cursor: pointer;}
+.tl{text-align:left}
+/*.Booked{background:red}*/
+.Booked{background:#e8bdbe}
+.myEvent tr.Opened{cursor: pointer; padding: 5px; border-bottom: 1px solid #ccc;}
+.timeSlot.Ended{cursor:auto;background:gray;}
+.myEvent .Ended{cursor:auto;background:gray;}
+
+#calendar{ float:left; display:block; clear:both; width:100%;}
+.previewbutton a{color:#3399CC !important;}
+
+.pro_tle.tle h3{ height:30px;}
+
+
+/*viplove add css 13-3-14 */
+
+/*.request{background:pink}*/
+.requested{background:#e8bdbe}
+/*.Confirm{background:pink}*/
+/*.Confirm{background:yellow}*/
+.Confirm{background:#d7bc4d}
+/*.Click to confirm{background:yellow}*/
+/*.test{background:cyan}*/
+/*.test{background:#98EE98}*/
+.test{background:#d7bc4d}
+/*.book{background:yellow}*/
+/*.Open{background:yellow}*/
+.Open{background:#84c022}
+.Open_tp{background:#84c022}
+
+.Opened{background:#84c022}
+.Close{background:#84c022}
+/*viplove add css 13-3-14 */
+
+

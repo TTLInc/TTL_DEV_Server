@@ -1,0 +1,41 @@
+body{margin:0 auto}
+ui,li{list-style:none}
+#pagewidth{width:1024px;margin:0px auto}
+#loginBar{float:right}
+.leftSide{width:200px;float:left;height:450px}
+.rightSide{width:800px;margin-left:20px;float:left;}
+.clear{clear:both}
+
+.formbox label.title {
+	color: #565656;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 14px;
+	padding: 0 5px;
+	width: 150px;
+	text-align: right;
+}
+
+.formbox label.error {
+	color: #565656;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 14px;
+	padding: 0 5px;
+	text-align: left;
+}
+
+.twoCols .leftCol{width:150px;text-align:center;float:left}
+.twoCols .leftCol img{margin-top:15px;}
+.twoCols .rightCol{float:left}
+
+
+#calendar {width: 750px;margin: 0 auto;}
+
+.outMonth{color:#ccc;background:#fff}
+.inMonth{color:#000;background:#ccc}
+
+div.title{background:#ecfded}
+div.day{font-size:22px;text-align:center;height:50px;line-height:50px}
+td.col{margin:2px}
+.today{color:#000;background:red}

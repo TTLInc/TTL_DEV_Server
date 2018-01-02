@@ -1,0 +1,216 @@
+BODY {
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-RIGHT: 0px;
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	BACKGROUND: #000;
+	COLOR: #fff;
+	FONT-SIZE: 14px;
+	PADDING-TOP: 0px;
+}
+
+.cl {
+	CLEAR: both
+}
+
+.fl {
+	FLOAT: left
+}
+
+.fr {
+	FLOAT: right
+}
+
+IMG {
+	BORDER-BOTTOM: 0px;
+	BORDER-LEFT: 0px;
+	BORDER-TOP: 0px;
+	BORDER-RIGHT: 0px
+}
+
+#login-contant {
+	PADDING-BOTTOM: 0px;
+	MARGIN: auto;
+	PADDING-LEFT: 0px;
+	WIDTH: 938px;
+	PADDING-RIGHT: 0px;
+	PADDING-TOP: 0px
+}
+
+.logo-top {
+	TEXT-ALIGN: center;
+	PADDING-BOTTOM: 30px;
+	MARGIN: 0px auto;
+	PADDING-LEFT: 0px;
+	WIDTH: 938px;
+	PADDING-RIGHT: 0px;
+	PADDING-TOP: 50px
+}
+
+.contant {
+	PADDING-BOTTOM: 20px;
+	MARGIN: 0px auto;
+	PADDING-LEFT: 0px;
+	WIDTH: 570px;
+	PADDING-RIGHT: 0px;
+	BACKGROUND: #ffffff;
+	COLOR: #000;
+	PADDING-TOP: 0px;
+	box-shadow: #000000 0 2px 5px
+}
+
+.contant-left {
+	PADDING-BOTTOM: 15px;
+	MARGIN: 0px auto;
+	PADDING-LEFT: 20px;
+	WIDTH: 550px;
+	PADDING-RIGHT: 0px;
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	BACKGROUND: #f6f6f6;
+	COLOR: #528ab5;
+	FONT-SIZE: 17px;
+	FONT-WEIGHT: bold;
+	PADDING-TOP: 15px
+}
+
+.contant-right {
+	PADDING-BOTTOM: 10px;
+	MARGIN: 0px auto;
+	PADDING-LEFT: 0px;
+	WIDTH: 500px;
+	PADDING-RIGHT: 0px;
+	FLOAT: right;
+	PADDING-TOP: 10px
+}
+
+.Log-in-ke {
+	PADDING-BOTTOM: 0px;
+	PADDING-LEFT: 15px;
+	WIDTH: auto;
+	PADDING-RIGHT: 0px;
+	PADDING-TOP: 15px
+}
+
+.log-in {
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-LEFT: 0px;
+	WIDTH: auto;
+	PADDING-RIGHT: 0px;
+	COLOR: #00215c;
+	FONT-SIZE: 55px;
+	FONT-WEIGHT: bold;
+	PADDING-TOP: 0px
+}
+
+.successfully {
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-LEFT: 165px;
+	WIDTH: auto;
+	PADDING-RIGHT: 0px;
+	FONT-FAMILY: Corbel;
+	COLOR: #cd3900;
+	FONT-SIZE: 14px;
+	PADDING-TOP: 5px
+}
+
+.User-name {
+	TEXT-ALIGN: left;
+	PADDING-BOTTOM: 5px;
+	TEXT-TRANSFORM: uppercase;
+	MARGIN: 0px;
+	PADDING-LEFT: 0px;
+	WIDTH: 100px;
+	PADDING-RIGHT: 0px;
+	FONT-FAMILY: Corbel;
+	COLOR: #002a61;
+	FONT-SIZE: 16px;
+	FONT-WEIGHT: bold;
+	PADDING-TOP: 20px
+}
+
+.log-in-password-box {
+	BORDER-BOTTOM: medium none;
+	BORDER-LEFT: medium none;
+	PADDING-BOTTOM: 2px;
+	MARGIN: 20px 0px 0px;
+	PADDING-LEFT: 5px;
+	WIDTH: 228px;
+	PADDING-RIGHT: 5px;
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	BACKGROUND: url(../images/log_password_img.png) no-repeat left top;
+	HEIGHT: 35px;
+	COLOR: #00215c;
+	FONT-SIZE: 12px;
+	BORDER-TOP: medium none;
+	FONT-WEIGHT: bold;
+	BORDER-RIGHT: medium none;
+	PADDING-TOP: 2px;
+	vertical-align: middle;
+	line-height: 35px;
+}
+
+.log-in-butten {
+	TEXT-ALIGN: right;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-LEFT: 0px;
+	WIDTH: auto;
+	PADDING-RIGHT: 160px;
+	PADDING-TOP: 0px
+}
+
+.submitbutton {
+	BORDER-BOTTOM: medium none;
+	TEXT-ALIGN: center;
+	BORDER-LEFT: medium none;
+	PADDING-BOTTOM: 0px;
+	TEXT-TRANSFORM: uppercase;
+	MARGIN: 10px 0px 0px;
+	PADDING-LEFT: 0px;
+	WIDTH: 115px;
+	PADDING-RIGHT: 0px;
+	FONT-FAMILY: Calibri;
+	BACKGROUND: url(../images/login_button.png) no-repeat left top;
+	HEIGHT: 35px;
+	COLOR: #fff;
+	FONT-SIZE: 14px;
+	BORDER-TOP: medium none;
+	FONT-WEIGHT: bold;
+	BORDER-RIGHT: medium none;
+	PADDING-TOP: 0px
+}
+
+.submitbutton:hover {
+	BACKGROUND: url(../images/login_button.png) no-repeat 0px -35px;
+	CURSOR: pointer
+}
+
+.Lost_Username_Password {
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-LEFT: 0px;
+	WIDTH: auto;
+	PADDING-RIGHT: 160px;
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	FLOAT: right;
+	COLOR: #999999;
+	FONT-SIZE: 12px;
+	PADDING-TOP: 10px
+}
+
+.Lost_Username_Password A {
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	COLOR: #999999;
+	FONT-SIZE: 12px;
+	TEXT-DECORATION: underline
+}
+
+.Lost_Username_Password A:hover {
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	COLOR: #00497e;
+	FONT-SIZE: 12px;
+	TEXT-DECORATION: underline
+}

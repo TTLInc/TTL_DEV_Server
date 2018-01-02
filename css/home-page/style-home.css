@@ -1,0 +1,186 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{font-size:12px; /*font-family:'myriadpro-regular';*/  font-family: 'Droid Sans', sans-serif; font-weight:normal; margin:0px; padding:0px; text-rendering: optimizeLegibility;-webkit-font-smoothing: subpixel-antialiased; color:#67637E; background:#fff;}
+a{color:#67637E;}
+a:hover{text-decoration:none;}
+p, article{color:#67637E;  padding:0px 0; margin:0px; }
+ul{color:#67637E;}
+input, textarea, select{ color:#67637E; outline:none; font-size:12px; vertical-align:middle;  font-family:'myriadpro-regular';}
+h1, h2, h3, h4, h5{font-weight:normal;}
+
+@font-face {
+    font-family: 'myriadpro-regular';
+    src: url('fonts/MyriadPro-Regular.eot');
+    src: url('fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/MyriadPro-Regular.woff') format('woff'),
+         url('fonts/MyriadPro-Regular.ttf') format('truetype'),
+         url('fonts/MyriadPro-Regular.svg#myriadpro-regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+/*@font-face{font-family:'Calibri-Bold';src:url('fonts/Calibri Bold.eot');src:url('fonts/Calibri Bold.eot?#iefix') format('embedded-opentype'), url('fonts/Calibri Bold.woff') format('woff'), url('fonts/Calibri Bold.ttf') format('truetype'), url('fonts/Calibri Bold.svg#Calibri-Bold') format('svg');font-weight: normal;font-style: normal;}
+*/
+/*=====Common CSS=====*/
+.wrapper{ width:100%; margin:0px; padding:0px;}
+/*=====Common CSS=====*/
+/*============================================================*/
+/*INDEX CSS START=============================================*/
+/*============================================================*/ 
+header{ display:block; width:100%; clear:both; margin:0px auto 0 auto; background:#b4f2ff; float:left; padding:10px 0 10px 0;}
+#banner{display:block; width:100%; clear:both; margin:0px auto 0 auto; /*background:#26c0e1;*/ float:left; padding:20px 0 0px 0; border-top:1px solid #2b798a; border-bottom:0px solid #2b798a;}
+#slogan{display:block; width:100%; clear:both; margin:0px auto 0 auto; /*background:#26c0e1;*/ float:left; padding:13px 0 25px 0;  border-bottom:0px solid #2b798a;}
+section{ display:block; width:100%; clear:both; margin:0 auto; background:#fff; float:left; padding:0px 0 0 0;}
+#footer2{ display:block; width:100%; clear:both; margin:0 auto; background:#26c0e1; float:left; padding-bottom:35px;}
+#footer-bg{ display:block; width:100%; clear:both; margin:0 auto; background: url(../../images/home/footer-bg2.jpg) 0 bottom repeat-x; float:left; }
+footer{ display:block; width:100%; clear:both; margin:0 auto; background: url(../../images/home/footer-bg.jpg) center bottom no-repeat; float:left; border-top:1px solid #2b798a; min-height:268px;}
+
+
+.site-width{ width:905px; margin:0 auto; padding:0px; clear:both; display:block;}
+
+header .logo{ float:left;}
+header .hd-right{ float:right;/* width:332px;*/ padding-top:8px; padding-bottom:3px;}
+header .hd-right .hd-frm{ float:right; width:100%;}
+header .hd-right .hd-frm .frm-row{ float:right; width:100%; display:block; clear:both; margin-bottom:10px;}
+.textbox{ width:118px; height:22px; background:#FFF; border:0 none; margin-right:8px; float:right; padding:0 3px;
+
+-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-color: #717171 #CFCFCF #FFFFFF;
+	border-image: none;
+	border-left: 1px solid #CFCFCF;
+	border-radius: 5px 5px 5px 5px;
+	border-right: 1px solid #CFCFCF;
+	border-style: solid;
+	border-width: 1px;
+	font-style:italic;
+
+}
+.login-btn{ background:url(../../images//btn-red1.png) 0 0px no-repeat; float:right; width:64px; height:30px; overflow:hidden; text-align:center; color:#FFF; font-size:11px; font-weight:bold; border:0 none; cursor:pointer; padding-bottom:7px; letter-spacing:1px; margin-top:-1px; font-family: Arial, Helvetica, sans-serif;}
+
+
+header .hd-right .hd-frm .hd-phn{color:#000; font-size:11px; font-weight: normal; text-align:right; letter-spacing:1px; float:right; margin-bottom:0px;}
+
+#banner .bnr-video{ width:314px;  float:right;}
+#banner .bnr-video .video{ width:314px; height:174px; float:right; border:1px solid #968e8e; background:#FFF; border: 5px solid #000; border-radius: 10px 10px 10px 10px;}
+#banner .bnr-video span{ text-align:center; color:#000; font-size:12pt; display:block; float:right; width:314px; padding-top:15px;}
+
+#banner .bnr-left{ float:left; width:550px;}
+#banner .bnr-left h2{ float:left; width:100%; display:block; clear:both; color:#090909; font-size:18pt; font-weight:bold; text-align:left; line-height:28px;}
+#banner .bnr-left ul{ float:left; width:100%; display:block; clear:both; margin:10px 0; padding:0px;}
+#banner .bnr-left ul li{ float:left; width:95%; display:block; clear:both; margin:0px 0 5px 0; padding:0px 0 0 20px; color:#090909; font-size:14pt;  background:url(../../images/home/icon.png) 0 -27px no-repeat;}
+
+.banr-frm{ float:left; width:100%; display:block; clear:both; }
+ .banr-frm h3{ float:left; width:100%; display:block; clear:both; color:#090909; font-size:13pt; font-weight:bold; margin:5px 0 10px 0; padding-left:13px;}
+.banr-frm .frm-left{ float:left; width:375px; margin-right:15px;}
+.banr-frm .frm-right{ float:right; width:155px;}
+.banr-frm .frm-left .textbox2{width:175px; height:23px; background:#FFF; border:0 none; margin-right:5px; float:left; padding:0 5px; margin-bottom:7px;
+
+	font-style:italic;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	font-family: 'MyriadPro-Regular';
+	font-size: 13px;
+	color: #7d7d7d;}
+
+
+.banr-frm .frm-left select{width:185px; height:22px; background:#FFF; border:0 none; margin-right:5px; float:left; padding:0 0px; margin-bottom:7px; border:1px solid #fff;
+
+	color: #7D7D7D;
+	font-family: 'MyriadPro-Regular';
+	font-size: 14px;
+	outline: medium none;
+	vertical-align: middle;
+	font-style:italic;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+
+
+}
+.banr-frm .frm-left .last{ margin-right:0;}
+.banr-frm .frm-right span{ font-size:7pt; color:#000; display:block; clear:both; width:100%; margin-bottom:5px; word-spacing:1px;}
+.banr-frm .frm-right .bnt-signup{background:url(../../images/home/icon.png) 0 -96px no-repeat; float:left; width:133px; height:26px; overflow:hidden; text-align:center; color:#FFF; font-size:11pt; font-weight: normal; border:0 none; cursor:pointer; padding-bottom:5px; letter-spacing:1px;}
+
+#slogan .slogan{ /*text-align:center;*/ text-align:left; color:#000; font-size:9pt; font-weight: normal; font-style:italic; line-height:16px; padding-top:20px;}
+
+section #contant{ width:100%; margin:0 auto; padding:20px 0; clear:both; display:block; }
+section #contant h2{width:100%; margin:0 0 30px 0; padding:0px; clear:both; display:block; color:#111212; font-size:18pt; text-align:center; float:left;}
+section #contant .pro-ttl{width:100%; margin:0 auto; padding:0px; clear:both; display:block; color:#111212; font-size:12pt; text-align:center;}
+section #contant .pro-ttl span{width:145px; margin:0 0; padding:0px 220px 0 0;  color:#111212; font-size:12pt; text-align:right; float:left;  background:url(../../images/home/icon.png) right 5px no-repeat; margin-left:0px;}
+section #contant .pro-ttl span.span3{width:170px;  background:none; padding:0px 0 0 40px; margin:0px; text-align:left;}
+section #contant .pro-ttl span.span1{ margin:0px;  padding:0px 185px 0 0;}
+section #contant .boxrow{width:100%; margin:20px auto; padding:0px; clear:both; display:block; float:left; font-size:9pt; color:#111212; }
+section #contant .boxrow span{ float:left; display:block; clear:both; width:100%; margin:0 0 20px 0;}
+section #contant .boxrow .box1{ float:left; width:33%; text-align:center; margin-right:3px;}
+section #contant .boxrow .box2{ float:left; width:33%; text-align:center;  margin-right:3px;}
+section #contant .boxrow .box3{ float:left; width:33%; text-align:center;}
+
+section #contant .talk-list{width:100%; margin:20px auto; padding:0px; clear:both; display:block; float:left; background: url(../../images/home/img1.jpg) -56px 0 no-repeat; height:40px;}
+section #contant .boxrow h4{ float:left; display:block; clear:both; width:100%; margin:0 0 20px 0; font-size:12pt; }
+
+.ft-frm{ width:62%; margin:15px auto 0px auto; float:none; padding-bottom:0px; display:block; clear:both;}
+.ft-top{ text-align:center; margin:60px auto 30px auto; float:left; display:block; clear:both; width:100%;}
+.ft-top img{ margin:0 auto;}
+.ft-bot{ text-align:left; margin:0px auto 0px auto; float:left; display:block; clear:both; width:100%;}
+.ft-bot .left-link { text-align:left; margin:0px ; float:left;  width:580px; color:#2b798a; font-size:8pt; padding-top:5px;}
+.ft-bot .left-link span{ float:left;}
+.ft-bot .left-link a{ float:left; text-decoration:none; color:#2b798a; font-size:8pt; padding:0 0 0 5px;}
+.ft-bot .left-link a:hover{ color:#000;}
+.ft-bot .social-icon { text-align:left; margin:-13px 0 0 0; padding:0px; float:right;  width:200px;}
+.ft-bot .social-icon a{ float:left; margin-left:10px; line-height:10px;}
+.ft-bot .left-link span{ float:left; text-decoration:none; color:#666; font-size:8pt; padding:0 0 0 5px;}
+.ft-bot .left-link span.span2{color:#2b798a;}
+
+.mar-bot{ margin-bottom:0px !important;}
+
+.stepcarousel{
+position: relative; /*leave this value alone*/
+border: 0px solid black;
+overflow: hidden; /*leave this value alone*/
+width: 650px; /*Width of Carousel Viewer itself*/
+height:65px; /*Height should enough to fit largest content's height*/
+}
+
+.stepcarousel .belt{
+position: absolute; /*leave this value alone*/
+left: 0;
+top: 0;
+}
+
+.stepcarousel .panel{
+float: left; /*leave this value alone*/
+overflow: hidden; /*clip content that go outside dimensions of holding panel DIV*/
+margin: 0px; /*margin around each panel*/
+width:650px; /*Width of each panel holding each content. If removed, widths should be individually defined on each content DIV then. */
+}
+
+
+.slogan-line{ border-top:1px solid #b9c2c2 !important; /*float:left;*/ padding:0px 0 0 0; margin:0 auto !important;}
+
+.slogan-bold{ font-weight:bold; font-size:16px; display:block; float:right; text-align:right; margin:25px 0 0 0; padding:0 20px 0 0;}
+
+
+.ppc-bnr-bg{ background:url(../../images/ppc-bnr-bg.jpg) center 0 #26c0e1 no-repeat; display:block; margin:0 auto; float:left; width:100%;}
+.ppc-lnk{ font-size:11pt; color:#090909; margin:5px 0 0 0; float:left; display:block;}
+.ppc-lnk a{color:#003399; text-decoration:none;}
+.ppc-lnk a:hover{color:#000;}
+
+.main_button3{background:url(../../images/btn-red2.png) 0 0 no-repeat !important; width:134px; height:30px; text-align:center; float:left; border:0 none; cursor:pointer; color:#FFF; font-weight:bold; font-size:14px; margin-top:13px; text-decoration:none; padding-bottom:8px;}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+ body{/*font-family: 'PT Sans', sans-serif;*/ font-family: 'Droid Sans', sans-serif;}
+ .banr-frm .frm-right{ width:155px;}
+ .banr-frm h3{ font-size:17px;}
+}

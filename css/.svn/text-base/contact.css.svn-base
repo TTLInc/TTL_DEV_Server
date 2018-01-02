@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+.contact_us{ padding:35px 35px 60px;}
+.contact_us_top{ height:40px; line-height:40px; color:#133e5f; font-size:24px; font-weight:bold; border-bottom:1px solid #e6e6e6;}
+.contact_us_mid{ }
+.contact_us_mid p{ padding:30px 30px 0; /*text-indent:2em;*/ color:#585858; font-family:Arial; line-height:18px; font-size:14px;}
+.contact_us_mid .form{ padding:15px 30px 0;}
+.contact_us_mid li{ padding-top:12px;}
+.contact_us_mid .form .raduisSelect{ padding:5px 16px; color:#9fa1a2; font-style:italic;}
+.contact_us_mid .textarea_box{ border:1px solid #c5c5c5; background-image: -moz-linear-gradient(top, #fdfdfd, #dcdcdc); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd), color-stop(1, #dcdcdc)); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#dcdcdc', GradientType='0'); height:40px; line-height:40px; border-radius:15px; box-shadow:0 2px 2px rgba(0,0,0,0.6); width:522px; height:108px; padding:12px 16px; font-size:12px; line-height:18px; margin:0 0 0 15px; color:#9fa1a2; font-style:italic;}

@@ -1,0 +1,147 @@
+@charset "utf-8";
+/* CSS Document */
+
+.terms{ padding:0px 35px 60px;}
+.terms_top{ height:40px; line-height:40px; color:#133e5f; font-size:18px; font-weight:bold; border-bottom:1px solid #e6e6e6;}
+
+.terms_mid {
+  font-family:verdana,geneva,sans-serif;
+}
+
+.terms_mid h1{
+  padding:30px 30px 0; 
+  color:#3399CC; 
+  font-size:14px;
+  font-weight:bold;
+  line-height:20px;
+  height:20px;
+}
+
+.terms_mid h2{
+  font-size:2.2em;
+  color:#3399cc;
+  border-bottom:3px solid #E8B800;
+  font-weight:300;
+  padding:0 0 8px;
+  margin:10px 25px;
+}
+
+.terms_mid h3{
+  font-size: 18px;
+  padding:18px 30px 0;
+  color:#585858;
+  line-height:18px; 
+  text-align: center;
+}
+
+.terms_mid h4{
+  font-size: 24px;
+  padding: 18px 30px 0;
+  color :#585858;
+  line-height: 18px;
+  text-align: center;
+}
+.intro{
+  padding: 0 30px 0;
+  margin: 20px 0 20px;
+}
+
+.intro p{
+  padding: 9px 0px 9px;
+  text-indent:2em;
+  text-align: justify;
+  color:#585858;
+  line-height:18px;
+  font-size:14px;
+}
+
+.believers{
+  padding: 0px 30px 0px;
+  margin: 18px 0px 18px;
+  text-align: center;
+}
+
+.believers img{
+  padding: 10px 30px 10px;
+  max-width: 150px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#wsgr_logo{
+  height: 50px;
+}
+
+.bio{
+  font-size:14px;
+  color:#585858;
+  line-height:18px;
+  text-align: justify;
+  padding:18px 30px 0;
+  margin: 0px 0px 30px 0px;
+  overflow: auto;
+}
+
+.nameTitle{
+  font-size: 16px;
+  color: #3399ff;
+  margin: 0px 0px 10px 0px;
+  overflow: auto;
+}
+
+.nationality{
+  color: #3399ff;
+  float: right;
+  font-style: italic;
+}
+
+.statement{
+  color:#a9a9a9;
+  margin: 0px 0px 10px 0px;
+}
+
+.description::before{
+  content: "Killer Talents: ";
+  font-weight: bold;
+}
+
+.portrait{
+  position: relative;
+  width: 140px;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 15px 15px 5px 0px;
+  //margin: 0px 15px 0px 0px;
+  
+  border-color: black;
+  border-style:solid;
+  border-width:1pt;
+
+  /*desktop only*/
+  float: left;
+  /*mobile only
+  margin: 0 auto;*/
+}
+
+.portrait img{
+  /*width: 100%;
+  height: auto;
+
+  height: 100%;
+  width: auto;*/
+
+  width: 150px;
+
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  
+/*   -webkit-transform: translate(-50%,-35%);
+      -ms-transform: translate(-50%,-35%);
+          transform: translate(-50%,-35%); */
+
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);     
+          transform: translateX(-50%);
+}

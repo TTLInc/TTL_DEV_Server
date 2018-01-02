@@ -1,0 +1,34 @@
+
+RewriteEngine on   
+
+RewriteCond %{HTTP_HOST} ^thetalklist.com
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://www.thetalklist.com/$1 [R=301,L]
+
+
+
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond $1 !^(index\.php|images|robots\.txt)   
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+AddDefaultCharset UTF-8
+
+
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
+
+AddType audio/ogg .oga
+AddType video/ogg .ogv .ogg
+AddType video/webm .webm
+AddType video/mov .mov
+AddType video/mp4 .mp4
+
+<FilesMatch "\.(jpg|jpeg|png|gif|swf|js|css)$">
+    Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
+
+Redirect 301 https://www.thetalklist.com/tutors https://www.thetalklist.com/user/login

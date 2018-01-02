@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+.contact_us{ padding:0px 35px 60px;}
+.contact_us_top{ height:40px; line-height:40px; color:#133e5f; font-size:24px; font-weight:bold; border-bottom:1px solid #e6e6e6;}
+.contact_us_mid{ }
+.contact_us_mid p{ padding:30px 0px 0; /*text-indent:2em;*/ color:#585858; font-family:Arial; line-height:18px; font-size:14px;}
+.contact_us_mid .form{ padding:15px 30px 0;}
+.contact_us_mid li{ padding-top:12px;}
+.contact_us_mid .form .raduisSelect{ padding:5px 16px; color:#9fa1a2; font-style:italic;}
+.contact_us_mid .textarea_box{ border:1px solid #c5c5c5; background-image: -moz-linear-gradient(top, #fdfdfd, #dcdcdc); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fdfdfd), color-stop(1, #dcdcdc)); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endColorstr='#dcdcdc', GradientType='0'); height:40px; line-height:40px; border-radius:15px; box-shadow:0 2px 2px rgba(0,0,0,0.6); width:522px; height:108px; padding:12px 16px; font-size:12px; line-height:18px; margin:0 0 0 15px; color:#9fa1a2; font-style:italic;}
+
+.login-frm{}
+.login-frm p{ display:block; clear:both;}
+.login-frm p span{ float:left; width:10%;}
+
+
+.signup-title{ color:#133e5f; font-size:24px; font-weight:bold; border-bottom:1px solid #e6e6e6; padding-bottom:15px; margin: 25px 0 0;}
+.signup-formpage{ display:block; clear:both; width:100%; margin:40px 0; float:left;}
+.signup-formpage .frm-row{ display:block; clear:both; width:100%; margin:10px 0; float:left;}
+.signup-formpage .frm-row span{ float:left; width:20%; font-size:1.6em;}
+.signup-formpage .frm-row input, .signup-formpage .frm-row select{ background:#fff; border:1px solid #ccc; float:left; padding:7px; border-radius:5px; width:22%; }
+.signup-formpage .frm-row select{ width:23.8%;}
+.signup-formpage .frm-row input[type="button"]{ background:url(../images/search-btn.png) no-repeat 0 0; cursor:pointer; color:#fff; width:83px; height:34px; border:0 none; font-size:1.6em;}
+.signup-formpage .frm-row label.lblerror { color:red;display:none;font-size:14px;line-height: 2.2em;margin-left: 5px;}

